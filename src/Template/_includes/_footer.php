@@ -5,3 +5,8 @@
     <strong>Copyright &copy; 2023 <a href="http://adminlte.io">Danillo Benício</a>.</strong> All rights
     reserved.
 </footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    
+</aside>
