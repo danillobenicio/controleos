@@ -51,8 +51,10 @@
                                         <div class="form-group">
                                             <label>Tipo</label>
                                             <select class="form-control" style="width: 100%;">
-                                                <option selected="selected">Selecione</option>
-                                                <option>Alaska</option>
+                                                <option selected="selected" value="">Selecione</option>
+                                                <option value="1">Administrador</option>
+                                                <option value="2">Técnico</option>
+                                                <option value="3">Funcionário</option>
                                             </select>
                                         </div>
                                     </div>
