@@ -26,46 +26,21 @@
                         <div class="col-sm-6">
                             <h1>Consultar Usuário</h1>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Início</a></li>
-                                <li class="breadcrumb-item active">Consultar Usuário</li>
-                            </ol>
-                        </div>
                     </div>
                 </div>
             </section>
 
             <section class="content">
-                <div class="card">
-                    <div class="card-dark">
-                        <div class="card-header">
-                            <h3 class="card-title">Pesquisar</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form role="form" method="POST">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="tipo">Nome</label>
-                                    <input type="text" class="form-control" id="tipo" placeholder="Nome">
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-outline-dark">Pesquisar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="card">
-
+                <div class="card form-consulta">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card-header">
-                                <h3 class="card-title">Usuários Cadastrados</h3>
-                            </div>
+                            <br>
+                                <div class="input-group mb-3 col-md-12 col-sm-12">
+                                    <input type="text" class="form-control" placeholder="Pesquisar">
+                                    <div class="input-group-append">
+                                        <button class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </div>
+                                </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover">
@@ -81,8 +56,8 @@
                                             <td>John Doe</td>
                                             <td>John Doe</td>
                                             <td>
-                                                <a href="#" class="btn btn-warning btn-xs">Alterar</a>
-                                                <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                                                <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="#"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>

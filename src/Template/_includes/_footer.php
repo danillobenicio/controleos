@@ -1,9 +1,9 @@
 <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.1
+      
     </div>
-    <strong>Copyright &copy; 2023 <a href="http://adminlte.io">Danillo Benício</a>.</strong> All rights
-    reserved.
+    <strong><a href="http://adminlte.io">Danillo Benício</a></strong>   Copyright &copy; 2023  Todos os direitos
+    reservados.
 </footer>
 
 <!-- Control Sidebar -->
