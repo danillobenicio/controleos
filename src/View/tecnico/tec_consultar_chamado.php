@@ -26,25 +26,18 @@
                         <div class="col-sm-6">
                             <h1>Meus Chamados</h1>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Início</a></li>
-                                <li class="breadcrumb-item active">Meus Chamados</li>
-                            </ol>
-                        </div>
                     </div>
                 </div>
             </section>
 
             <section class="content">
-                <div class="card">
-                    <div class="card-dark">
+                <div class="card form-cadastro">
+                    <div class="card-light">
                         <div class="card-header">
                             <h3 class="card-title">Pesquisar</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form role="form" method="POST">
+
+                        <form role="form" method="post">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tipo">Situação</label>
@@ -54,20 +47,19 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-outline-dark">Pesquisar</button>
+                                <button type="submit" class="btn btn-sm btn-success">Pesquisar</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card form-consulta">
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card-header">
-                                <h3 class="card-title">Resultado</h3>
+                                <h3 class="card-title">Meus Chamados</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
@@ -96,7 +88,7 @@
                                             <td>John Doe</td>
                                             <td>John Doe</td>
                                             <td>
-                                                <a href="#" class="btn btn-primary btn-xs">Ver mais</a>
+                                                <a href="#" class="btn btn-xs btn-secondary btn-xs">Ver mais</a>
                                             </td>
                                         </tr>
                                     </tbody>

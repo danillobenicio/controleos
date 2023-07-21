@@ -1,5 +1,6 @@
 <?php
-    include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+    include_once dirname(__DIR__, 2) . '/Resource/dataview/tipo_equipamento_dataview.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,6 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-  <!-- Site wrapper -->
   <div class="wrapper">
 
     <?php
@@ -26,58 +26,43 @@
             <div class="col-sm-6">
               <h1>Tipo de Equipamento</h1>
             </div>
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Início</a></li>
-                <li class="breadcrumb-item active">Tipo de Equipamento</li>
-              </ol>
-            </div>
           </div>
         </div>
       </section>
 
       <section class="content">
-        <div class="card">
+        <div class="card form-cadastro">
           <div class="card-dark">
-            <div class="card-header">
-              <h3 class="card-title">Cadastrar</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form role="form" method="POST">
+            <form role="form" method="POST" action="gerenciar_tipo_equipamento.php">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="tipo">Tipo de Equipamento</label>
-                  <input type="text" class="form-control" id="tipo" placeholder="Tipo de Equipamento">
+                  <label for="tipo">Cadastrar Tipo</label>
+                  <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo de Equipamento">
                 </div>
               </div>
-              <!-- /.card-body -->
               <div class="card-footer">
-                <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
+                <button type="submit" class="btn btn-sm btn-primary" name="btnCadastrar">Cadastrar</button>
               </div>
             </form>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-dark">
+        <div class="card form-consulta">
+          <div class="card-light">
             <div class="row">
               <div class="col-12">
                 <div class="card-header">
-                  <h3 class="card-title">Consultas</h3>
-
+                  <h3 class="card-title">Tipos Cadastrados</h3>
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                       <input type="text" name="table_search" class="form-control float-right"
                         placeholder="Pesquisar por">
-
                       <div class="input-group-append">
                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
                   <table class="table table-hover">
                     <thead>
@@ -97,8 +82,6 @@
                     </tbody>
                   </table>
                 </div>
-                <!-- /.card-body -->
-                <!-- /.card -->
               </div>
             </div>
           </div>
@@ -107,12 +90,17 @@
     </div>
 
     <?php
-        include_once PATH . 'Template/_includes/_footer.php'
+        include_once PATH . 'Template/_includes/_footer.php';
     ?>
   </div>
+  
   <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
+    include_once PATH . 'Template/_includes/_msg.php';
   ?>
+
+    
+  
 </body>
 
 </html>

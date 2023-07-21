@@ -26,24 +26,17 @@
                         <div class="col-sm-6">
                             <h1>Atender Chamado</h1>
                         </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Início</a></li>
-                                <li class="breadcrumb-item active">Atender Chamado</li>
-                            </ol>
-                        </div>
                     </div>
                 </div>
             </section>
 
             <section class="content">
-                <div class="card">
-                    <div class="card-dark">
+                <div class="card form-cadastro">
+                    <div class="card-light">
                         <div class="card-header">
                             <h3 class="card-title">Atender Chamado</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
+
                         <form role="form" method="POST">
                             <div class="card-body">
                                 <div class="row">
@@ -87,7 +80,7 @@
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
+                                <button type="submit" class="btn btn-sm btn-success">Finalizar</button>
                             </div>
                         </form>
                     </div>

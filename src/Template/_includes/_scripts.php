@@ -6,3 +6,7 @@
   <script src="../../Template/dist/js/adminlte.min.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../../Template/dist/js/demo.js"></script>
+  <!-- Toastr -->
+  <script src="../../Template/plugins/toastr/toastr.min.js"></script>
+  <!-- Mensagem JS -->
+  <script src="../../Resource/js/mensagem.js"></script>

@@ -1,5 +1,5 @@
 <?php
-    include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+    include_once dirname(__DIR__, 2) . '/Resource/dataview/modelo_equipamento_dataview.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,49 +24,38 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Consultar Modelo</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Início</a></li>
-                                <li class="breadcrumb-item active">Consultar Modelo</li>
-                            </ol>
+                            <h1>Modelo Equipamento</h1>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="content">
-                <div class="card">
+                <div class="card form-cadastro">
                     <div class="card-dark">
-                        <div class="card-header">
-                            <h3 class="card-title">Pesquisar</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
+
                         <form role="form" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="tipo">Modelo</label>
-                                    <input type="text" class="form-control" id="tipo" placeholder="Modelo">
+                                    <label for="tipo">Cadastrar Modelo</label>
+                                    <input type="text" class="form-control" id="modelo" name="modelo"
+                                        placeholder="Modelo">
                                 </div>
                             </div>
-                            <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-outline-dark">Pesquisar</button>
+                                <button type="submit" class="btn btn-sm btn-primary"
+                                    name="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="card">
-
+                <div class="card form-consulta">
                     <div class="row">
                         <div class="col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Modelos Cadastrados</h3>
                             </div>
-                            <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover">
                                     <thead>
@@ -79,15 +68,13 @@
                                         <tr>
                                             <td>John Doe</td>
                                             <td>
-                                                <a href="#" class="btn btn-warning btn-xs">Alterar</a>
-                                                <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                                                <a href="#" class="btn btn-sm btn-warning btn-xs">Alterar</a>
+                                                <a href="#" class="btn btn-sm btn-danger btn-xs">Excluir</a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.card-body -->
-                            <!-- /.card -->
                         </div>
                     </div>
                 </div>
@@ -100,6 +87,7 @@
     </div>
     <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
+    include_once PATH . 'Template/_includes/_msg.php';
   ?>
 </body>
 

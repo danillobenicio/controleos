@@ -24,7 +24,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Cadastrar Usuário</h1>
+                            <h1>Usuário</h1>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
+                            <button type="submit" class="btn btn-sm btn-success">Cadastrar</button>
                         </div>
                     </form>
                 </div>

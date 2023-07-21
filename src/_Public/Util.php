@@ -8,7 +8,7 @@
             date_default_timezone_set('America/Sao_Paulo');
         }
 
-        public  static function DataAtual(){
+        public static function DataAtual(){
             self::SetarFusoHorario();
             return date('Y-m-d');
         }
