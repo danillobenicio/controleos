@@ -11,11 +11,11 @@ if(isset($_POST['btnCadastrar']))
     $ctrl = new EquipamentoCTRL();
 
     $vo->setIdentificacao($_POST['identificacao']);
+    $vo->setDescricao($_POST['descricao']);
     $vo->setFkTipo((int)$_POST['tipo']);
     $vo->setFkModelo((int)$_POST['modelo']);
     
     $ret = $ctrl->CadastrarEquipamento($vo);
-
 
 }
 

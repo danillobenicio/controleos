@@ -44,7 +44,8 @@
                                             <label>Tipo</label>
                                             <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo">
                                                 <option value="" selected="selected">Selecione</option>
-                                                <option value="1">Alaska</option>
+                                                <option value="1">Notebook</option>
+                                                <option value="2">Impressora</option>
                                             </select>
                                         </div>
                                     </div>
@@ -53,7 +54,8 @@
                                             <label>Modelo</label>
                                             <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo">
                                                 <option value="" selected="selected">Selecione</option>
-                                                <option value="1">Alaska</option>
+                                                <option value="1">Dell</option>
+                                                <option value="2">Acer</option>
                                             </select>
                                         </div>
                                     </div>

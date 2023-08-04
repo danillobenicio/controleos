@@ -3,6 +3,7 @@
     namespace Src\VO;
 
     use Src\_Public\Util;
+    use datetime;
 
     class EquipamentoVO 
     {
@@ -59,7 +60,7 @@
         }
 
 
-        public function getDataDescarte() : datetime 
+        public function getDataDescarte() : string 
         {
             return Util::DataHoraAtual();
         }
