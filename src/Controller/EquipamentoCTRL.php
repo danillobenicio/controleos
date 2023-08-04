@@ -5,7 +5,7 @@
     use Src\VO\EquipamentoVO;
     use Src\_Public\Util;
 
-    class NovoEquipamentoCTRL
+    class EquipamentoCTRL
     {
 
         public function CadastrarEquipamento(EquipamentoVO $vo) : int

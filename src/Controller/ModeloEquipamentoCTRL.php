@@ -2,6 +2,7 @@
 
     namespace Src\Controller;
     use Src\VO\ModeloVO;
+    use Src\Model\ModeloEquipamentoModel;
 
     class ModeloEquipamentoCTRL
     {
@@ -11,7 +12,12 @@
             {
                 return 0;
             }
-            return 1;
+            
+            $model = new ModeloEquipamentoModel();
+
+            $ret = $model->CadastrarModelo($vo);
+
+            return $ret;
         }
     }
 

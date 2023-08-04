@@ -36,14 +36,14 @@
                         <div class="card-header">
                             <h3 class="card-title">Alocar Equipamento</h3>
                         </div>
-                        <form role="form" method="post" action="gerenciar_alocar_equipamento.php">
+                        <form id="formCad" method="post" action="gerenciar_alocar_equipamento.php">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Equipamento</label>
-                                            <select class="form-control" style="width: 100%;" name="equipamento">
-                                                <option selected="selected">Selecione</option>
+                                            <select class="form-control obg" style="width: 100%;" name="equipamento">
+                                                <option value="" selected="selected">Selecione</option>
                                                 <option value="1">Alaska</option>
                                             </select>
                                         </div>
@@ -51,8 +51,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Setor</label>
-                                            <select class="form-control" style="width: 100%;" name="setor">
-                                                <option selected="selected">Selecione</option>
+                                            <select class="form-control obg" style="width: 100%;" name="setor">
+                                                <option value="" selected="selected">Selecione</option>
                                                 <option value="1">Alaska</option>
                                             </select>
                                         </div>
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-sm btn-success" name="btnCadastrar">Alocar</button>
+                                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-success" name="btnCadastrar">Alocar</button>
                             </div>
                         </form>
                     </div>

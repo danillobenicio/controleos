@@ -10,3 +10,5 @@
   <script src="../../Template/plugins/toastr/toastr.min.js"></script>
   <!-- Mensagem JS -->
   <script src="../../Resource/js/mensagem.js"></script>
+  <!-- Funções JS -->
+  <script src="../../Resource/js/funcoes.js"></script>

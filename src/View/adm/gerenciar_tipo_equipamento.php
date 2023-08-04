@@ -33,15 +33,15 @@
       <section class="content">
         <div class="card form-cadastro">
           <div class="card-dark">
-            <form role="form" method="POST" action="gerenciar_tipo_equipamento.php">
+            <form id="formCad" method="POST" action="gerenciar_tipo_equipamento.php">
               <div class="card-body">
                 <div class="form-group">
                   <label for="tipo">Cadastrar Tipo</label>
-                  <input type="text" class="form-control" id="tipo" name="tipo" placeholder="Tipo de Equipamento">
+                  <input type="text" class="form-control obg" id="tipo" name="tipo" placeholder="Tipo de Equipamento">
                 </div>
               </div>
               <div class="card-footer">
-                <button type="submit" class="btn btn-sm btn-primary" name="btnCadastrar">Cadastrar</button>
+                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-primary" name="btnCadastrar">Cadastrar</button>
               </div>
             </form>
           </div>

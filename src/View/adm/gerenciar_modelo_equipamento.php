@@ -34,16 +34,16 @@
                 <div class="card form-cadastro">
                     <div class="card-dark">
 
-                        <form role="form" method="POST">
+                        <form id="formCad" method="POST" action="gerenciar_modelo_equipamento.php">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tipo">Cadastrar Modelo</label>
-                                    <input type="text" class="form-control" id="modelo" name="modelo"
+                                    <input type="text" class="form-control obg" id="modelo" name="modelo"
                                         placeholder="Modelo">
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-sm btn-primary"
+                                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-primary"
                                     name="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
