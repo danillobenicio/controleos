@@ -65,20 +65,22 @@
                 </div>
                 <div class="card-body table-responsive p-0">
                   <table class="table table-hover">
-                    <thead>
+                    <thead>                     
                       <tr>
                         <th>Tipo do Equipamento</th>
                         <th>Ação</th>
-                      </tr>
+                      </tr>                     
                     </thead>
                     <tbody>
+                    <?php for($i = 0; $i < count($tipos_equipamento); $i++) { ?>
                       <tr>
-                        <td>John Doe</td>
+                        <td><?=$tipos_equipamento[$i]['nome_tipo']?></td>
                         <td>
                           <a href="#" class="btn btn-warning btn-xs">Alterar</a>
                           <a href="#" class="btn btn-danger btn-xs">Excluir</a>
                         </td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

@@ -7,6 +7,14 @@
 
     class TipoEquipamentoCTRL
     {
+
+        private $model;
+
+        public function __construct()
+        {
+            $this->model = new TipoEquipamentoModel;
+        }
+
         public function CadastrarTipoEquipamentoCTRL(TipoVO $vo) : int
         {
             if(empty($vo->getNomeTipo()))
@@ -14,10 +22,13 @@
                 return 0;
             }
 
-            $model = new TipoEquipamentoModel();
-            $ret = $model->CadastrarTipoEquipamentoModel($vo);
-            
+            $ret = $this->model->CadastrarTipoEquipamentoModel($vo);          
             return $ret;
+        }
+
+        public function ConsultarTipoEquipamentoCTRL()
+        {
+            return $this->model->ConsultarTipoEquipamentoModel();
         }
     }
 
