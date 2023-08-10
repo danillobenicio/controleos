@@ -65,13 +65,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php for($i = 0; $i < count($modelos); $i++) { ?>
                                         <tr>
-                                            <td>John Doe</td>
+                                            <td><?=$modelos[$i]['nome_modelo']?></td>
                                             <td>
                                                 <a href="#" class="btn btn-sm btn-warning btn-xs">Alterar</a>
                                                 <a href="#" class="btn btn-sm btn-danger btn-xs">Excluir</a>
                                             </td>
                                         </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

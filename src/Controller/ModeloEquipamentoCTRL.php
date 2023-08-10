@@ -6,6 +6,14 @@
 
     class ModeloEquipamentoCTRL
     {
+
+        private $model;
+
+        public function __construct()
+        {
+            $this->model = new ModeloEquipamentoModel();
+        }
+
         public function CadastrarModelo(ModeloVO $vo) : int
         {
             if(empty($vo->getNomeModelo()))
@@ -13,11 +21,14 @@
                 return 0;
             }
             
-            $model = new ModeloEquipamentoModel();
-
-            $ret = $model->CadastrarModelo($vo);
+            $ret = $this->model->CadastrarModelo($vo);
 
             return $ret;
+        }
+
+        public function ConsultarModeloEquipamentoCTRL()
+        {
+            return $this->model->ConsultarModeloModel();
         }
     }
 

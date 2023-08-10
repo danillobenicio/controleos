@@ -11,6 +11,12 @@
              return $sql;
         }
 
+        public static function ConsultarModeloEquipamento()
+        {
+            $sql = 'SELECT id_modelo, nome_modelo FROM tb_modelo';
+            return $sql;
+        }
+
     }
 
 ?>

@@ -9,11 +9,18 @@
     class ModeloEquipamentoModel extends Conexao
     {
 
+        private $conexao;
+
+        public function __construct()
+        {
+            $this->conexao = parent::retornarConexao();
+        }
+
+
         public function CadastrarModelo(ModeloVO $vo)
         {
 
-            $conexao = parent::retornarConexao();
-            $sql = $conexao->prepare(ModeloEquipamentoSql::InserirModeloEquipamento());
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::InserirModeloEquipamento());
             $sql->bindValue(1, $vo->getNomeModelo());
 
             try 
@@ -26,6 +33,14 @@
                 return -1;
             }
 
+        }
+
+
+        public function ConsultarModeloModel()
+        {
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::ConsultarModeloEquipamento());
+            $sql->execute();
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
     }

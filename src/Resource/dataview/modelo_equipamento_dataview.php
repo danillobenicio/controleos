@@ -5,15 +5,15 @@
     use Src\VO\ModeloVO;
     use Src\Controller\ModeloEquipamentoCTRL;
 
+    $vo = new ModeloVO();
+    $ctrl = new ModeloEquipamentoCTRL();
+
     if(isset($_POST['btnCadastrar']))
-    {
-        $vo = new ModeloVO();
-        $ctrl = new ModeloEquipamentoCTRL();
-
+    {         
         $vo->setNomeModelo($_POST['modelo']);
-
         $ret = $ctrl->CadastrarModelo($vo);
-
     }
+
+    $modelos = $ctrl->ConsultarModeloEquipamentoCTRL();
 
 ?>
