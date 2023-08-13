@@ -74,13 +74,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php for($i = 0; $i < count($setores); $i++) { ?>
                                             <tr>
-                                                <td>John Doe</td>
+                                                <td><?=$setores[$i]['nome_setor']?></td>
                                                 <td>
                                                     <a href="#" class="btn btn-warning btn-xs">Alterar</a>
                                                     <a href="#" class="btn btn-danger btn-xs">Excluir</a>
                                                 </td>
                                             </tr>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
