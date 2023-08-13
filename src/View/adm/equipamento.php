@@ -44,8 +44,9 @@
                                             <label>Tipo</label>
                                             <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo">
                                                 <option value="" selected="selected">Selecione</option>
-                                                <option value="1">Notebook</option>
-                                                <option value="2">Impressora</option>
+                                                <?php for($i = 0; $i < count($tipos); $i++) { ?>
+                                                    <option value="<?=$tipos[$i]['id_tipo']?>"><?=$tipos[$i]['nome_tipo']?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -54,8 +55,9 @@
                                             <label>Modelo</label>
                                             <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo">
                                                 <option value="" selected="selected">Selecione</option>
-                                                <option value="1">Dell</option>
-                                                <option value="2">Acer</option>
+                                                <?php for($i = 0; $i < count($modelos); $i++) { ?>
+                                                <option value="<?=$modelos[$i]['id_modelo']?>"><?=$modelos[$i]['nome_modelo']?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>

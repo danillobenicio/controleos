@@ -1,5 +1,5 @@
 <?php
-    include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+    include_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -68,16 +68,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php for($i = 0; $i < count($equipamentos); $i++) { ?>
                                         <tr>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
+                                            <td><?=$equipamentos[$i]['tipo']?></td>
+                                            <td><?=$equipamentos[$i]['modelo']?></td>
+                                            <td><?=$equipamentos[$i]['identificacao']?></td>
+                                            <td><?=$equipamentos[$i]['descricao']?></td>
                                             <td>
                                                 <a href="#" class="btn btn-warning btn-xs">Alterar</a>
                                                 <a href="#" class="btn btn-danger btn-xs">Excluir</a>
                                             </td>
                                         </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

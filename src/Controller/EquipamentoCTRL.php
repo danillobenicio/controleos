@@ -9,17 +9,29 @@
     class EquipamentoCTRL
     {
 
+        private $model;
+        public function __construct()
+        {
+            $this->model = new EquipamentoModel();
+        }
+
         public function CadastrarEquipamento(EquipamentoVO $vo) : int
         {
             if(empty($vo->getIdentificacao()) || empty($vo->getFkModelo()) || empty($vo->getFkTipo()))
             {
                 return 0;
             }
-            $model = new EquipamentoModel();
 
-            $ret = $model->CadastrarEquipamentoModel($vo);
+            $ret = $this->model->CadastrarEquipamentoModel($vo);
             return $ret;
             return 1;
+        }
+
+        public function ConsultarEquipamentoCTRL()
+        {
+            return $this->model->ConsultarEquipamentoModel();
+
+
         }
 
     }
