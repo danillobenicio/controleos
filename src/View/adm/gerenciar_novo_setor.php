@@ -37,7 +37,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tipo">Cadastrar Setor</label>
-                                    <input type="text" class="form-control obg" id="tipo" name="setor" placeholder="Setor">
+                                    <input type="text" class="form-control obg" id="setor" name="setor" placeholder="Setor">
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -78,7 +78,7 @@
                                             <tr>
                                                 <td><?=$setores[$i]['nome_setor']?></td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning btn-xs">Alterar</a>
+                                                    <button onclick="CarregarSetor('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')" data-toggle="modal" data-target="#alterar_setor" class="btn btn-warning btn-xs">Alterar</button>
                                                     <a href="#" class="btn btn-danger btn-xs">Excluir</a>
                                                 </td>
                                             </tr>
@@ -91,6 +91,9 @@
                     </div>
                 </div>
             </section>
+            <form method="post" action="gerenciar_novo_setor.php" id="formAlt">
+                <?php include_once 'modais/modal_alterar_setor.php'; ?>
+            </form>
         </div>
 
         <?php

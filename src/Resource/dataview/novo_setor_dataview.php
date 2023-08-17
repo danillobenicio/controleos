@@ -6,15 +6,21 @@
     use Src\Controller\SetorCTRL;
 
     $ctrl = new SetorCTRL();
+    $vo = new SetorVO();
 
     if(isset($_POST['btnCadastrar']))
     {
-        $vo = new SetorVO();
-        
+               
         $vo->setNomeSetor($_POST['setor']);
 
         $ret = $ctrl->CadastrarSetor($vo);
+    }
+    else if(isset($_POST['btnAlterar']))
+    {
+        $vo->setNomeSetor($_POST['setor_alterar']);
+        $vo->setIdSetor($_POST['id_alterar']);
 
+        $ret = $ctrl->AlterarSetorCTRL($vo);
     }
 
     $setores =  $ctrl->ConsultarSetorCTRL();

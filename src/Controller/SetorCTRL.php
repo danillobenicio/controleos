@@ -31,6 +31,16 @@
             return $this->model->ConsultarSetorModel();
         }
 
+        public function AlterarSetorCTRL(SetorVO $vo)
+        {
+            if(empty($vo->getNomeSetor()) || empty($vo->getIdSetor()))
+                return 0;
+
+            $ret = $this->model->AlterarSetorModel($vo);
+            return $ret;
+            
+        }
+
     }
 
 ?>

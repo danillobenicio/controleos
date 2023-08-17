@@ -9,3 +9,9 @@ function CarregarModeloEquipamento(id, modelo)
     $('#id_alterar').val(id);
     $('#modelo_alterar').val(modelo);
 }
+
+function CarregarSetor(id, setor)
+{
+    $('#id_alterar').val(id);
+    $('#setor_alterar').val(setor);
+}

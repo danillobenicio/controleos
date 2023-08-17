@@ -35,6 +35,23 @@
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
+
+        public function AlterarSetorModel(SetorVO $vo)
+        {
+            $sql = $this->conexao->prepare(SetorSql::AlterarSetor());
+            $sql->bindValue(1, $vo->getNomeSetor());
+            $sql->bindValue(2, $vo->getIdSetor());
+
+            try
+            {
+                $sql->execute();
+                return 2;
+            }
+            catch (\Exception $ex)
+            {
+                return -1;
+            }
+        }
     }
 
 ?>
