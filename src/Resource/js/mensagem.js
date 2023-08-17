@@ -1,9 +1,7 @@
-function MostrarMensagem(ret)
-{
-    switch (ret) 
-    {
+function MostrarMensagem(ret) {
+    switch (ret) {
         case -1:
-            toastr.error('OCorreu um erro na operação');
+            toastr.error('Ocorreu um erro na operação, contate o suporte técnico');
             break;
 
         case 0:
@@ -13,6 +11,9 @@ function MostrarMensagem(ret)
         case 1:
             toastr.success('Cadastrado com sucesso');
             break;
+
+        case 2:
+            toastr.success('Alterado com sucesso');
 
     }
 }

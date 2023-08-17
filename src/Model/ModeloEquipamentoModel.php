@@ -51,7 +51,7 @@
             $sql->bindValue(2, $vo->getIdModelo());
             try {
                 $sql->execute();
-                return 1;
+                return 2;
             } catch (\Exception $ex) {
                 return 0;
             }

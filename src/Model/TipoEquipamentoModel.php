@@ -50,7 +50,7 @@
 
             try {
                 $sql->execute();
-                return 1;
+                return 2;
             } catch (\Exception $ex) {
                 return -1;
             }
