@@ -30,6 +30,15 @@
         {
             return $this->model->ConsultarModeloModel();
         }
+
+        public function AlterarModeloEquipamentoCTRL(ModeloVO $vo)
+        {
+            if(empty($vo->getNomeModelo()) || empty($vo->getIdModelo()))
+                return 0;
+
+            $ret = $this->model->AlterarModeloModel($vo);
+            return $ret;
+        }
     }
 
 ?>

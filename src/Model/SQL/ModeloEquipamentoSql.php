@@ -17,6 +17,12 @@
             return $sql;
         }
 
+        public static function AlterarModeloEquipamento()
+        {
+            $sql = 'UPDATE tb_modelo SET nome_modelo = ? WHERE id_modelo = ?';
+            return $sql;
+        }
+
     }
 
 ?>

@@ -13,6 +13,11 @@
             return date('Y-m-d');
         }
 
+        public static function DataAtualBr(){
+            self::SetarFusoHorario();
+            return date('d/mYd');
+        }
+
         public static function HoraAtual() {
             self::SetarFusoHorario();
             return date('H:i');

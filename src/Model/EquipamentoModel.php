@@ -43,6 +43,7 @@
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
 
         }
+        
     }
 
 ?>

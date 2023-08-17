@@ -13,6 +13,12 @@
         $vo->setNomeModelo($_POST['modelo']);
         $ret = $ctrl->CadastrarModelo($vo);
     }
+    else if(isset($_POST['btnAlterar']))
+    {
+        $vo->setNomeModelo($_POST['modelo_alterar']);
+        $vo->setIdModelo($_POST['id_alterar']);
+        $ret = $ctrl->AlterarModeloEquipamentoCTRL($vo);
+    }
 
     $modelos = $ctrl->ConsultarModeloEquipamentoCTRL();
 

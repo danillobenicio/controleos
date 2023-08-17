@@ -43,8 +43,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-primary"
-                                    name="btnCadastrar">Cadastrar</button>
+                                <button onclick="return ValidarCampos('formCad')" type="submit"
+                                    class="btn btn-sm btn-primary" name="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -69,7 +69,8 @@
                                         <tr>
                                             <td><?=$modelos[$i]['nome_modelo']?></td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-warning btn-xs">Alterar</a>
+                                                <button onclick="CarregarModeloEquipamento('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
+                                                    class="btn btn-sm btn-warning btn-xs" data-toggle="modal" data-target="#alterar_modelo">Alterar</button>
                                                 <a href="#" class="btn btn-sm btn-danger btn-xs">Excluir</a>
                                             </td>
                                         </tr>
@@ -81,6 +82,9 @@
                     </div>
                 </div>
             </section>
+            <form method="post" action="gerenciar_modelo_equipamento.php" id="formAlt">
+                <?php include_once 'modais/modal_alterar_modelo.php'; ?>
+            </form>
         </div>
 
         <?php

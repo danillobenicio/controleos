@@ -23,6 +23,13 @@
             return $sql;
         }
 
+
+        public static function ExcluirTipoEquipamento()
+        {
+            $sql =  'DELETE FROM tb_tipo WHERE id_tipo = ?';
+            return $sql;
+        }
+
     }
 
 ?>

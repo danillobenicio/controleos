@@ -17,6 +17,18 @@
        $ret = $ctrl->CadastrarTipoEquipamentoCTRL($vo);
 
     }
+    else if(isset($_POST['btnAlterar']))
+    {
+        $vo->setNomeTipo($_POST['tipo_alterar']);
+        $vo->setIdTipo($_POST['id_alterar']);
+
+        $ret = $ctrl->AlterarTipoEquipamentoCTRL($vo);
+    }
+    else if(isset($_POST['btnExcluir']))
+    {
+        $vo->setIdTipo($_POST['id_excluir']);
+        $ret = $ctrl->ExcluirTipoEquipamentoCTRL($vo);
+    }
 
     $tipos_equipamento = $ctrl->ConsultarTipoEquipamentoCtrl();
 

@@ -1,6 +1,5 @@
 <?php
     include_once dirname(__DIR__, 2) . '/Resource/dataview/tipo_equipamento_dataview.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,7 +75,7 @@
                       <tr>
                         <td><?=$tipos_equipamento[$i]['nome_tipo']?></td>
                         <td>
-                          <a href="#" class="btn btn-warning btn-xs">Alterar</a>
+                          <button onclick="CarregarTipoEquipamento('<?=$tipos_equipamento[$i]['id_tipo']?>', '<?=$tipos_equipamento[$i]['nome_tipo']?>')" data-toggle="modal" data-target="#alterar_tipo" class="btn btn-warning btn-xs">Alterar</button>
                           <a href="#" class="btn btn-danger btn-xs">Excluir</a>
                         </td>
                       </tr>
@@ -89,6 +88,9 @@
           </div>
         </div>
       </section>
+      <form id="formAlt" method="post" action="gerenciar_tipo_equipamento.php">
+        <?php include_once 'modais/modal_alterar_tipo_equipamento.php'; ?>
+      </form>
     </div>
 
     <?php

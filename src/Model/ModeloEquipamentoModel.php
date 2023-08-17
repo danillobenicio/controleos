@@ -43,6 +43,20 @@
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
+
+        public function AlterarModeloModel(ModeloVO $vo)
+        {
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::AlterarModeloEquipamento());
+            $sql->bindValue(1, $vo->getNomeModelo());
+            $sql->bindValue(2, $vo->getIdModelo());
+            try {
+                $sql->execute();
+                return 1;
+            } catch (\Exception $ex) {
+                return 0;
+            }
+        }
+
     }
 
 ?>

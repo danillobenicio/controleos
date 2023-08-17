@@ -30,6 +30,24 @@
         {
             return $this->model->ConsultarTipoEquipamentoModel();
         }
+
+
+        public function AlterarTipoEquipamentoCTRL(TipoVO $vo)
+        {
+            if(empty($vo->getNomeTipo()) || empty($vo->getIdTipo()))
+                return 0;
+            
+            $ret = $this->model->AlterarTipoEquipamentoModel($vo);
+            return $ret;
+
+        }
+
+        public function ExcluirTipoEquipamentoCTRL(TipoVO $vo)
+        {
+            if(empty($vo->getIdTipo()))
+                return 0;
+            return $this->model->ExcluirTipoEquipamentoModel($vo);
+        }
     }
 
 ?>

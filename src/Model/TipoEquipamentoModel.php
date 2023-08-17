@@ -43,10 +43,30 @@
 
         public function AlterarTipoEquipamentoModel(TipoVO $vo)
         {
-            $sql= $this->conexao->prepare(TipoEquipamentoSql::AlterarTipoEquipamento());
-            $i = 1;
-            $sql->bindValue($i++, $vo->getNomeTipo());
-            $sql->bindValue($i++, $vo->getIdTipo());
+            $sql = $this->conexao->prepare(TipoEquipamentoSql::AlterarTipoEquipamento());
+
+            $sql->bindValue(1, $vo->getNomeTipo());
+            $sql->bindValue(2, $vo->getIdTipo());
+
+            try {
+                $sql->execute();
+                return 1;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+
+        }
+
+        public function ExcluirTipoEquipamentoModel(TipoVO $vo)
+        {
+            $sql = $this->conexao->prepare(TipoEquipamentoSql::ExcluirTipoEquipamento());
+            $sql->bindValue(1, $vo->getIdTipo());
+            try {
+                $sql->execute();
+                return 1;
+            } catch (\Exception $ex) {
+                return -1;
+            }
         }
 
     }
