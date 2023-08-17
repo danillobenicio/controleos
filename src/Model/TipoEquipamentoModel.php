@@ -61,9 +61,10 @@
         {
             $sql = $this->conexao->prepare(TipoEquipamentoSql::ExcluirTipoEquipamento());
             $sql->bindValue(1, $vo->getIdTipo());
+
             try {
                 $sql->execute();
-                return 1;
+                return 3;
             } catch (\Exception $ex) {
                 return -1;
             }

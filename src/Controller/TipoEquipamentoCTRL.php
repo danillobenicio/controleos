@@ -46,6 +46,7 @@
         {
             if(empty($vo->getIdTipo()))
                 return 0;
+                
             return $this->model->ExcluirTipoEquipamentoModel($vo);
         }
     }

@@ -9,13 +9,15 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <input type="hidden" name="id_alterar" id="id_alterar">
-                    <input type="text" class="form-control obg" id="tipo_alterar" name="tipo_alterar">
+                    <input type="hidden" name="id_excluir" id="id_excluir">
+                    <input type="hidden" name="nome_excluir" id="nome_excluir">
+                    <label>Deseja realmente excluir esse registro?</label>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button onclick="return ValidarCampos('formAlt')" type="submit" name="btnAlterar" class="btn btn-secondary">Alterar</button>
+                <button onclick="" type="submit" name="btnExcluir"
+                    class="btn btn-secondary">Sim</button>
             </div>
         </div>
     </div>

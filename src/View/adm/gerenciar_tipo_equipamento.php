@@ -40,7 +40,8 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-primary" name="btnCadastrar">Cadastrar</button>
+                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-primary"
+                  name="btnCadastrar">Cadastrar</button>
               </div>
             </form>
           </div>
@@ -64,19 +65,25 @@
                 </div>
                 <div class="card-body table-responsive p-0">
                   <table class="table table-hover">
-                    <thead>                     
+                    <thead>
                       <tr>
                         <th>Tipo do Equipamento</th>
                         <th>Ação</th>
-                      </tr>                     
+                      </tr>
                     </thead>
                     <tbody>
-                    <?php for($i = 0; $i < count($tipos_equipamento); $i++) { ?>
+                      <?php for($i = 0; $i < count($tipos_equipamento); $i++) { ?>
                       <tr>
                         <td><?=$tipos_equipamento[$i]['nome_tipo']?></td>
                         <td>
-                          <button onclick="CarregarTipoEquipamento('<?=$tipos_equipamento[$i]['id_tipo']?>', '<?=$tipos_equipamento[$i]['nome_tipo']?>')" data-toggle="modal" data-target="#alterar_tipo" class="btn btn-warning btn-xs">Alterar</button>
-                          <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                          <button
+                            onclick="CarregarTipoEquipamento('<?=$tipos_equipamento[$i]['id_tipo']?>', '<?=$tipos_equipamento[$i]['nome_tipo']?>')"
+                            data-toggle="modal" data-target="#alterar_tipo"
+                            class="btn btn-warning btn-xs">Alterar</button>
+                          <button
+                            onclick="CarregarExcluir('<?=$tipos_equipamento[$i]['id_tipo']?>', '<?=$tipos_equipamento[$i]['nome_tipo']?>')"
+                            data-toggle="modal" data-target="#modal_excluir"
+                            class="btn btn-danger btn-xs">Excluir</button>
                         </td>
                       </tr>
                       <?php } ?>
@@ -90,6 +97,7 @@
       </section>
       <form id="formAlt" method="post" action="gerenciar_tipo_equipamento.php">
         <?php include_once 'modais/modal_alterar_tipo_equipamento.php'; ?>
+        <?php include_once 'modais/modal_excluir.php'; ?>
       </form>
     </div>
 
@@ -97,14 +105,14 @@
         include_once PATH . 'Template/_includes/_footer.php';
     ?>
   </div>
-  
+
   <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
     include_once PATH . 'Template/_includes/_msg.php';
   ?>
 
-    
-  
+
+
 </body>
 
 </html>

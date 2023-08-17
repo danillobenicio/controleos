@@ -1,3 +1,11 @@
+function CarregarExcluir(id, nome)
+{
+    $('#id_excluir').val(id);
+    $('#nome_excluir').val(nome);
+}
+
+
+
 function CarregarTipoEquipamento(id, tipo)
 {
     $('#id_alterar').val(id);
