@@ -57,6 +57,18 @@
             }
         }
 
+        public function ExcluirModeloEquipamentoModel($vo)
+        {
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::ExcluirModeloEquipamento());
+            $sql->bindValue(1, $vo->getIdModelo());
+            try {
+                $sql->execute();
+                return 3;
+            } catch (\Exception $ex) {
+                return 0;
+            }
+        }        
+
     }
 
 ?>

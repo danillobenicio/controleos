@@ -19,6 +19,11 @@
         $vo->setIdModelo($_POST['id_alterar']);
         $ret = $ctrl->AlterarModeloEquipamentoCTRL($vo);
     }
+    else if(isset($_POST['btnExcluir']))
+    {
+        $vo->setIdModelo($_POST['id_excluir']);
+        $ret = $ctrl->ExcluirModeloEquipamentoCTRL($vo);
+    }
 
     $modelos = $ctrl->ConsultarModeloEquipamentoCTRL();
 

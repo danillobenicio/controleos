@@ -23,6 +23,11 @@
             return $sql;
         }
 
+        public static function ExcluirModeloEquipamento()
+        {
+            $sql = 'DELETE FROM tb_modelo WHERE id_modelo = ?';
+            return $sql;
+        }
     }
 
 ?>

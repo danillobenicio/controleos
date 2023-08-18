@@ -39,6 +39,13 @@
             $ret = $this->model->AlterarModeloModel($vo);
             return $ret;
         }
+
+        public function ExcluirModeloEquipamentoCTRL(ModeloVO $vo)
+        {
+            if(empty($vo->getIdModelo()))
+                return 0;
+            return $this->model->ExcluirModeloEquipamentoModel($vo);
+        }
     }
 
 ?>
