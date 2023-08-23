@@ -14,6 +14,9 @@
         $vo->setNomeSetor($_POST['setor']);
 
         $ret = $ctrl->CadastrarSetor($vo);
+
+        if ($_POST['btnCadastrar'] == 'ajx')
+            echo $ret;
     }
     else if(isset($_POST['btnAlterar']))
     {
