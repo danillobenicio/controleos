@@ -11,17 +11,24 @@
     if(isset($_POST['btnCadastrar']))
     {         
         $vo->setNomeModelo($_POST['modelo']);
+
         $ret = $ctrl->CadastrarModelo($vo);
+
+        if($_POST['btnCadastrar'] == 'ajx')
+            echo $ret;    
     }
     else if(isset($_POST['btnAlterar']))
     {
         $vo->setNomeModelo($_POST['modelo_alterar']);
+
         $vo->setIdModelo($_POST['id_alterar']);
+
         $ret = $ctrl->AlterarModeloEquipamentoCTRL($vo);
     }
     else if(isset($_POST['btnExcluir']))
     {
         $vo->setIdModelo($_POST['id_excluir']);
+
         $ret = $ctrl->ExcluirModeloEquipamentoCTRL($vo);
     }
 

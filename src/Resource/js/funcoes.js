@@ -1,3 +1,21 @@
+function BaseUrlDataview(dataview)
+{
+    return '../../Resource/dataview/' + dataview + '.php';
+}
+
+
+function LimparNotificacoes(formID)
+{
+    $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each
+    (        
+        function()
+        {                  
+            $(this).val('');
+            $(this).removeClass("is-invalid").removeClass("is-valid");          
+        }       
+    );
+}
+
 function ValidarCampos(formID)
 {
     
@@ -28,7 +46,8 @@ function ValidarCampos(formID)
         }
         
     );
-    MostrarMensagem(0); 
+    
     if(!ret)
-        return ret;
+        MostrarMensagem(0); 
+    return ret;
 }

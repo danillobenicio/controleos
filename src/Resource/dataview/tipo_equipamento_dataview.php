@@ -16,6 +16,11 @@
        //Chama a função da Controller
        $ret = $ctrl->CadastrarTipoEquipamentoCTRL($vo);
 
+       if($_POST['btnCadastrar'] == 'ajx')
+       {
+        echo $ret;
+       }
+
     }
     else if(isset($_POST['btnAlterar']))
     {

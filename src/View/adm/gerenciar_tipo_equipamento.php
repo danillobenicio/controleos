@@ -40,7 +40,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-primary"
+                <button type="button" onclick="return CadastrarTipoEquipamento('formCad')" class="btn btn-sm btn-primary"
                   name="btnCadastrar">Cadastrar</button>
               </div>
             </form>
@@ -111,7 +111,7 @@
     include_once PATH . 'Template/_includes/_msg.php';
   ?>
 
-
+<script src="../../Resource/ajax/tipo_equipamento_ajax.js"></script>
 
 </body>
 
