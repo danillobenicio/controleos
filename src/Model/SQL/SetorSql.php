@@ -21,6 +21,12 @@
             $sql = 'UPDATE tb_setor SET nome_setor = ? WHERE id_setor = ?';
             return $sql;
         }
+        
+        public static function ExcluirSetor()
+        {
+            $sql = 'DELETE FROM tb_setor WHERE id_setor = ?';
+            return $sql;
+        }
     }
 
 ?>

@@ -79,7 +79,7 @@
                                                 <td><?=$setores[$i]['nome_setor']?></td>
                                                 <td>
                                                     <button onclick="CarregarSetor('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')" data-toggle="modal" data-target="#alterar_setor" class="btn btn-warning btn-xs">Alterar</button>
-                                                    <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                                                    <button onclick="CarregarExcluir('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -93,6 +93,7 @@
             </section>
             <form method="post" action="gerenciar_novo_setor.php" id="formAlt">
                 <?php include_once 'modais/modal_alterar_setor.php'; ?>
+                <?php include_once 'modais/modal_excluir.php'; ?>
             </form>
         </div>
 

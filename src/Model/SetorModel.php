@@ -52,6 +52,20 @@
                 return -1;
             }
         }
+
+        public function ExcluirSetorModel(SetorVO $vo)
+        {
+            $sql = $this->conexao->prepare(SetorSql::ExcluirSetor());
+            $sql->bindValue(1, $vo->getIdSetor());
+
+            try {
+                $sql->execute();
+                return 3;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+
+        }
     }
 
 ?>

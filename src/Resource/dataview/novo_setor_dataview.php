@@ -22,6 +22,11 @@
 
         $ret = $ctrl->AlterarSetorCTRL($vo);
     }
+    else if (isset($_POST['btnExcluir']))
+    {
+        $vo->setIdSetor($_POST['id_excluir']);
+        $ret = $ctrl->ExcluirSetorCTRL($vo);
+    }
 
     $setores =  $ctrl->ConsultarSetorCTRL();
 

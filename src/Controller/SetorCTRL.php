@@ -41,6 +41,16 @@
             
         }
 
+        public function ExcluirSetorCTRL(SetorVO $vo)
+        {
+            if(empty($vo->getIdSetor()))
+                return 0;
+            
+            $ret = $this->model->ExcluirSetorModel($vo);
+            return $ret;
+        }
+
+
     }
 
 ?>
