@@ -69,13 +69,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descricao">Descrição</label>
-                                    <textarea class="form-control obg" id="descricao" rows="3"
+                                    <textarea class="form-control" id="descricao" rows="3"
                                         placeholder="Descrição" name="descricao"></textarea>
                                 </div>
                             </div>
 
                             <div class="card-footer">
-                                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-success" name="btnCadastrar">Cadastrar</button>
+                                <button type="button" onclick="return CadastrarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -91,6 +91,7 @@
         include_once PATH . 'Template/_includes/_scripts.php';
         include_once PATH . 'Template/_includes/_msg.php';
      ?>
+     <script src="../../Resource/ajax/equipamento_ajax.js"></script>
 </body>
 
 </html>

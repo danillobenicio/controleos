@@ -23,8 +23,9 @@
             }
 
             $ret = $this->model->CadastrarEquipamentoModel($vo);
+            
             return $ret;
-            return 1;
+
         }
 
         public function ConsultarEquipamentoCTRL()

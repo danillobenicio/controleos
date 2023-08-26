@@ -6,7 +6,7 @@
     {
         public static function CadastrarEquipamento()
         {
-            $sql = 'INSERT INTO tb_equipamento (identificacao, descricao, fk_id_modelo, fk_id_tipo) values (?, ?, ?, ?)';
+            $sql = 'INSERT INTO tb_equipamento (fk_id_tipo, fk_id_modelo, identificacao, descricao) values (?, ?, ?, ?)';
             return $sql;
         }
 

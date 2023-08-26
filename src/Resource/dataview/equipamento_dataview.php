@@ -17,12 +17,17 @@ if(isset($_POST['btnCadastrar']))
     $vo = new EquipamentoVO();
     $ctrl = new EquipamentoCTRL();
 
-    $vo->setIdentificacao($_POST['identificacao']);
-    $vo->setDescricao($_POST['descricao']);
     $vo->setFkTipo((int)$_POST['tipo']);
     $vo->setFkModelo((int)$_POST['modelo']);
+    $vo->setIdentificacao($_POST['identificacao']);
+    $vo->setDescricao($_POST['descricao']);
     
     $ret = $ctrl->CadastrarEquipamento($vo);
+
+    if($_POST['btnCadastrar'] == 'ajx'){
+        echo $ret;
+    }
+    
 
 }
 
