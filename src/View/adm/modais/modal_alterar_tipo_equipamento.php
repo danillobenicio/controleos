@@ -15,7 +15,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button onclick="return ValidarCampos('formAlt')" type="submit" name="btnAlterar" class="btn btn-secondary">Alterar</button>
+                <button type="button" onclick="return AlterarTipoEquipamento('formAlt')" name="btnAlterar" class="btn btn-secondary">Alterar</button>
             </div>
         </div>
     </div>

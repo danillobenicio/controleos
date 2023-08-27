@@ -63,32 +63,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-body table-responsive p-0">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Tipo do Equipamento</th>
-                        <th>Ação</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php for($i = 0; $i < count($tipos_equipamento); $i++) { ?>
-                      <tr>
-                        <td><?=$tipos_equipamento[$i]['nome_tipo']?></td>
-                        <td>
-                          <button
-                            onclick="CarregarTipoEquipamento('<?=$tipos_equipamento[$i]['id_tipo']?>', '<?=$tipos_equipamento[$i]['nome_tipo']?>')"
-                            data-toggle="modal" data-target="#alterar_tipo"
-                            class="btn btn-warning btn-xs">Alterar</button>
-                          <button
-                            onclick="CarregarExcluir('<?=$tipos_equipamento[$i]['id_tipo']?>', '<?=$tipos_equipamento[$i]['nome_tipo']?>')"
-                            data-toggle="modal" data-target="#modal_excluir"
-                            class="btn btn-danger btn-xs">Excluir</button>
-                        </td>
-                      </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
+                <div class="card-body table-responsive p-0" id="tableResult">
+                  
                 </div>
               </div>
             </div>
@@ -112,7 +88,9 @@
   ?>
 
 <script src="../../Resource/ajax/tipo_equipamento_ajax.js"></script>
-
+<script>
+  ConsultarTipoEquipamento();
+</script>
 </body>
 
 </html>

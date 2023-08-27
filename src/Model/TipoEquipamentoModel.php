@@ -66,6 +66,7 @@
                 $sql->execute();
                 return 3;
             } catch (\Exception $ex) {
+                //echo $ex->getMessage();
                 return -1;
             }
         }
