@@ -13,7 +13,7 @@
 
         public static function ConsultarModeloEquipamento()
         {
-            $sql = 'SELECT id_modelo, nome_modelo FROM tb_modelo';
+            $sql = 'SELECT id_modelo, nome_modelo FROM tb_modelo ORDER BY nome_modelo';
             return $sql;
         }
 

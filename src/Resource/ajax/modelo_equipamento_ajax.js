@@ -13,7 +13,21 @@ function CadastrarModelo(formID)
             {
                 MostrarMensagem(ret);
                 LimparNotificacoes(formID);
+                ConsultarModeloEquipamento();
             }
         })
     }
+}
+
+
+function ConsultarModeloEquipamento()
+{
+    $.ajax({
+        type: "POST",
+        url: BaseUrlDataview('modelo_equipamento_dataview'),
+        data: {consultarModelo: "ajx"},
+        success: function(dados){
+            $("#tableResult").html(dados);
+        }
+    })
 }

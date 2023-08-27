@@ -11,11 +11,13 @@
             return $sql;
         }
 
+        
         public static function SelecionarTipoEquipamento()
         {
             $sql = 'SELECT id_tipo, nome_tipo FROM tb_tipo ORDER BY nome_tipo';
             return $sql;
         }
+
 
         public static function AlterarTipoEquipamento()
         {

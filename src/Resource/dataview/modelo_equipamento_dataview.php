@@ -31,7 +31,37 @@
 
         $ret = $ctrl->ExcluirModeloEquipamentoCTRL($vo);
     }
+    else if(isset($_POST['consultarModelo']))
+    {
 
-    $modelos = $ctrl->ConsultarModeloEquipamentoCTRL();
+        $modelos = $ctrl->ConsultarModeloEquipamentoCTRL();
 
-?>
+        ?>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i = 0; $i < count($modelos); $i++) { ?>
+                    <tr>
+                        <td><?=$modelos[$i]['nome_modelo']?></td>
+                        <td>
+                            <button
+                                onclick="CarregarModeloEquipamento('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
+                                class="btn btn-sm btn-warning btn-xs" data-toggle="modal"
+                                data-target="#alterar_modelo">Alterar</button>
+                            <button data-toggle="modal" data-target="#modal_excluir"
+                                onclick="CarregarExcluir('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
+                                class="btn btn-sm btn-danger btn-xs" name="btnExcluir">Excluir</button>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+
+
+<?php } ?>

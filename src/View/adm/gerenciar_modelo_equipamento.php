@@ -56,27 +56,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">Modelos Cadastrados</h3>
                             </div>
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php for($i = 0; $i < count($modelos); $i++) { ?>
-                                        <tr>
-                                            <td><?=$modelos[$i]['nome_modelo']?></td>
-                                            <td>
-                                                <button onclick="CarregarModeloEquipamento('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
-                                                    class="btn btn-sm btn-warning btn-xs" data-toggle="modal" data-target="#alterar_modelo">Alterar</button>
-                                                <button data-toggle="modal" data-target="#modal_excluir" onclick="CarregarExcluir('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')" class="btn btn-sm btn-danger btn-xs" name="btnExcluir">Excluir</button>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                            <div class="card-body table-responsive p-0" id="tableResult">
+                                
                             </div>
                         </div>
                     </div>
@@ -98,6 +79,9 @@
   ?>
 
 <script src="../../Resource/ajax/modelo_equipamento_ajax.js"></script>
+<script>
+    ConsultarModeloEquipamento();
+</script>
 </body>
 
 </html>

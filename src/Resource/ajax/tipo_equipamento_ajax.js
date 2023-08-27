@@ -20,6 +20,7 @@ function CadastrarTipoEquipamento(formID)
     }
 }
 
+
 function ConsultarTipoEquipamento()
 {
     $.ajax({
