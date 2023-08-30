@@ -24,12 +24,21 @@
         $vo->setIdModelo($_POST['id_alterar']);
 
         $ret = $ctrl->AlterarModeloEquipamentoCTRL($vo);
+
+        if($_POST['btnAlterar'] == 'ajx'){
+            echo $ret;
+        }           
+
     }
     else if(isset($_POST['btnExcluir']))
     {
         $vo->setIdModelo($_POST['id_excluir']);
 
         $ret = $ctrl->ExcluirModeloEquipamentoCTRL($vo);
+
+        if($_POST['btnExcluir'] == 'ajx'){
+            echo $ret;
+        }
     }
     else if(isset($_POST['consultarModelo']))
     {

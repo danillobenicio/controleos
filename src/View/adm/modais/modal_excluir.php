@@ -16,7 +16,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button onclick="ExcluirTipoEquipamento('formAlt')" type="button" name="btnExcluir"
+                <button onclick="Excluir('formAlt')" type="button" name="btnExcluir"
                     class="btn btn-secondary">Sim</button>
             </div>
         </div>

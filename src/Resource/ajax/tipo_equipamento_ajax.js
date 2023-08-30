@@ -60,7 +60,7 @@ function AlterarTipoEquipamento(formID)
 }
 
 
-function ExcluirTipoEquipamento(formID)
+function Excluir(formID)
 {
         let id_excluir = $("#id_excluir").val();
 
