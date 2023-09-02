@@ -65,26 +65,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Setor</th>
-                                                <th>Ação</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php for($i = 0; $i < count($setores); $i++) { ?>
-                                            <tr>
-                                                <td><?=$setores[$i]['nome_setor']?></td>
-                                                <td>
-                                                    <button onclick="CarregarSetor('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')" data-toggle="modal" data-target="#alterar_setor" class="btn btn-warning btn-xs">Alterar</button>
-                                                    <button onclick="CarregarExcluir('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
-                                                </td>
-                                            </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
+                                <div class="card-body table-responsive p-0" id="resultTable">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -107,6 +89,9 @@
     include_once PATH . 'Template/_includes/_msg.php';
   ?>
     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
+    <script type="text/javascript">
+        ConsultarSetor();
+    </script>
 </body>
 
 </html>
