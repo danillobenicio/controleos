@@ -40,25 +40,14 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Tipo</label>
-                                            <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo">
-                                                <option value="" selected="selected">Selecione</option>
-                                                <?php for($i = 0; $i < count($tipos); $i++) { ?>
-                                                    <option value="<?=$tipos[$i]['id_tipo']?>"><?=$tipos[$i]['nome_tipo']?></option>
-                                                <?php } ?>
-                                            </select>
+                                        <div class="form-group" id="resultTipos">
+                                            
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Modelo</label>
-                                            <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo">
-                                                <option value="" selected="selected">Selecione</option>
-                                                <?php for($i = 0; $i < count($modelos); $i++) { ?>
-                                                <option value="<?=$modelos[$i]['id_modelo']?>"><?=$modelos[$i]['nome_modelo']?></option>
-                                                <?php } ?>
-                                            </select>
+                                        <div class="form-group" id="resultModelos">
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +58,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descricao">Descrição</label>
-                                    <textarea class="form-control" id="descricao" rows="3"
+                                    <textarea class="form-control" id="descricao" rows="2"
                                         placeholder="Descrição" name="descricao"></textarea>
                                 </div>
                             </div>
@@ -92,6 +81,10 @@
         include_once PATH . 'Template/_includes/_msg.php';
      ?>
      <script src="../../Resource/ajax/equipamento_ajax.js"></script>
+     <script>
+        CarregarTipos();
+        CarregarModelos();
+     </script>                                               
 </body>
 
 </html>

@@ -1,15 +1,13 @@
 function CadastrarEquipamento(formID)
 {
 
-    console.log('Olá');
    if(ValidarCampos(formID))
     {
         let tipo = $('#tipo').val();
         let modelo = $('#modelo').val();
         let identificacao = $('#identificacao').val();
         let descricao = $('#descricao').val();
-        
-        //alert(tipo_eq + " " + modelo_eq + " " + identificacao_eq + " " + descricao_eq);
+
         $.ajax({
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
@@ -21,4 +19,31 @@ function CadastrarEquipamento(formID)
         })
     }
 
+}
+
+
+function CarregarTipos()
+{
+
+    $.ajax({
+        type: 'POST',
+        url: BaseUrlDataview('equipamento_dataview'),
+        data: {carregar_tipos: 'ajx'},
+        success: function(dados){
+            $('#resultTipos').html(dados);
+        }
+    })
+}
+
+
+function CarregarModelos()
+{
+    $.ajax({
+        type: 'POST',
+        url: BaseUrlDataview('equipamento_dataview'),
+        data: {carregar_modelos: 'ajx'},
+        success: function(dados){
+            $('#resultModelos').html(dados);
+        }
+    })
 }
