@@ -1,5 +1,12 @@
 <?php
     include_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php';
+
+    if(isset($equipamento)){
+        $label = 'Alterar';
+    }else{
+        $label = 'Novo';
+    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,32 +41,36 @@
                 <div class="card form-cadastro">
                     <div class="card-light">
                         <div class="card-header">
-                            <h3 class="card-title">Cadastrar Equipamento</h3>
+                            <h3 class="card-title"><?=$label?> Equipamento</h3>
                         </div>
                         <form id="formCad" method="post" action="equipamento.php">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" id="resultTipos">
-                                            
-                                            
+                                        <label>Tipo</label>
+                                         <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo">
+                                         
+                                         </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group" id="resultModelos">
-                                            
-                                        </div>
+                                        <label>Modelo</label>
+                                        <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo">
+                                        </select>
+                                    </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="identificacao">Identificação</label>
                                     <input type="text" class="form-control obg" id="identificacao"
-                                        placeholder="Identificação" name="identificacao">
+                                    placeholder="Identificação" name="identificacao" value="<?=isset($equipamento) ? $equipamento['identificacao'] : ''?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="descricao">Descrição</label>
                                     <textarea class="form-control" id="descricao" rows="2"
-                                        placeholder="Descrição" name="descricao"></textarea>
+                                        placeholder="Descrição" name="descricao"><?= isset($equipamento) ? $equipamento['descricao'] : '' ?></textarea>
                                 </div>
                             </div>
 

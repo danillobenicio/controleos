@@ -110,3 +110,4 @@
       </li>
     </ul>-->
   </nav>
+  <div class="loader loader-default" data-text="Carregando..." data-blink></div>

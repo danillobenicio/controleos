@@ -5,6 +5,9 @@ function CadastrarTipoEquipamento(formID)
     if(ValidarCampos(formID))
     {
         $.ajax({
+            beforeSend: function(){
+                Load();
+            },
             type: "POST",
             url: BaseUrlDataview('tipo_equipamento_dataview'),
             data: {
@@ -15,6 +18,9 @@ function CadastrarTipoEquipamento(formID)
                 MostrarMensagem(ret);
                 ConsultarTipoEquipamento();
                 LimparNotificacoes(formID);
+            },
+            complete: function(){
+                RemoverLoad();
             }
         })
     }
@@ -24,11 +30,17 @@ function CadastrarTipoEquipamento(formID)
 function ConsultarTipoEquipamento()
 {
     $.ajax({
+        beforeSend: function(){
+            Load();
+        },
         type: "POST",
         url: BaseUrlDataview('tipo_equipamento_dataview'),
         data: {consultarTipo: 'ajx'},
         success: function(dados){
             $("#tableResult").html(dados);
+        },
+        complete: function(){
+            RemoverLoad();
         }
     })
 }
@@ -43,6 +55,9 @@ function AlterarTipoEquipamento(formID)
     {
 
         $.ajax({
+            beforeSend: function(){
+                Load();
+            },
             type: "POST",
             url: BaseUrlDataview('tipo_equipamento_dataview'),
             data: {
@@ -54,6 +69,9 @@ function AlterarTipoEquipamento(formID)
                 MostrarMensagem(ret);
                 $('#alterar_tipo').modal('hide');
                 ConsultarTipoEquipamento();         
+            },
+            complete: function(){
+                RemoverLoad();
             }
         })
     }
@@ -65,6 +83,9 @@ function Excluir(formID)
         let id_excluir = $("#id_excluir").val();
 
         $.ajax({
+            beforeSend: function(){
+                Load();
+            },
             type: "POST",
             url: BaseUrlDataview('tipo_equipamento_dataview'),
             data: {
@@ -76,6 +97,9 @@ function Excluir(formID)
                 ConsultarTipoEquipamento();
                 LimparNotificacoes(formID);
                 $('#modal_excluir').modal('hide');
+            },
+            complete: function(){
+                RemoverLoad();
             }
         })
 

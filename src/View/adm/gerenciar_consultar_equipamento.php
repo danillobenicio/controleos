@@ -39,12 +39,23 @@
                         <form role="form" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="tipo">Tipo</label>
-                                    <input type="text" class="form-control" id="tipo" placeholder="Tipo de Equipamento">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label>Tipo</label>
+                                            <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo" onchange="FiltrarEquipamento()">
+                                            </select>                       
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <label>Modelo</label>
+                                            <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo" onchange="FiltrarEquipamento()">
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-sm btn-success">Pesquisar</button>
                             </div>
                         </form>
                     </div>
@@ -56,32 +67,8 @@
                             <div class="card-header">
                                 <h3 class="card-title">Equipamentos Cadastrados</h3>
                             </div>
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Tipo</th>
-                                            <th>Modelo</th>
-                                            <th>Identificação</th>
-                                            <th>Descrição</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php for($i = 0; $i < count($equipamentos); $i++) { ?>
-                                        <tr>
-                                            <td><?=$equipamentos[$i]['tipo']?></td>
-                                            <td><?=$equipamentos[$i]['modelo']?></td>
-                                            <td><?=$equipamentos[$i]['identificacao']?></td>
-                                            <td><?=$equipamentos[$i]['descricao']?></td>
-                                            <td>
-                                                <a href="#" class="btn btn-warning btn-xs">Alterar</a>
-                                                <a href="#" class="btn btn-danger btn-xs">Excluir</a>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                            <div class="card-body table-responsive p-0" id="resultTable">
+                                
                             </div>
                         </div>
                     </div>
@@ -96,6 +83,12 @@
     <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
   ?>
+   <script src="../../Resource/ajax/equipamento_ajax.js"></script>
+     <script>
+        CarregarTipos();
+        CarregarModelos();
+        FiltrarEquipamento();
+     </script>  
 </body>
 
 </html>

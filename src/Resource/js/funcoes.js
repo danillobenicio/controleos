@@ -51,3 +51,13 @@ function ValidarCampos(formID)
         MostrarMensagem(0); 
     return ret;
 }
+
+function Load()
+{
+    $(".loader").addClass("is-active");
+}
+
+function RemoverLoad()
+{
+    $(".loader").removeClass("is-active");
+}

@@ -76,12 +76,10 @@
         <?php include_once 'modais/modal_excluir.php'; ?>
       </form>
     </div>
-
     <?php
         include_once PATH . 'Template/_includes/_footer.php';
     ?>
   </div>
-
   <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
     include_once PATH . 'Template/_includes/_msg.php';

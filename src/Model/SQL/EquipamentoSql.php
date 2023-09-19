@@ -6,11 +6,11 @@
     {
         public static function CadastrarEquipamento()
         {
-            $sql = 'INSERT INTO tb_equipamento (fk_id_tipo, fk_id_modelo, identificacao, descricao) values (?, ?, ?, ?)';
+            $sql = 'INSERT INTO tb_equipamento (fk_id_tipo, fk_id_modelo, identificacao, descricao, situacao) values (?, ?, ?, ?, ?)';
             return $sql;
         }
 
-        public static function ConsultarEquipamento()
+        /*public static function ConsultarEquipamento()
         {
             $sql = 'SELECT 
                         te.id_equipamento as id,
@@ -24,7 +24,59 @@
                     INNER JOIN tb_modelo tm ON tm.id_modelo = te.fk_id_modelo';
             
             return $sql;
+        }*/
+
+        public static function FiltrarEquipamento($idTipo, $idModelo)
+        {
+            $sql = 'SELECT 
+                        te.id_equipamento, 
+                        te.identificacao, 
+                        te.descricao, 
+                        te.situacao, 
+                        te.data_descarte, 
+                        te.motivo_descarte, 
+                        tt.nome_tipo, 
+                        tm.nome_modelo
+                     FROM 
+                        tb_equipamento te
+                    INNER JOIN 
+                        tb_modelo tm ON tm.id_modelo = te.fk_id_modelo
+                    INNER JOIN 
+                        tb_tipo tt ON tt.id_tipo = te.fk_id_tipo';
+            
+
+            if($idTipo != '' && $idModelo != ''){
+                $sql .= ' WHERE te.fk_id_tipo = ? AND te.fk_id_modelo = ?';
+            }else if($idTipo == '' && $idModelo != ''){
+                $sql .= ' WHERE te.fk_id_modelo = ?';
+            }else if($idTipo != '' && $idModelo == ''){
+                $sql .= ' WHERE te.fk_id_tipo = ?';
+            }
+
+            return $sql;
         }
+
+        public static function DetalharEquipamento()
+        {
+            $sql = 'SELECT 
+                        id_equipamento,
+                        identificacao, 
+                        descricao,
+                        situacao, 
+                        fk_id_tipo, 
+                        fk_id_modelo
+                    FROM 
+                        tb_equipamento te
+                    WHERE id_equipamento = ? ';
+            return $sql;
+        }
+
+        public static function DeletarEquipamento()
+        {
+            $sql = 'DELETE FROM tb_equipamento WHERE id_equipamento = ?';
+            return $sql;
+        }
+
     }
 
 ?>

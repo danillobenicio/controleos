@@ -19,8 +19,10 @@
         {
             if(empty($vo->getIdentificacao()) || empty($vo->getFkModelo()) || empty($vo->getFkTipo()))
             {
-                return 0;
+                return 0;              
             }
+
+            $vo->setSituacao(situacao_ativo);
 
             $ret = $this->model->CadastrarEquipamentoModel($vo);
             
@@ -28,11 +30,22 @@
 
         }
 
-        public function ConsultarEquipamentoCTRL()
+        public function FiltrarEquipamentoCTRL($idTipo, $idModelo) : ?array 
         {
-            return $this->model->ConsultarEquipamentoModel();
+            return $this->model->FiltrarEquipamentoMODEL($idTipo, $idModelo);
+        }
 
+        public function DetalharEquipamentoCTRL(int $id) : array
+        {
+            return $this->model->DetalharEquipamentoMODEL($id);
+        }
 
+        public function ExcluirEquipamentoCTRL(EquipamentoVO $vo)
+        {
+            if(!empty($vo->getIdEquipamento()))
+                return 0;
+
+            return $this->model->ExcluirEquipamentoMODEL($vo);
         }
 
     }

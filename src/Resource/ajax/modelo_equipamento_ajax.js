@@ -3,6 +3,9 @@ function CadastrarModelo(formID) {
         let nome_modelo = $("#modelo").val();
 
         $.ajax({
+            beforeSend: function(){
+                Load();
+            },
             type: "POST",
             url: BaseUrlDataview('modelo_equipamento_dataview'),
             data: {
@@ -13,6 +16,9 @@ function CadastrarModelo(formID) {
                 MostrarMensagem(ret);
                 LimparNotificacoes(formID);
                 ConsultarModeloEquipamento();
+            },
+            complete: function(){
+                RemoverLoad();
             }
         })
     }
@@ -21,6 +27,9 @@ function CadastrarModelo(formID) {
 
 function ConsultarModeloEquipamento() {
     $.ajax({
+        beforeSend: function(){
+            Load();
+        },
         type: "POST",
         url: BaseUrlDataview('modelo_equipamento_dataview'),
         data: {
@@ -28,6 +37,9 @@ function ConsultarModeloEquipamento() {
         },
         success: function (dados) {
             $("#tableResult").html(dados);
+        },
+        complete: function(){
+            RemoverLoad();
         }
     })
 }
@@ -40,7 +52,9 @@ function AlterarModeloEquipamento(formID) {
 
     if (ValidarCampos(formID)) {
         $.ajax({
-
+            beforeSend: function(){
+                Load();
+            },
             type: "POST",
             url: BaseUrlDataview("modelo_equipamento_dataview"),
             data: {
@@ -52,6 +66,9 @@ function AlterarModeloEquipamento(formID) {
                 MostrarMensagem(ret);
                 $("#alterar_modelo").modal("hide");
                 ConsultarModeloEquipamento();
+            },
+            complete: function(){
+                RemoverLoad();
             }
 
         })
@@ -65,6 +82,9 @@ function Excluir(formID){
     let id_excluir = $("#id_excluir").val();
 
     $.ajax({
+        beforeSend: function(){
+            Load();
+        },
         type: "POST",
         url: BaseUrlDataview("modelo_equipamento_dataview"),
         data: {btnExcluir: "ajx", id_excluir: id_excluir},
@@ -72,6 +92,9 @@ function Excluir(formID){
             MostrarMensagem(ret);
             $("#modal_excluir").modal("hide");
             ConsultarModeloEquipamento();
+        },
+        complete: function(){
+            RemoverLoad();
         }
     })
 
