@@ -57,6 +57,7 @@ if (isset($_POST['btnCadastrar'])) {
                 <th>Modelo</th>
                 <th>Identificação</th>
                 <th>Descrição</th>
+                <th>Situação</th>
                 <th>Ação</th>
             </tr>
         </thead>
@@ -67,6 +68,7 @@ if (isset($_POST['btnCadastrar'])) {
                     <td><?= $item['nome_modelo'] ?></td>
                     <td><?= $item['identificacao'] ?></td>
                     <td><?= $item['descricao'] ?></td>
+                    <td><?= $item['situacao'] ?></td>                   
                     <td>
                         <a href="equipamento.php?id_equipamento=<?= $item['id_equipamento'] ?>" class="btn btn-warning btn-xs">Alterar</a>
                         <a href="#" class="btn btn-danger btn-xs">Excluir</a>

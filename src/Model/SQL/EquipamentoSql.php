@@ -28,11 +28,18 @@
 
         public static function FiltrarEquipamento($idTipo, $idModelo)
         {
-            $sql = 'SELECT 
+            $sql = "SELECT 
                         te.id_equipamento, 
-                        te.identificacao, 
-                        te.descricao, 
-                        te.situacao, 
+                        te.identificacao,
+                        CASE  
+                            WHEN te.descricao = '' THEN 'Não informado'
+                            ELSE te.descricao
+                        END AS descricao,
+                        CASE
+							WHEN te.situacao = 1 THEN 'Ativo'
+                            WHEN te.situacao = 0 THEN 'Descartado'
+                            ELSE 'Não informado'
+						END as situacao, 
                         te.data_descarte, 
                         te.motivo_descarte, 
                         tt.nome_tipo, 
@@ -42,7 +49,7 @@
                     INNER JOIN 
                         tb_modelo tm ON tm.id_modelo = te.fk_id_modelo
                     INNER JOIN 
-                        tb_tipo tt ON tt.id_tipo = te.fk_id_tipo';
+                        tb_tipo tt ON tt.id_tipo = te.fk_id_tipo";
             
 
             if($idTipo != '' && $idModelo != ''){
