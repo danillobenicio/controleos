@@ -1,11 +1,8 @@
 <?php
     include_once dirname(__DIR__, 2) . '/Resource/dataview/equipamento_dataview.php';
 
-    if(isset($equipamento)){
-        $label = 'Alterar';
-    }else{
-        $label = 'Novo';
-    }
+    // Varável que armazena o estado da tela
+    $label = isset($equipamento) ? 'Alterar' : 'Novo';
 
 ?>
 <!DOCTYPE html>
@@ -41,9 +38,12 @@
                 <div class="card form-cadastro">
                     <div class="card-light">
                         <div class="card-header">
-                            <h3 class="card-title"><?=$label?> Equipamento</h3>
+                            <h3 class="card-title"><?= $label ?> Equipamento</h3>
                         </div>
                         <form id="formCad" method="post" action="equipamento.php">
+                        <input type="hidden" id="id_tipo" name="id_tipo" value="<?php echo isset($equipamento) ? $equipamento['fk_id_tipo'] : ''; ?>">
+                        <input type="hidden" id="id_modelo" name="id_modelo" value="<?php echo isset($equipamento) ? $equipamento['fk_id_modelo'] : ''; ?>">
+
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -58,6 +58,7 @@
                                         <div class="form-group" id="resultModelos">
                                         <label>Modelo</label>
                                         <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo">
+                                        
                                         </select>
                                     </div>
                                     </div>
@@ -75,7 +76,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="button" onclick="return CadastrarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar">Cadastrar</button>
+                                <button type="button" onclick="return CadastrarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar"><?= $label == 'Novo' ? 'Cadastrar' : 'Alterar' ?></button>
                             </div>
                         </form>
                     </div>

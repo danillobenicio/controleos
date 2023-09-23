@@ -38,14 +38,6 @@
 
         }
 
-        /*public function ConsultarEquipamentoModel()
-        {
-            $sql = $this->conexao->prepare(EquipamentoSql::ConsultarEquipamento());
-            $sql->execute();
-            return $sql->fetchAll(\PDO::FETCH_ASSOC);
-
-        }*/
-
         public function FiltrarEquipamentoMODEL($idTipo, $idModelo) : array
         {
             $sql = $this->conexao->prepare(EquipamentoSql::FiltrarEquipamento($idTipo, $idModelo));
@@ -69,18 +61,18 @@
 
         }
 
-        public function DetalharEquipamentoMODEL(int $id) : array
+        public function DetalharEquipamentoMODEL(int $id) : array | string
         {
             $sql = $this->conexao->prepare(EquipamentoSql::DetalharEquipamento());
             $sql->bindValue(1, $id);
             $sql->execute();
             return $sql->fetch(\PDO::FETCH_ASSOC);
         }
-
+        
         public function ExcluirEquipamentoMODEL(EquipamentoVO $vo)
         {
             $sql = $this->conexao->prepare(EquipamentoSql::DeletarEquipamento());
-            $sql->bindValue($vo->getIdEquipamento());
+            $sql->bindValue(1, $vo->getIdEquipamento());
 
             try{
                 $sql->execute();

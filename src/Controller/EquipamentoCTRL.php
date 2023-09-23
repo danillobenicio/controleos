@@ -35,10 +35,12 @@
             return $this->model->FiltrarEquipamentoMODEL($idTipo, $idModelo);
         }
 
-        public function DetalharEquipamentoCTRL(int $id) : array
+
+        public function DetalharEquipamentoCTRL(int $id) : array | string
         {
             return $this->model->DetalharEquipamentoMODEL($id);
         }
+
 
         public function ExcluirEquipamentoCTRL(EquipamentoVO $vo)
         {

@@ -49,7 +49,8 @@
         }
 
         public static function ChamarPagina($pag){
-            header('Location: ' . $pag . '.php');
+            header("Location: $pag.php");
+            exit;
         }
 
     }

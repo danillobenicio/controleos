@@ -8,11 +8,6 @@ use Src\Controller\ModeloEquipamentoCTRL;
 use Src\Controller\TipoEquipamentoCTRL;
 use Src\_Public\Util;
 
-//$ctrl_tipo = new TipoEquipamentoCTRL;
-//$ctrl_modelo = new ModeloEquipamentoCTRL;
-//$ctrl_equipamento = new EquipamentoCTRL;
-
-
 if (isset($_POST['btnCadastrar'])) {
     $vo = new EquipamentoVO();
     $ctrl = new EquipamentoCTRL();
@@ -29,18 +24,20 @@ if (isset($_POST['btnCadastrar'])) {
     }
 } elseif (isset($_POST['carregar_tipos'])) {
     $tipos = (new TipoEquipamentoCTRL)->ConsultarTipoEquipamentoCTRL();
+    $id_tipo = isset($_POST['id_tipo']) ? $_POST['id_tipo'] : '';
 ?>
     <option value="" selected="selected">Selecione</option>
     <?php foreach ($tipos as $item) { ?>
-        <option value="<?= $item['id_tipo'] ?>"><?= $item['nome_tipo'] ?></option>
+        <option <?= $id_tipo == $item['id_tipo'] ? 'selected' : '' ?> value="<?= $item['id_tipo'] ?>"><?= $item['nome_tipo'] ?></option>
     <?php } ?>
 <?php
 } elseif (isset($_POST['carregar_modelos'])) {
     $modelos = (new ModeloEquipamentoCTRL)->ConsultarModeloEquipamentoCTRL();
+    $id_modelo = isset($_POST['id_modelo']) ? $_POST['id_modelo'] : '';
 ?>
     <option value="" selected="selected">Selecione</option>
     <?php foreach ($modelos as $modelo) { ?>
-        <option value="<?= $modelo['id_modelo'] ?>"><?= $modelo['nome_modelo'] ?></option>
+        <option <?= $id_modelo == $modelo['id_modelo'] ? 'selected' : '' ?>  value="<?= $modelo['id_modelo'] ?>"><?= $modelo['nome_modelo'] ?></option>
     <?php } ?>
 <?php
 } elseif (isset($_POST['filtrarEquipamento'])) {
@@ -81,15 +78,8 @@ if (isset($_POST['btnCadastrar'])) {
 } elseif (isset($_GET['id_equipamento'])) {
     $equipamento = (new EquipamentoCTRL)->DetalharEquipamentoCTRL($_GET['id_equipamento']);
 
-    if (empty($equipamento))
+    if(empty($equipamento))
         Util::ChamarPagina('gerenciar_consultar_equipamento');
 }
-
-
-
-
-//$tipos = $ctrl_tipo->ConsultarTipoEquipamentoCTRL();
-//$modelos = $ctrl_modelo->ConsultarModeloEquipamentoCTRL();
-//$equipamentos = $ctrl_equipamento->ConsultarEquipamentoCTRL();
 
 ?>
