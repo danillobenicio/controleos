@@ -15,6 +15,7 @@
         private $motivo_descarte;
         private $fk_id_modelo;
         private $fk_id_tipo;
+        private $dt_descarte;
 
         public function setIdEquipamento(int $p_id_equipamento) : void
         {
@@ -59,12 +60,15 @@
             return $this->situacao;
         }
 
-
-        public function getDataDescarte() : string 
+        public function setDataDescarte($p_dt_descarte) : void
         {
-            return Util::DataHoraAtual();
+            $this->dt_descarte = $p_dt_descarte;
         }
 
+        public function getDataDescarte()
+        {
+            return $this->dt_descarte;
+        }
 
         public function setMotivoDescarte(string $p_motivo_descarte) : void 
         {

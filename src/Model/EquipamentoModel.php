@@ -104,6 +104,23 @@
             }
 
         }
+
+        public function InativarEquipamentoModel(EquipamentoVO $vo)
+        {
+            $sql = $this->conexao->prepare(EquipamentoSql::InativarEquipamento());
+
+            $sql->bindValue(1, $vo->getDataDescarte());
+            $sql->bindValue(2, $vo->getMotivoDescarte());          
+            $sql->bindValue(3, $vo->getSituacao());
+            $sql->bindValue(4, $vo->getIdEquipamento());
+
+            try {
+                $sql->execute();
+                return 4;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+        }
         
     }
 

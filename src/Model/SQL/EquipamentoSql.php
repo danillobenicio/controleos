@@ -74,6 +74,12 @@
             return $sql;
         }
 
+        public static function InativarEquipamento()
+        {
+            $sql = 'UPDATE tb_equipamento SET data_descarte = ?, motivo_descarte = ?, situacao = ? WHERE id_equipamento = ?';
+            return $sql;
+        }
+
     }
 
 ?>

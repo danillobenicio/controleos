@@ -59,6 +59,14 @@
             return $this->model->AlterarEquipamentoModel($vo);
         }
 
+        public function InativarEquipamentoCTRL(EquipamentoVO $vo)
+        {
+            if(empty($vo->getIdEquipamento()) || empty($vo->getDataDescarte()) || empty($vo->getMotivoDescarte()))
+                return 0;
+            
+            return $this->model->InativarEquipamentoModel($vo);
+        }
+
     }
 
 ?>
