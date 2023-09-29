@@ -1,13 +1,12 @@
 function GravarEquipamento(formID) {
 
     if (ValidarCampos(formID)) {
+
         let tipo = $('#tipo').val();
         let modelo = $('#modelo').val();
         let identificacao = $('#identificacao').val();
         let descricao = $('#descricao').val();
         let id_equipamento = $('#id_equipamento').val();
-        let id_tipo = $('#id_tipo').val();
-        let id_modelo = $('#id_modelo').val();
 
         $.ajax({
             beforeSend: function () {
@@ -21,9 +20,7 @@ function GravarEquipamento(formID) {
                 identificacao: identificacao,
                 descricao: descricao,
                 id_equipamento: id_equipamento,
-                btnGravar: id_equipamento == '' ? 'cadastrar' : 'alterar',
-                id_tipo: id_tipo,
-                id_modelo: id_modelo
+                btnGravar: id_equipamento == '' ? 'cadastrar' : 'alterar'
             },
             success: function (ret) {
                 console.log(ret);

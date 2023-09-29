@@ -18,7 +18,6 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo->setIdentificacao($_POST['identificacao']);
     $vo->setDescricao($_POST['descricao']);
 
-
     $ret = $ctrl->CadastrarEquipamento($vo);
 
     if ($_POST['btnGravar'] == 'cadastrar') {
@@ -96,8 +95,8 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
         $ctrl = new EquipamentoCTRL();
     
         $vo->setIdEquipamento($_POST['id_equipamento']);
-        $vo->setFkTipo((int)$_POST['id_tipo']);
-        $vo->setFkModelo((int)$_POST['id_modelo']);
+        $vo->setFkTipo((int)$_POST['tipo']);
+        $vo->setFkModelo((int)$_POST['modelo']);
         $vo->setIdentificacao($_POST['identificacao']);
         $vo->setDescricao($_POST['descricao']);
 

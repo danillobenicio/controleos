@@ -97,7 +97,7 @@
             try 
             {
                 $sql->execute();
-                return 1;
+                return 2;
             } catch (Exception $ex) {
                 echo $ex->getMessage();
                 return -1;
