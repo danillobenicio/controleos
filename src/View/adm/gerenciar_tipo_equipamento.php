@@ -40,8 +40,8 @@
                 </div>
               </div>
               <div class="card-footer">
-                <button type="button" onclick="return CadastrarTipoEquipamento('formCad')" class="btn btn-sm btn-primary"
-                  name="btnCadastrar">Cadastrar</button>
+                <button type="button" onclick="return CadastrarTipoEquipamento('formCad')"
+                  class="btn btn-sm btn-primary" id="btnCadastrar" name="btnCadastrar">Cadastrar</button>
               </div>
             </form>
           </div>
@@ -64,7 +64,7 @@
                   </div>
                 </div>
                 <div class="card-body table-responsive p-0" id="tableResult">
-                  
+
                 </div>
               </div>
             </div>
@@ -85,10 +85,12 @@
     include_once PATH . 'Template/_includes/_msg.php';
   ?>
 
-<script src="../../Resource/ajax/tipo_equipamento_ajax.js"></script>
-<script>
-  ConsultarTipoEquipamento();
-</script>
+  <script src="../../Resource/ajax/tipo_equipamento_ajax.js"></script>
+  <script>
+    ConsultarTipoEquipamento();
+    KeyPressEnter('tipo', 'btnCadastrar');
+    KeyPressEnter('tipo_alterar', 'btnAlterar');
+  </script>
 </body>
 
 </html>

@@ -23,7 +23,7 @@
 
         public function setNomeModelo(string $p_nome_modelo) : void
         {
-            $this->nome_modelo = Util::RemoverTags($p_nome_modelo);
+            $this->nome_modelo = Util::TratarDados($p_nome_modelo);
         }
 
         public function getNomeModelo() : string 

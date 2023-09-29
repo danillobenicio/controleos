@@ -61,3 +61,12 @@ function RemoverLoad()
 {
     $(".loader").removeClass("is-active");
 }
+
+function KeyPressEnter(inputId, buttonId) {
+    $('#' + inputId).keypress(function (e) {
+        if (e.which == 13) {
+            $('#' + buttonId).click();
+            return false;
+        }
+    });
+}

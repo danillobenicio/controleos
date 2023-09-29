@@ -44,7 +44,7 @@
                             </div>
                             <div class="card-footer">
                                 <button type="button" onclick="return CadastrarModelo('formCad')"
-                                    class="btn btn-sm btn-primary" name="btnCadastrar">Cadastrar</button>
+                                    class="btn btn-sm btn-primary" id="btnCadastrar" name="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -81,6 +81,8 @@
 <script src="../../Resource/ajax/modelo_equipamento_ajax.js"></script>
 <script>
     ConsultarModeloEquipamento();
+    KeyPressEnter('modelo', 'btnCadastrar');
+    KeyPressEnter('modelo_alterar', 'btnAlterar');
 </script>
 </body>
 

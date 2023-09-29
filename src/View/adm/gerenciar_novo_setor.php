@@ -42,7 +42,7 @@
                             </div>
                             <div class="card-footer">
                                 <button type="button" onclick="return CadastrarNovoSetor('formCad')" class="btn btn-sm btn-primary"
-                                    name="btnCadastrar">Cadastrar</button>
+                                    name="btnCadastrar" id="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -91,6 +91,8 @@
     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
     <script type="text/javascript">
         ConsultarSetor();
+        KeyPressEnter('setor', 'btnCadastrar');
+        KeyPressEnter('setor_alterar', 'btnAlterar')
     </script>
 </body>
 
