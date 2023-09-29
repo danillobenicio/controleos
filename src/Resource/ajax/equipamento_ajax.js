@@ -1,4 +1,4 @@
-function CadastrarEquipamento(formID)
+function GravarEquipamento(formID)
 {
 
    if(ValidarCampos(formID))
@@ -7,6 +7,9 @@ function CadastrarEquipamento(formID)
         let modelo = $('#modelo').val();
         let identificacao = $('#identificacao').val();
         let descricao = $('#descricao').val();
+        let id_equipamento = $('#id_equipamento').val();
+        let id_tipo = $('#id_tipo').val();
+        let id_modelo = $('#id_modelo').val();
 
         $.ajax({
             beforeSend: function(){
@@ -14,8 +17,17 @@ function CadastrarEquipamento(formID)
             },
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
-            data: {tipo: tipo, modelo: modelo, identificacao: identificacao, descricao: descricao, btnCadastrar: 'ajx'},
+            data: {tipo: tipo, 
+                   modelo: modelo, 
+                   identificacao: identificacao, 
+                   descricao: descricao, 
+                   id_equipamento: id_equipamento,
+                   btnGravar: id_equipamento == '' ? 'cadastrar' : 'alterar',
+                   id_tipo: id_tipo,
+                   id_modelo: id_modelo
+                },
             success: function(ret){
+                console.log(ret);
                 MostrarMensagem(ret);
                 LimparNotificacoes(formID);
             },
@@ -91,6 +103,31 @@ function FiltrarEquipamento()
         success: function(dados){
             console.log(dados);
             $('#resultTable').html(dados);
+        },
+        complete: function(){
+            RemoverLoad();
+        }
+    })
+}
+
+function Excluir(){
+ 
+    let id_excluir = $('#id_excluir').val();
+
+    $.ajax({
+        beforeSend: function(){
+            Load();
+        },
+        type: 'POST',
+        url: BaseUrlDataview('equipamento_dataview'),
+        data: {
+               btnExcluir: 'ajx', 
+               id_equipamento: id_excluir
+        },
+        success: function(ret){
+            MostrarMensagem(ret);
+            $('#modal_excluir').modal('hide');
+            FiltrarEquipamento();
         },
         complete: function(){
             RemoverLoad();

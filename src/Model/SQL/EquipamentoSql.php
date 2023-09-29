@@ -68,6 +68,12 @@
             return $sql;
         }
 
+        public static function AlterarEquipamento()
+        {
+            $sql = 'UPDATE tb_equipamento SET fk_id_tipo = ?, fk_id_modelo = ?, identificacao = ?, descricao = ? WHERE id_equipamento =? ';
+            return $sql;
+        }
+
     }
 
 ?>

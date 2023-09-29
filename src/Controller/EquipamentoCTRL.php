@@ -44,10 +44,19 @@
 
         public function ExcluirEquipamentoCTRL(EquipamentoVO $vo)
         {
-            if(!empty($vo->getIdEquipamento()))
+            if(empty($vo->getIdEquipamento()))
                 return 0;
 
             return $this->model->ExcluirEquipamentoMODEL($vo);
+        }
+
+
+        public function AlterarEquipamentoCTRL(EquipamentoVO $vo) : int
+        {
+            if(empty($vo->getIdEquipamento()) || empty($vo->getFkModelo()) || empty($vo->getFkTipo()) || empty($vo->getIdentificacao()))
+                return 0;
+
+            return $this->model->AlterarEquipamentoModel($vo);
         }
 
     }

@@ -76,8 +76,29 @@
 
             try{
                 $sql->execute();
-                return 1;
+                return 3;
             }catch (Exception $ex){
+                echo $ex->getMessage();
+                return -1;
+            }
+
+        }
+
+        public function AlterarEquipamentoModel(EquipamentoVO $vo) : int
+        {
+            $sql = $this->conexao->prepare(EquipamentoSql::AlterarEquipamento());
+
+            $sql->bindValue(1, $vo->getFkTipo());
+            $sql->bindValue(2, $vo->getFkModelo());
+            $sql->bindValue(3, $vo->getIdentificacao());
+            $sql->bindValue(4, $vo->getDescricao());
+            $sql->bindValue(5, $vo->getIdEquipamento());         
+                     
+            try 
+            {
+                $sql->execute();
+                return 1;
+            } catch (Exception $ex) {
                 echo $ex->getMessage();
                 return -1;
             }

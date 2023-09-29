@@ -73,6 +73,9 @@
                         </div>
                     </div>
                 </div>
+                <form id="formAlt" method="post" action="gerenciar_consultar_equipamento.php">
+                    <?php include_once 'modais/modal_excluir.php'; ?>
+                </form>
             </section>
         </div>
 

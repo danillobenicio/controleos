@@ -43,7 +43,7 @@
                         <form id="formCad" method="post" action="equipamento.php">
                         <input type="hidden" id="id_tipo" name="id_tipo" value="<?php echo isset($equipamento) ? $equipamento['fk_id_tipo'] : ''; ?>">
                         <input type="hidden" id="id_modelo" name="id_modelo" value="<?php echo isset($equipamento) ? $equipamento['fk_id_modelo'] : ''; ?>">
-
+                        <input type="hidden" id="id_equipamento" name="id_equipamento" value="<?php echo isset($equipamento) ? $equipamento['id_equipamento'] : ''; ?>">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -76,7 +76,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="button" onclick="return CadastrarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar"><?= $label == 'Novo' ? 'Cadastrar' : 'Alterar' ?></button>
+                                <button type="button" onclick="return GravarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar"><?= $label == 'Novo' ? 'Cadastrar' : 'Alterar' ?></button>
                             </div>
                         </form>
                     </div>

@@ -8,7 +8,8 @@ use Src\Controller\ModeloEquipamentoCTRL;
 use Src\Controller\TipoEquipamentoCTRL;
 use Src\_Public\Util;
 
-if (isset($_POST['btnCadastrar'])) {
+if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
+    
     $vo = new EquipamentoVO();
     $ctrl = new EquipamentoCTRL();
 
@@ -17,9 +18,10 @@ if (isset($_POST['btnCadastrar'])) {
     $vo->setIdentificacao($_POST['identificacao']);
     $vo->setDescricao($_POST['descricao']);
 
+
     $ret = $ctrl->CadastrarEquipamento($vo);
 
-    if ($_POST['btnCadastrar'] == 'ajx') {
+    if ($_POST['btnGravar'] == 'cadastrar') {
         echo $ret;
     }
 } elseif (isset($_POST['carregar_tipos'])) {
@@ -68,7 +70,7 @@ if (isset($_POST['btnCadastrar'])) {
                     <td><?= $item['situacao'] ?></td>                   
                     <td>
                         <a href="equipamento.php?id_equipamento=<?= $item['id_equipamento'] ?>" class="btn btn-warning btn-xs">Alterar</a>
-                        <a href="#" class="btn btn-danger btn-xs">Excluir</a>
+                        <button data-toggle="modal" data-target="#modal_excluir" onclick="CarregarExcluir('<?= $item['id_equipamento'] ?>', '<?= $item['nome_tipo'] ?>')" class="btn btn-danger btn-xs">Excluir</button>
                     </td>
                 </tr>
             <?php } ?>
@@ -80,6 +82,31 @@ if (isset($_POST['btnCadastrar'])) {
 
     if(empty($equipamento))
         Util::ChamarPagina('gerenciar_consultar_equipamento');
-}
 
-?>
+}else if(isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'alterar'){
+   
+        $vo = new EquipamentoVO();
+        $ctrl = new EquipamentoCTRL();
+    
+        $vo->setIdEquipamento($_POST['id_equipamento']);
+        $vo->setFkTipo((int)$_POST['id_tipo']);
+        $vo->setFkModelo((int)$_POST['id_modelo']);
+        $vo->setIdentificacao($_POST['identificacao']);
+        $vo->setDescricao($_POST['descricao']);
+
+        $ret = $ctrl->AlterarEquipamentoCTRL($vo);
+    
+        if ($_POST['btnGravar'] == 'alterar') {
+            echo $ret;
+        }
+}else if(isset($_POST['btnExcluir'])){
+
+    $vo = new EquipamentoVO();
+    $ctrl = new EquipamentoCTRL();
+
+    $vo->setIdEquipamento($_POST['id_equipamento']);
+
+    $ret = $ctrl->ExcluirEquipamentoCTRL($vo);
+    
+    echo $ret;
+}
