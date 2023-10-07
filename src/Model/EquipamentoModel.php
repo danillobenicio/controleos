@@ -38,17 +38,21 @@
 
         }
 
-        public function FiltrarEquipamentoMODEL($idTipo, $idModelo) : array
+        public function FiltrarEquipamentoMODEL($idTipo, $idModelo, $situacao) : array
         {
-            $sql = $this->conexao->prepare(EquipamentoSql::FiltrarEquipamento($idTipo, $idModelo));
+            $sql = $this->conexao->prepare(EquipamentoSql::FiltrarEquipamento($idTipo, $idModelo, $situacao));
+
+            $i = 1;
+
+            $sql->bindValue($i++, $situacao);
 
             if($idTipo != '' && $idModelo != ''){
-                $sql->bindValue(1, $idTipo);
-                $sql->bindValue(2, $idModelo);
+                $sql->bindValue($i++, $idTipo);
+                $sql->bindValue($i++, $idModelo);
             }else if($idTipo == '' && $idModelo != ''){
-                $sql->bindValue(1, $idModelo);
+                $sql->bindValue($i++, $idModelo);
             }else if($idTipo != '' && $idModelo == ''){
-                $sql->bindValue(1, $idTipo);
+                $sql->bindValue($i++, $idTipo);
             }
 
             try {

@@ -9,6 +9,7 @@
         private $id_alocar;
         private $equipamento_id;
         private $setor_id;
+        private $situacao;
 
         //GET E SET ID
         public function setIdAlocar(int $p_id_alocar) : void
@@ -56,8 +57,16 @@
             return Util::DataAtual();
         }
 
-        
-        
+        public function setSituacao(int $p_situacao) : void
+        {
+            $this->situacao = $p_situacao;
+        }
+
+        public function getSituacao() : int
+        {
+            return $this->situacao;
+        }
+
     }
 
 ?>

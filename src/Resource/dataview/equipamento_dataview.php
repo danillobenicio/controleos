@@ -75,8 +75,10 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
                 <button data-toggle="modal" data-target="#modal_excluir"
                     onclick="CarregarExcluir('<?= $item['id_equipamento'] ?>', '<?= $item['nome_tipo'] ?>')"
                     class="btn btn-danger btn-sm">Excluir</button>
+                <?php if($item['esta_alocado'] == 0 && $item['situacao'] <> 'Inativo') { ?>
                 <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_inativar"
                     onclick="CarregarInativar('<?= $item['id_equipamento'] ?>')">Inativar</button>
+                <?php  } ?>
             </td>
         </tr>
         <?php } ?>

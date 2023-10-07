@@ -5,6 +5,7 @@
     use Src\VO\EquipamentoVO;
     use Src\_Public\Util;
     use Src\Model\EquipamentoModel;
+    use Src\Config\fixos;
 
     class EquipamentoCTRL
     {
@@ -32,7 +33,7 @@
 
         public function FiltrarEquipamentoCTRL($idTipo, $idModelo) : ?array 
         {
-            return $this->model->FiltrarEquipamentoMODEL($idTipo, $idModelo);
+            return $this->model->FiltrarEquipamentoMODEL($idTipo, $idModelo, SITUACAO_EQUIPAMENTO_REMOVIDO);
         }
 
 

@@ -21,13 +21,14 @@
                         END AS descricao,
                         CASE
 							WHEN te.situacao = 1 THEN 'Ativo'
-                            WHEN te.situacao = 0 THEN 'Descartado'
+                            WHEN te.situacao = 0 THEN 'Inativo'
                             ELSE 'Não informado'
 						END as situacao, 
                         te.data_descarte, 
                         te.motivo_descarte, 
                         tt.nome_tipo, 
-                        tm.nome_modelo
+                        tm.nome_modelo,
+                        ( select count(*) from tb_alocar as al where al.fk_id_equipamento = te.id_equipamento and al.situacao != ?) as esta_alocado
                      FROM 
                         tb_equipamento te
                     INNER JOIN 
