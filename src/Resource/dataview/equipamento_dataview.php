@@ -7,6 +7,7 @@ use Src\Controller\EquipamentoCTRL;
 use Src\Controller\ModeloEquipamentoCTRL;
 use Src\Controller\TipoEquipamentoCTRL;
 use Src\_Public\Util;
+use Src\VO\AlocarVO;
 
 if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     
@@ -127,6 +128,28 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo->setSituacao(situacao_inativo);
 
     $ret = $ctrl->InativarEquipamentoCTRL($vo);
+
+    echo $ret;
+
+} else if (isset($_POST['carregar_equipamentos_nao_alocados'])) {
+    $equipamentos = (new EquipamentoCTRL)->SelecionarEquipamentoNaoAlocadoCTRL();
+    ?>
+        <select class="form-control obg" style="width: 100%;">
+            <option value="">Selecione</option>
+            <?php foreach($equipamentos as $equipamento) { ?>
+                <option value="<?=$equipamento['id_equipamento']?>"><?=$equipamento['identificacao'] . ' | ' . $equipamento['nome_tipo'] . ' | ' . $equipamento['nome_modelo']?></option>
+            <?php } ?>                     
+        </select>
+    <?php
+} else if(isset($_POST['alocar_equipamento'])) {
+
+    $vo = new AlocarVO;
+    $ctrl = new EquipamentoCTRL;
+
+    $vo->setIdEquipamento($_POST['id_equipamento']);
+    $vo->setIdSetor($_POST['id_setor']);
+
+    $ret = $ctrl->AlocarEquipamentoCTRL($vo);
 
     echo $ret;
 

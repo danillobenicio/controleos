@@ -27,15 +27,21 @@ function CadastrarNovoSetor(formID)
 
 function ConsultarSetor()
 {
+
+    let tipoTela = $('#tipoTela').val();
+
     $.ajax({
         beforeSend: function(){
             Load();
         },
         type: 'POST',
         url: BaseUrlDataview('novo_setor_dataview'),
-        data: {consultar_setor: 'ajx'},
+        data: {
+            consultar_setor: 'ajx',
+            tipo_tela: tipoTela
+        },
         success: function(dados){
-            $('#resultTable').html(dados);
+            $('#resultSetor').html(dados);
         },
         complete: function(){
             RemoverLoad();

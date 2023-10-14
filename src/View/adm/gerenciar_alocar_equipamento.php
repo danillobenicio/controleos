@@ -42,25 +42,23 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Equipamento</label>
-                                            <select class="form-control obg" style="width: 100%;" name="equipamento">
-                                                <option value="" selected="selected">Selecione</option>
-                                                <option value="1">Alaska</option>
+                                            <select class="form-control obg" style="width: 100%;" name="equipamento" id="resultEquipamentos">
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Setor</label>
-                                            <select class="form-control obg" style="width: 100%;" name="setor">
-                                                <option value="" selected="selected">Selecione</option>
-                                                <option value="1">Alaska</option>
+                                            <input type="hidden" id="tipoTela" name="tipoTela" value="tipoAlocar">
+                                            <select class="form-control obg" style="width: 100%;" name="setor" id="resultSetor">
+                                                
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button onclick="return ValidarCampos('formCad')" type="submit" class="btn btn-sm btn-success" name="btnCadastrar">Alocar</button>
+                                <button onclick="return AlocarEquipamento('formCad')" type="button" class="btn btn-sm btn-success" name="btnCadastrar">Alocar</button>
                             </div>
                         </form>
                     </div>
@@ -72,10 +70,16 @@
         include_once PATH . 'Template/_includes/_footer.php'
     ?>
     </div>
-    <?php  
+    <?php 
         include_once PATH . 'Template/_includes/_scripts.php';
         include_once PATH . 'Template/_includes/_msg.php';
      ?>
+     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
+     <script src="../../Resource/ajax/equipamento_ajax.js"></script>
+     <script type="text/javascript">
+        CarregarEquipamentosNaoAlocados();
+        ConsultarSetor();
+    </script>
 </body>
 
 </html>

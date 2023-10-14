@@ -12,6 +12,8 @@ function MostrarMensagem(ret) {
         toastr.success('Registro Excluído com sucesso');
     } else if (ret == 4) {
         toastr.success('Equipamento Inativado');
+    } else if (ret == 5) {
+        toastr.success('Alocado com sucesso');
     }
 
 }

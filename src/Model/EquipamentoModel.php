@@ -5,6 +5,7 @@
     use Src\Model\Conexao;
     use Src\VO\EquipamentoVO;
     use Src\Model\SQL\EquipamentoSql;
+    use Src\VO\AlocarVo;
     use Exception;
 
     class EquipamentoModel extends Conexao
@@ -125,7 +126,33 @@
                 return -1;
             }
         }
-        
+
+        public function SelecionarEquipamentoNaoAlocadoModel(int $sit_alocar, int $sit_equipamento) : array | string
+        {
+            $sql = $this->conexao->prepare(EquipamentoSql::SelecionarEquipamentoNaoAlocado());
+            $sql->bindvalue(1, $sit_alocar);
+            $sql->bindvalue(2, $sit_equipamento);
+            $sql->execute();
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+
+        public function AlocarEquipamentoModel(AlocarVo $vo)
+        {
+            $sql = $this->conexao->prepare(EquipamentoSql::AlocarEquipamento());
+            $sql->bindValue(1, $vo->getDataAlocar());
+            $sql->bindValue(2, $vo->getSituacao());
+            $sql->bindValue(3, $vo->getIdEquipamento());
+            $sql->bindValue(4, $vo->getIdSetor());
+
+            try {
+                $sql->execute();
+                return 1;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+
+        }
     }
 
 ?>

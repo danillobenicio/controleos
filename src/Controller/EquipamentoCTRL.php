@@ -6,6 +6,7 @@
     use Src\_Public\Util;
     use Src\Model\EquipamentoModel;
     use Src\Config\fixos;
+    use Src\VO\AlocarVO;
 
     class EquipamentoCTRL
     {
@@ -66,6 +67,21 @@
                 return 0;
             
             return $this->model->InativarEquipamentoModel($vo);
+        }
+
+        public function SelecionarEquipamentoNaoAlocadoCTRL()
+        {            
+            return $this->model->SelecionarEquipamentoNaoAlocadoModel(SITUACAO_EQUIPAMENTO_REMOVIDO, situacao_ativo);
+        }
+
+        public function AlocarEquipamentoCTRL(AlocarVO $vo)
+        {
+            if(empty($vo->getIdEquipamento()) || empty($vo->getIdSetor()))
+                return 0;
+                
+            $vo->setSituacao(SITUACAO_EQUIPAMENTO_ALOCADO);
+
+            return $this->model->AlocarEquipamentoModel($vo);
         }
 
     }

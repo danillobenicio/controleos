@@ -154,3 +154,55 @@ function Inativar(formID) {
     }
 
 }
+
+
+function CarregarEquipamentosNaoAlocados() {
+
+    $.ajax({
+        beforeSend: function () {
+            Load();
+        },
+        type: 'POST',
+        url: BaseUrlDataview('equipamento_dataview'),
+        data: {
+            carregar_equipamentos_nao_alocados: 'ajx'
+        },
+        success: function (dados) {
+            $('#resultEquipamentos').html(dados)
+        },
+        complete: function () {
+            RemoverLoad();
+        }
+    })
+}
+
+
+function AlocarEquipamento(formID) {
+
+    if(ValidarCampos(formID)) {
+
+        
+        let id_equipamento = $('#resultEquipamentos').val();
+        let id_setor = $('#resultSetor').val();
+
+        $.ajax({
+            beforeSend: function () {
+                Load();
+            },
+            type: 'POST',
+            url: BaseUrlDataview('equipamento_dataview'),
+            data: {
+                alocar_equipamento: 'ajx',
+                id_equipamento: id_equipamento,
+                id_setor: id_setor
+            },
+            success: function (ret) {
+                MostrarMensagem(ret);
+            },
+            complete: function () {
+                RemoverLoad();
+            }
+        })
+    }    
+
+}

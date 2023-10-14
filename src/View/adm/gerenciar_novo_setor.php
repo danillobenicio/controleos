@@ -56,6 +56,7 @@
                                     <h3 class="card-title">Setores Cadastrados</h3>
                                     <div class="card-tools">
                                         <div class="input-group input-group-sm" style="width: 150px;">
+                                            <input type="hidden" id="tipoTela" name="tipoTela" value="tipoSetor">
                                             <input type="text" name="table_search" class="form-control float-right"
                                                 placeholder="Pesquisar por">
                                             <div class="input-group-append">
@@ -65,7 +66,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body table-responsive p-0" id="resultTable">
+                                <div class="card-body table-responsive p-0" id="resultSetor">
                                     
                                 </div>
                             </div>

@@ -81,6 +81,32 @@
             return $sql;
         }
 
+        public static function SelecionarEquipamentoNaoAlocado()
+        {
+            $sql = 'SELECT 
+                        te.id_equipamento AS id_equipamento,
+                        te.identificacao,
+                        tt.nome_tipo,
+                        tm.nome_modelo
+                    FROM 
+                        tb_equipamento te
+                    INNER JOIN
+                        tb_tipo tt ON tt.id_tipo = te.fk_id_tipo
+                    INNER JOIN
+                        tb_modelo tm ON tm.id_modelo = te.fk_id_modelo
+                    WHERE 
+                        id_equipamento NOT IN (SELECT fk_id_equipamento FROM tb_alocar WHERE situacao <> ?)
+                    AND
+                        te.situacao = ?';
+            return $sql;
+        }
+
+
+        public static function AlocarEquipamento() {
+            $sql = 'INSERT INTO tb_alocar (data_alocacao, situacao, fk_id_equipamento, fk_id_setor) VALUES (? ,? ,?, ?)';
+            return $sql;
+        }
+
     }
 
 ?>
