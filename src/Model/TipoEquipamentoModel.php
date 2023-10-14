@@ -22,13 +22,10 @@
             $sql = $this->conexao->prepare(TipoEquipamentoSql::InserirTipoEquipamento());
             $sql->bindValue(1, $vo->getNomeTipo());
 
-            try 
-            {
+            try {
                 $sql->execute();
-                return 1;
-            } 
-            catch (Exception $ex)
-            {
+                return 1; 
+            } catch (Exception $ex) {
                 return -1;
             }
 

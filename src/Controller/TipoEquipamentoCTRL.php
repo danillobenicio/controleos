@@ -18,9 +18,7 @@
         public function CadastrarTipoEquipamentoCTRL(TipoVO $vo) : int
         {
             if(empty($vo->getNomeTipo()))
-            {
                 return 0;
-            }
 
             $ret = $this->model->CadastrarTipoEquipamentoModel($vo);          
             return $ret;

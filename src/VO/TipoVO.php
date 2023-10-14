@@ -23,7 +23,7 @@
         
         public function setNomeTipo(string $p_nome_tipo) : void 
         {
-            $this->nome_tipo = Util::TratarDados($p_nome_tipo);
+            $this->nome_tipo = Util::TratarCaracteresEspeciais($p_nome_tipo);
         }
 
         public function getNomeTipo() : string 
