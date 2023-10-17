@@ -93,6 +93,7 @@ function FiltrarEquipamento() {
             tipo: idTipo,
             modelo: idModelo,
         },
+        cache: false,
         success: function (dados) {
             console.log(dados);
             $('#resultTable').html(dados);
@@ -136,6 +137,9 @@ function Inativar(formID) {
 
     if (ValidarCampos(formID)) {
         $.ajax({
+            beforeSend: function(){
+                Load();
+            },
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
             data: {
@@ -146,8 +150,13 @@ function Inativar(formID) {
             },
             success: function (ret) {
                 MostrarMensagem(ret);
+                LimparNotificacoes();
                 $('#modal_inativar').modal('hide');
                 FiltrarEquipamento();
+                
+            },
+            complete: function () {
+                RemoverLoad();
             }
 
         })
@@ -198,6 +207,7 @@ function AlocarEquipamento(formID) {
             },
             success: function (ret) {
                 MostrarMensagem(ret);
+                CarregarEquipamentosNaoAlocados();
             },
             complete: function () {
                 RemoverLoad();
@@ -206,3 +216,13 @@ function AlocarEquipamento(formID) {
     }    
 
 }
+
+
+function ConsultarEquipamentosAlocados() {
+
+        let id_setor = $('#resultSetor').val();
+
+        alert(id_setor);
+
+       
+    }    

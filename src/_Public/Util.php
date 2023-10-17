@@ -31,6 +31,7 @@
         public static function TratarCaracteresEspeciais($palavra) {
             $especiais = array(".", ",", ";", "!", "@", "#", "%", "¨", "*", "(", ")", "+", "-", "=", "§", "$", "|", "\\", ":", "/", "<", ">", "?", "{", "}", "[", "]", "&", "'", '"', "´", "`", "?", '“', '”', '$', "'", "'");
             $palavra = str_replace($especiais, "", $palavra);
+            $palavra = strip_tags($palavra);
             return $palavra;
         }
 
@@ -51,6 +52,16 @@
         public static function ChamarPagina($pag){
             header("Location: $pag.php");
             exit;
+        }
+
+        public static function TratarExibicao($descricao) {
+
+            if(strlen($descricao) > 40){
+                return substr($descricao, 0, 40) . "...";
+            }
+            else {
+                return $descricao;
+            }
         }
 
     }

@@ -68,18 +68,23 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
             <td><?= $item['nome_tipo'] ?></td>
             <td><?= $item['nome_modelo'] ?></td>
             <td><?= $item['identificacao'] ?></td>
-            <td><?= $item['descricao'] ?></td>
+            <td><?= Util::TratarExibicao($item['descricao']) ?></td>
             <td><?= $item['situacao'] ?></td>
             <td>
                 <a href="equipamento.php?id_equipamento=<?= $item['id_equipamento'] ?>"
                     class="btn btn-warning btn-sm">Alterar</a>
+
                 <button data-toggle="modal" data-target="#modal_excluir"
                     onclick="CarregarExcluir('<?= $item['id_equipamento'] ?>', '<?= $item['nome_tipo'] ?>')"
                     class="btn btn-danger btn-sm">Excluir</button>
+
                 <?php if($item['esta_alocado'] == 0 && $item['situacao'] <> 'Inativo') { ?>
                 <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_inativar"
                     onclick="CarregarInativar('<?= $item['id_equipamento'] ?>')">Inativar</button>
-                <?php  } ?>
+                <?php  } else { ?>
+                    <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_inativar_info"
+                    onclick="CarregarInativarInfo('<?= $item['data_descarte']?>', '<?=$item['motivo_descarte']?>')">Ver Dados</button>
+                <?php } ?>
             </td>
         </tr>
         <?php } ?>
@@ -125,8 +130,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo->setIdEquipamento($_POST['id_inativar']);
     $vo->setDataDescarte($_POST['data_descarte']);
     $vo->setMotivoDescarte($_POST['motivo_descarte']);
-    $vo->setSituacao(situacao_inativo);
-
+    
     $ret = $ctrl->InativarEquipamentoCTRL($vo);
 
     echo $ret;
@@ -134,13 +138,15 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
 } else if (isset($_POST['carregar_equipamentos_nao_alocados'])) {
     $equipamentos = (new EquipamentoCTRL)->SelecionarEquipamentoNaoAlocadoCTRL();
     ?>
-        <select class="form-control obg" style="width: 100%;">
-            <option value="">Selecione</option>
-            <?php foreach($equipamentos as $equipamento) { ?>
-                <option value="<?=$equipamento['id_equipamento']?>"><?=$equipamento['identificacao'] . ' | ' . $equipamento['nome_tipo'] . ' | ' . $equipamento['nome_modelo']?></option>
-            <?php } ?>                     
-        </select>
-    <?php
+<select class="form-control obg" style="width: 100%;">
+    <option value="">Selecione</option>
+    <?php foreach($equipamentos as $equipamento) { ?>
+    <option value="<?=$equipamento['id_equipamento']?>">
+        <?=$equipamento['identificacao'] . ' | ' . $equipamento['nome_tipo'] . ' | ' . $equipamento['nome_modelo']?>
+    </option>
+    <?php } ?>
+</select>
+<?php
 } else if(isset($_POST['alocar_equipamento'])) {
 
     $vo = new AlocarVO;
@@ -152,5 +158,30 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $ret = $ctrl->AlocarEquipamentoCTRL($vo);
 
     echo $ret;
+
+} else if (isset($_POST['filtrar_equipamentos_alocados_setor'])) {
+
+    $equipamentos = $ctrl->ConsultarEquipamentosAlocadosSetor($_POST['id_setor']);
+    ?>
+        <thead>
+            <tr>
+                <th>Equipamento</th>
+                <th>Alocado Em</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($equipamentos as $equipamento) { ?>
+            <tr>
+                <td><?=$equipamento['identificacao'] . ' | ' .$equipamento['tipo'] . ' | ' . $equipamento['nome_modelo']?></td>
+                <td><?=$equipamento['data_alocacao']?></td>
+                <td>
+                    <a href="#" class="btn btn-danger btn-xs">Remover</a>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    <?php
+    
 
 }

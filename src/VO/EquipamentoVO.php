@@ -41,7 +41,7 @@
 
         public function setDescricao(string $p_descricao) : void 
         {
-            $this->descricao = Util::RemoverTags($p_descricao);
+            $this->descricao = Util::TratarCaracteresEspeciais($p_descricao);
         }
 
         public function getDescricao() : string 

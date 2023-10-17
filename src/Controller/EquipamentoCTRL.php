@@ -66,6 +66,8 @@
             if(empty($vo->getIdEquipamento()) || empty($vo->getDataDescarte()) || empty($vo->getMotivoDescarte()))
                 return 0;
             
+            $vo->setSituacao(situacao_inativo);
+
             return $this->model->InativarEquipamentoModel($vo);
         }
 
@@ -82,6 +84,10 @@
             $vo->setSituacao(SITUACAO_EQUIPAMENTO_ALOCADO);
 
             return $this->model->AlocarEquipamentoModel($vo);
+        }
+
+        public function ConsultarEquipamentosAlocadosSetorCTRL($id_setor) {
+            return $this->model->ConsultarEquipamentosAlocadosSetorModel($id_setor);
         }
 
     }

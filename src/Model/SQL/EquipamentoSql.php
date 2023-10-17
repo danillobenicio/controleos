@@ -107,6 +107,32 @@
             return $sql;
         }
 
+
+        public static function ConsultarEquipamentosAlocadosSetor() {
+            $sql = 'SELECT 
+                        ta.id_alocar,
+                        te.identificacao,
+                        tt.nome_tipo AS tipo,
+                        tm.nome_modelo,
+                        ts.nome_setor,
+                        ta.data_alocacao,
+                        ta.situacao
+                    FROM
+                        tb_alocar ta
+                            INNER JOIN
+                                tb_equipamento te ON te.id_equipamento = ta.fk_id_equipamento
+                            INNER JOIN
+                                tb_tipo tt ON tt.id_tipo = te.fk_id_tipo
+                            INNER JOIN
+                                tb_modelo tm ON tm.id_modelo = te.fk_id_modelo
+                            INNER JOIN
+                                tb_setor ts ON ts.id_setor = ta.fk_id_setor
+                    WHERE
+                        ta.data_remocao IS NULL
+                        AND ta.fk_id_setor = ?';
+            return $sql;
+        }
+
     }
 
 ?>

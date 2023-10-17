@@ -40,8 +40,11 @@
                         <form role="form" method="post">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="tipo">Setor</label>
-                                    <input type="text" class="form-control" id="tipo" placeholder="Setor">
+                                <label>Setor</label>
+                                        
+                                    <select class="form-control obg" style="width: 100%;" name="setor" id="resultSetor">
+                                        
+                                    </select>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -60,21 +63,8 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Equipamento</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-xs">Remover</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-hover" id="resultTable">
+                                    
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -91,7 +81,13 @@
     </div>
     <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
-  ?>
+    ?>
+    <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
+    <script src="../../Resource/ajax/equipamento_ajax.js"></script>
+    <script>
+        ConsultarSetor();
+        
+    </script>
 </body>
 
 </html>

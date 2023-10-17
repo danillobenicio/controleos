@@ -21,3 +21,8 @@ function CarregarSetor(id, setor) {
 function CarregarInativar(id) {
     $('#id_inativar').val(id);
 }
+
+function CarregarInativarInfo(data, motivo) {
+    $('#data_descarte').html(data);
+    $('#motivo_descartar').html(motivo);
+}

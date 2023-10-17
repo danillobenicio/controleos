@@ -153,6 +153,13 @@
             }
 
         }
+
+        public function ConsultarEquipamentosAlocadosSetorModel($id_setor) {
+            $sql = $this->conexao->prepare(EquipamentoSql::ConsultarEquipamentosAlocadosSetor());
+            $sql->bindvalue(1, $id_setor);
+            $sql->execute();
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+        }
     }
 
 ?>
