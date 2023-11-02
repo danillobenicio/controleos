@@ -133,6 +133,12 @@
             return $sql;
         }
 
+
+        public static function RemoverEquipamentoSetor(){
+            $sql = 'UPDATE tb_alocar SET data_remocao = ?, situacao = ? WHERE id_alocar = ?';
+            return $sql;
+        }
+
     }
 
 ?>

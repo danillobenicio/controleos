@@ -147,7 +147,7 @@
 
             try {
                 $sql->execute();
-                return 1;
+                return 7;
             } catch (\Exception $ex) {
                 return -1;
             }
@@ -159,6 +159,23 @@
             $sql->bindvalue(1, $id_setor);
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+
+        public function RemoverEquipamentoSetorModel(AlocarVo $vo)
+        {
+            $sql = $this->conexao->prepare(EquipamentoSql::RemoverEquipamentoSetor());
+            $sql->bindValue(1, $vo->getDataRemover());
+            $sql->bindValue(2, $vo->getSituacao());
+            $sql->bindValue(3, $vo->getIdAlocar());
+
+            try {
+                $sql->execute();
+                return 6;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+
         }
     }
 

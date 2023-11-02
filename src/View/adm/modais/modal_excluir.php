@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Confirmar Exclusão</h4>
+                <h4 class="modal-title">Confirmar Remoção</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <input type="hidden" name="id_excluir" id="id_excluir">
                     <input type="hidden" name="nome_excluir" id="nome_excluir">
-                    <label>Deseja realmente excluir esse registro?</label>
+                    <label>Deseja realmente remover esse registro?</label>
                 </div>
             </div>
             <div class="modal-footer justify-content-between">

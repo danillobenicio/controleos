@@ -90,6 +90,12 @@
             return $this->model->ConsultarEquipamentosAlocadosSetorModel($id_setor);
         }
 
+        public function RemoverEquipamentoSetorCTRL(AlocarVo $vo) {
+            
+            $vo->setSituacao(SITUACAO_EQUIPAMENTO_REMOVIDO);
+            return $this->model->RemoverEquipamentoSetorModel($vo);
+        }
+
     }
 
 ?>

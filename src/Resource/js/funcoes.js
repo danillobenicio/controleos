@@ -70,3 +70,37 @@ function KeyPressEnter(inputId, buttonId) {
         }
     });
 }
+
+
+function CarregarTipoUsuario(tipo) {
+    switch (tipo) {
+        case '1':
+            $('#dadosUsuario').show();
+            $('#dadosEndereco').show();         
+            $('#button').show();
+            $('#dadosFuncionario').hide();
+            $('#dadosTecnico').hide();
+            break;
+        case '2':
+            $('#dadosUsuario').show();
+            $('#dadosEndereco').show();
+            $('#dadosFuncionario').show();
+            $('#button').show();
+            $('#dadosTecnico').hide();
+            break;
+        case '3':
+            $('#dadosUsuario').show();
+            $('#dadosEndereco').show();
+            $('#dadosTecnico').show();
+            $('#button').show();
+            $('#dadosFuncionario').hide();
+            break;
+        default:
+            $('#dadosUsuario').hide();
+            $('#dadosEndereco').hide();
+            $('#dadosTecnico').hide();
+            $('#button').hide();
+            $('#dadosFuncionario').hide();
+            break;
+    }
+}

@@ -10,11 +10,11 @@
             <div class="modal-body">
                 <div class="form-group">                   
                     <label>Data descarte</label>
-                    <input disabled type="date" class="form-control" id="data_descarte" name="data_descarte">
+                    <span class="form-control" id="data_descarte" name="data_descarte"></span>
                     <br>
                     <label>Motivo Descarte</label>
-                    <textarea disabled class="form-control obg" id="motivo_descartar" rows="2"
-                     name="motivo_descartar"></textarea>                               
+                    <span disabled class="form-control obg" id="motivo_descartar" rows="2"
+                     name="motivo_descartar"></span>                               
                 </div>
             </div>
             <div class="modal-footer justify-content-between">

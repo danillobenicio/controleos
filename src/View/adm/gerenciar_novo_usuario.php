@@ -35,77 +35,108 @@
                     <form role="form" method="POST">
                         <div class="card-body">
                             <div class="row">
-                                <div class="form-group col-md-12 col-sm-12">
-                                    <label for="inputNameUser">Nome</label>
-                                    <input type="text" class="form-control" id="inputNameUser" name="nameUser"
-                                        placeholder="Nome Completo">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for="inputTypeUser">Tipo</label>
-                                        <select class="form-control" id="inputTypeUser" name="typeUser"
-                                            style="width: 100%;">
+                                        <label for="inputTypeUser">Escolha o tipo de usuário</label>
+                                        <select class="form-control" id="tipo" name="tipo" style="width: 100%;" onchange="CarregarTipoUsuario(this.value)">
                                             <option selected="selected" value="">Selecione</option>
                                             <option value="1">Administrador</option>
-                                            <option value="2">Técnico</option>
-                                            <option value="3">Funcionário</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="inputSectorUser">Setor</label>
-                                        <select class="form-control" id="inputSectorUser" name="sectorUser"
-                                            style="width: 100%;">
-                                            <option selected="selected" value="">Selecione</option>
-                                            <option value="">Alaska</option>
+                                            <option value="2">Funcionário</option>
+                                            <option value="3">Técnico</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-8 col-sm-12">
-                                    <label for="inputEmailUser">E-mail</label>
-                                    <input type="email" class="form-control" id="inputEmailUser" name="email"
-                                        placeholder="Email">
+                            <div id="dadosUsuario" style="display: none;">
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control obg" id="nome" name="nome"
+                                            placeholder="Nome completo">
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label>E-mail</label>
+                                        <input type="email" class="form-control obg" id="email" name="email"
+                                            placeholder="E-mail">
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-4 col-sm-12">
-                                    <label for="inputPhoneUser">Telefone</label>
-                                    <input type="text" class="form-control" id="inputPhoneUser" name="phone"
-                                        placeholder="Telefone">
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label>Telefone</label>
+                                        <input type="text" class="form-control obg" id="telefone" name="telefone"
+                                            placeholder="Telefone">
+                                    </div>
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label>CPF</label>
+                                        <input type="text" class="form-control obg" id="cpf" name="cpf" placeholder="CPF">
+                                    </div>
                                 </div>
                             </div>
+                            <div id="dadosFuncionario" style="display: none;">
                             <div class="row">
-                                <div class="form-group col-md-6 col-sm-12">
-                                    <label for="inputStreetUser">Endereço</label>
-                                    <input type="text" class="form-control" id="inputStreetUser" name="street" placeholder="Rua, xxx">
-                                </div>
-                                <div class="col-md-3 col-sm-12">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for="inputCityUser">Cidade</label>
-                                        <select class="form-control" id="inputCityUser" name="city"
-                                            style="width: 100%;">
-                                            <option selected="selected" value="">Selecione</option>
-                                            <option value="">Alaska</option>
+                                        <label>Setor</label>
+                                        <select class="form-control obg" id="resultSetor" name="setor" style="width: 100%;">
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-12">
+                            </div>
+                            </div>
+                            <div id="dadosTecnico" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <label for="inputStateUser">Estado</label>
-                                        <select class="form-control" id="inputStateUser" name="state"
-                                            style="width: 100%;">
-                                            <option selected="selected" value="">Selecione</option>
-                                            <option value="">Alaska</option>
+                                        <label>Empresa</label>
+                                        <select class="form-control obg" id="empresa" name="empresa" style="width: 100%;">
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div id="dadosEndereco" style="display: none;">
+                                <div class="row">
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label for="inputStreetUser">Cep</label>
+                                        <input type="text" class="form-control" id="cep" name="cep"
+                                            placeholder="Rua, xxx">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="inputCityUser">Rua</label>
+                                            <input type="text" class="form-control" name="rua" id="rua"
+                                                placeholder="Digite o nome da rua">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="inputStateUser">Bairro</label>
+                                            <input type="text" class="form-control" name="bairro" id="bairro"
+                                                placeholder="Digite o nome do bairro">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-sm-12">
+                                        <label for="inputStreetUser">Cidade</label>
+                                        <input type="text" disabled class="form-control" id="cidade" name="cidade"
+                                            placeholder="Campo Automático">
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="inputCityUser">Estado</label>
+                                            <input type="text" disabled class="form-control" name="estado" id="estado"
+                                                placeholder="Campo Automático">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer">
+                        <div class="card-footer" id="button" style="display: none;">
                             <button type="submit" class="btn btn-sm btn-success">Cadastrar</button>
                         </div>
                     </form>

@@ -38,28 +38,25 @@
                         </div>
 
                         <form role="form" method="post">
+                        <input type="hidden" value="tela_remover" id="tela">
                             <div class="card-body">
                                 <div class="form-group">
-                                <label>Setor</label>
+                                <label>Setores</label>
                                         
-                                    <select class="form-control obg" style="width: 100%;" name="setor" id="resultSetor">
+                                    <select class="form-control obg" style="width: 100%;" name="setor" id="resultSetor" onchange="ConsultarEquipamentosAlocados(this.value)">
                                         
                                     </select>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-sm btn-success">Pesquisar</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="card form-consulta">
-
+                <div class="card form-consulta" id="divResultado" style="display: none;">
                     <div class="row">
                         <div class="col-12">
                             <div class="card-header">
-                                <h3 class="card-title">Equipamentos Cadastrados</h3>
+                                <h3 class="card-title">Equipamentos Alocados</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
@@ -74,7 +71,7 @@
                 </div>
             </section>
         </div>
-
+            <?php include_once 'modais/modal_excluir.php'; ?>
         <?php
         include_once PATH . 'Template/_includes/_footer.php'
     ?>
@@ -85,8 +82,7 @@
     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
     <script src="../../Resource/ajax/equipamento_ajax.js"></script>
     <script>
-        ConsultarSetor();
-        
+        ConsultarSetor(); 
     </script>
 </body>
 

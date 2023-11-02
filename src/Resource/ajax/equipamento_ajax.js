@@ -107,6 +107,7 @@ function FiltrarEquipamento() {
 function Excluir() {
 
     let id_excluir = $('#id_excluir').val();
+    let valor_tela = $('#tela').val() == 'tela_remover' ? 'remover' : 'excluir';
 
     $.ajax({
         beforeSend: function () {
@@ -115,13 +116,17 @@ function Excluir() {
         type: 'POST',
         url: BaseUrlDataview('equipamento_dataview'),
         data: {
-            btnExcluir: 'ajx',
+            btnExcluir: valor_tela,
             id_equipamento: id_excluir
         },
         success: function (ret) {
             MostrarMensagem(ret);
-            $('#modal_excluir').modal('hide');
-            FiltrarEquipamento();
+            if(valor_tela == 'excluir') {
+                FiltrarEquipamento();
+            }else {
+                ConsultarEquipamentosAlocados($('#resultSetor').val());
+            }
+            $('#modal_excluir').modal('hide');          
         },
         complete: function () {
             RemoverLoad();
@@ -218,11 +223,55 @@ function AlocarEquipamento(formID) {
 }
 
 
-function ConsultarEquipamentosAlocados() {
+function ConsultarEquipamentosAlocados(idSetor) {
+    if(idSetor != ''){
+        $.ajax({
+            beforeSend: function () {
+                Load();
+            },
+            type: 'POST',
+            url: BaseUrlDataview('equipamento_dataview'),
+            data: {
+                filtrar_equipamentos_alocados_setor: 'ajx',
+                idSetor: idSetor
+            },
+            success: function (ret) {
+                $('#resultTable').html(ret);
+                $('#divResultado').show();
+            },
+            complete: function () {
+                RemoverLoad();
+            }
+        })  
+    }
+}   
 
-        let id_setor = $('#resultSetor').val();
 
-        alert(id_setor);
+function RemoverEquipamentoAlocado(idAlocamento) {
 
-       
-    }    
+
+        let id_excluir = $('#id_excluir').val();
+    
+        alert(id_excluir);
+    
+        /*$.ajax({
+            beforeSend: function () {
+                Load();
+            },
+            type: 'POST',
+            url: BaseUrlDataview('equipamento_dataview'),
+            data: {
+                btnExcluir: 'ajx',
+                id_equipamento: id_excluir,
+                nome: nome
+            },
+            success: function (ret) {
+                MostrarMensagem(ret);
+                $('#modal_excluir').modal('hide');
+                FiltrarEquipamento();
+            },
+            complete: function () {
+                RemoverLoad();
+            }
+        })*/
+}

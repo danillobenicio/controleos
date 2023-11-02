@@ -37,6 +37,7 @@
                             <h3 class="card-title">Pesquisar</h3>
                         </div>
                         <form role="form" method="POST">
+                            <input type="hidden" value="tela_excluir" id="tela">
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="row">
