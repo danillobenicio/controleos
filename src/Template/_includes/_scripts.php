@@ -21,3 +21,6 @@
  
  <!-- Modais JS -->
  <script src="../../Resource/js/carregar_modal.js"></script>
+
+ <!--jQuery Mask Plugin-->
+ <script src="../../Template/plugins/jquery-mask-plugin/dist/jquery.mask.min.js"></script>

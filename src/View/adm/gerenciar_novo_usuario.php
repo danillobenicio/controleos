@@ -88,8 +88,8 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Empresa</label>
-                                        <select class="form-control obg" id="empresa" name="empresa" style="width: 100%;">
-                                        </select>
+                                        <input type="text" class="form-control obg" id="empresa" name="empresa"
+                                            placeholder="Empresa">
                                     </div>
                                 </div>
                             </div>
@@ -97,38 +97,38 @@
                             <div id="dadosEndereco" style="display: none;">
                                 <div class="row">
                                     <div class="form-group col-md-12 col-sm-12">
-                                        <label for="inputStreetUser">Cep</label>
-                                        <input type="text" class="form-control" id="cep" name="cep"
-                                            placeholder="Rua, xxx">
+                                        <label>Cep</label>
+                                        <input type="text" class="form-control obg" id="cep" name="cep"
+                                            placeholder="Cep">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="inputCityUser">Rua</label>
-                                            <input type="text" class="form-control" name="rua" id="rua"
-                                                placeholder="Digite o nome da rua">
+                                            <label>Rua</label>
+                                            <input type="text" class="form-control obg" name="rua" id="rua"
+                                                placeholder="Rua">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="inputStateUser">Bairro</label>
-                                            <input type="text" class="form-control" name="bairro" id="bairro"
-                                                placeholder="Digite o nome do bairro">
+                                            <label>Bairro</label>
+                                            <input type="text" class="form-control obg" name="bairro" id="bairro"
+                                                placeholder="Bairro">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
-                                        <label for="inputStreetUser">Cidade</label>
-                                        <input type="text" disabled class="form-control" id="cidade" name="cidade"
+                                        <label>Cidade</label>
+                                        <input type="text" disabled class="form-control obg" id="cidade" name="cidade"
                                             placeholder="Campo Automático">
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label for="inputCityUser">Estado</label>
-                                            <input type="text" disabled class="form-control" name="estado" id="estado"
+                                            <label>Estado</label>
+                                            <input type="text" disabled class="form-control obg" name="estado" id="estado"
                                                 placeholder="Campo Automático">
                                         </div>
                                     </div>
@@ -149,8 +149,13 @@
     ?>
     </div>
     <?php  
-        include_once PATH . 'Template/_includes/_scripts.php';
+        include_once PATH . 'Template/_includes/_scripts.php';  
      ?>
+     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
+     <script type="text/javascript">
+        mascarasInput();
+        ConsultarSetor();
+     </script>
 </body>
 
 </html>
