@@ -1,64 +1,51 @@
-function BaseUrlDataview(dataview)
-{
+function BaseUrlDataview(dataview) {
     return '../../Resource/dataview/' + dataview + '.php';
 }
 
 
-function LimparNotificacoes(formID)
-{
-    $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each
-    (        
-        function()
-        {                  
+function LimparNotificacoes(formID) {
+    $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each(
+        function () {
             $(this).val('');
-            $(this).removeClass("is-invalid").removeClass("is-valid");          
-        }       
+            $(this).removeClass("is-invalid").removeClass("is-valid");
+        }
     );
 }
 
-function ValidarCampos(formID)
-{
-    
+function ValidarCampos(formID) {
+
     let ret = true;
 
-    $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each
-    (
-        
-        function()
-        {
-            
-           if($(this).hasClass("obg"))
-           {
-            
-            if($(this).val() == "")
-            {
-                ret = false;
+    $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each(
 
-                $(this).addClass("is-invalid");
-            }
-            else
-            {
-                $(this).removeClass("is-invalid").addClass("is-valid");
+        function () {
+
+            if ($(this).hasClass("obg")) {
+
+                if ($(this).val() == "") {
+                    ret = false;
+
+                    $(this).addClass("is-invalid");
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                }
+
             }
 
-           }
-           
         }
-        
+
     );
-    
-    if(!ret)
-        MostrarMensagem(0); 
+
+    if (!ret)
+        MostrarMensagem(0);
     return ret;
 }
 
-function Load()
-{
+function Load() {
     $(".loader").addClass("is-active");
 }
 
-function RemoverLoad()
-{
+function RemoverLoad() {
     $(".loader").removeClass("is-active");
 }
 
@@ -76,7 +63,7 @@ function CarregarTipoUsuario(tipo) {
     switch (tipo) {
         case '1':
             $('#dadosUsuario').show();
-            $('#dadosEndereco').show();         
+            $('#dadosEndereco').show();
             $('#button').show();
             $('#dadosFuncionario').hide();
             $('#dadosTecnico').hide();
@@ -105,10 +92,45 @@ function CarregarTipoUsuario(tipo) {
     }
 }
 
-function mascarasInput() {
+/*function mascarasInput() {
     $('#telefone').mask('(00) 00000-0000');
     $('#cpf').mask('000.000.000-00', {reverse: true});
     $('#cep').mask('00000-000');
+}*/
+
+function validarCpf(cpf) {
+    cpf = cpf.replace(/\D/g, '');
+    let result = true;
+    if (cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) {
+        result = false;
+    }
+
+    [9, 10].forEach(function (j) {
+        var soma = 0,
+            r;
+        cpf.split(/(?=)/).splice(0, j).forEach(function (e, i) {
+            soma += parseInt(e) * ((j + 2) - (i + 1));
+        });
+        r = soma % 11;
+        r = (r < 2) ? 0 : 11 - r;
+        if (r != cpf.substring(j, j + 1)) {
+            result = false;
+        }
+    });
+
+    if (!result) {
+        MostrarMensagem(10);
+        $('#cpf').val('');
+        $('#cpf').focus();
+    }
 }
 
 
+function checarEmail() {
+    if (document.forms[0].email.value == "" ||
+        document.forms[0].email.value.indexOf('@') == -1 ||
+        document.forms[0].email.value.indexOf('.') == -1) {
+        MostrarMensagem(11);
+        return false;
+    }
+}

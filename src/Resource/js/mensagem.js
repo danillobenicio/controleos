@@ -18,6 +18,15 @@ function MostrarMensagem(ret) {
         toastr.success('Equipamento removido com sucesso');
     } else if (ret == 7) {
         toastr.success('Equipamento alocado com sucesso');
+    } else if (ret == 8) {
+        toastr.warning('CEP não encontado');
+    } else if (ret == 9) {
+        toastr.warning('Formato de CEP inválido');
+    } else if (ret == 10) {
+        toastr.warning('CPF inválido');
+    }
+    else if (ret == 11) {
+        toastr.warning('E-mail inválido');
     }
 
 }

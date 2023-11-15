@@ -38,7 +38,8 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="inputTypeUser">Escolha o tipo de usuário</label>
-                                        <select class="form-control" id="tipo" name="tipo" style="width: 100%;" onchange="CarregarTipoUsuario(this.value)">
+                                        <select class="form-control" id="tipo" name="tipo" style="width: 100%;"
+                                            onchange="CarregarTipoUsuario(this.value)">
                                             <option selected="selected" value="">Selecione</option>
                                             <option value="1">Administrador</option>
                                             <option value="2">Funcionário</option>
@@ -57,49 +58,51 @@
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>E-mail</label>
                                         <input type="email" class="form-control obg" id="email" name="email"
-                                            placeholder="E-mail">
+                                            placeholder="E-mail" onblur="checarEmail()">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>Telefone</label>
-                                        <input type="text" class="form-control obg" id="telefone" name="telefone"
+                                        <input type="text" class="form-control obg cel num" id="telefone" name="telefone"
                                             placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>CPF</label>
-                                        <input type="text" class="form-control obg" id="cpf" name="cpf" placeholder="CPF">
+                                        <input type="text" class="form-control obg cpf num" id="cpf" name="cpf"
+                                            placeholder="CPF" onblur="validarCpf(this.value)">
                                     </div>
                                 </div>
                             </div>
                             <div id="dadosFuncionario" style="display: none;">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Setor</label>
-                                        <select class="form-control obg" id="resultSetor" name="setor" style="width: 100%;">
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Setor</label>
+                                            <select class="form-control obg" id="resultSetor" name="setor"
+                                                style="width: 100%;">
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                             <div id="dadosTecnico" style="display: none;">
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Empresa</label>
-                                        <input type="text" class="form-control obg" id="empresa" name="empresa"
-                                            placeholder="Empresa">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Empresa</label>
+                                            <input type="text" class="form-control obg" id="empresa" name="empresa"
+                                                placeholder="Empresa">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                             <div id="dadosEndereco" style="display: none;">
                                 <div class="row">
                                     <div class="form-group col-md-12 col-sm-12">
                                         <label>Cep</label>
-                                        <input type="text" class="form-control obg" id="cep" name="cep"
-                                            placeholder="Cep">
+                                        <input type="text" class="form-control obg cep num" id="cep" name="cep"
+                                            placeholder="Cep" onblur="pesquisaCep(this.value)">
                                     </div>
                                 </div>
 
@@ -128,8 +131,8 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Estado</label>
-                                            <input type="text" disabled class="form-control obg" name="estado" id="estado"
-                                                placeholder="Campo Automático">
+                                            <input type="text" disabled class="form-control obg" name="estado"
+                                                id="estado" placeholder="Campo Automático">
                                         </div>
                                     </div>
                                 </div>
@@ -151,11 +154,16 @@
     <?php  
         include_once PATH . 'Template/_includes/_scripts.php';  
      ?>
-     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
-     <script type="text/javascript">
-        mascarasInput();
+    <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
+    <script src="../../Resource/js/buscar_cep.js"></script>
+    <script src="../../Template/mask/jquery.mask.min.js"></script>
+    <script src="../../Template/mask/mask.js"></script>
+    <script type="text/javascript">
+        //mascarasInput();
         ConsultarSetor();
-     </script>
+        validarCpf();
+        checarEmail();
+    </script>
 </body>
 
 </html>
