@@ -53,7 +53,7 @@
 
 
         //GET E SET EMAIL 
-        public static function setEmailUsuario(string $p_email_usuario) : void
+        public function setEmailUsuario(string $p_email_usuario) : void
         {
             $this->email_usuario = Util::RemoverTags($p_email_usuario);
         }
@@ -65,9 +65,9 @@
 
 
          //GET E SET CPF 
-         public static function setCpfUsuario(string $p_cpf_usuario) : void
+         public function setCpfUsuario(string $p_cpf_usuario) : void
          {
-            $this->cpf_usuario = Util::TirarCaracteresEspeciais($p_cpf_usuario);
+            $this->cpf_usuario = Util::TratarCaracteresEspeciais($p_cpf_usuario);
         }
 
         public function getCpfUsuario() : string 
@@ -79,13 +79,37 @@
         //GET E SET TELEFONE
         public function setTelUsuario(string $p_tel_usuario) : void
         {
-            $this->cpf_usuario = $p_tel_usuario;
+            $this->tel_usuario = $p_tel_usuario;
         }
 
         public function getTelUsuario() : string
         {
-            return $this->cpf_usuario;
+            return $this->tel_usuario;
         }
+
+
+        //GET E SET SENHA
+        public function setSenhaUsuario(string $p_senha_usuario) : void
+        {
+            $this->senha_usuario = $p_senha_usuario;
+        }
+
+        public function getSenhaUsuario() : string
+        {
+            return $this->senha_usuario;
+        }
+
+
+        public function setStatusUsuario(int $p_status_usuario) : void
+        {
+            $this->status_usuario = $p_status_usuario;
+        }
+
+        public function getStatusUsuario() : int
+        {
+            return $this->status_usuario;
+        }
+
     }
 
 ?>

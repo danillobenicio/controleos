@@ -24,9 +24,10 @@ function MostrarMensagem(ret) {
         toastr.warning('Formato de CEP inválido');
     } else if (ret == 10) {
         toastr.warning('CPF inválido');
-    }
-    else if (ret == 11) {
+    } else if (ret == 11) {
         toastr.warning('E-mail inválido');
+    } else if (ret == 12) {
+        toastr.warning('E-mail já cadastrado!');
     }
 
 }

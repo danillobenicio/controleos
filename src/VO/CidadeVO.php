@@ -36,7 +36,7 @@ class CidadeVO
         $this->fk_id_estado = $p_estado;
     }
 
-    public function getFkEstado() : int 
+    public function getFkEstado() : int
     {
         return $this->fk_id_Estado;
     }

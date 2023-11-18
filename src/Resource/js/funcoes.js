@@ -60,6 +60,15 @@ function KeyPressEnter(inputId, buttonId) {
 
 
 function CarregarTipoUsuario(tipo) {
+
+    $('#empresa').removeClass('obg');
+    $('#setor').removeClass('obg');
+
+    //Limpa os campos
+    LimparNotificacoes("formCad");
+
+    $('#tipo').val(tipo);
+
     switch (tipo) {
         case '1':
             $('#dadosUsuario').show();
@@ -74,6 +83,9 @@ function CarregarTipoUsuario(tipo) {
             $('#dadosFuncionario').show();
             $('#button').show();
             $('#dadosTecnico').hide();
+
+            $('#setor').addClass('obg');
+            
             break;
         case '3':
             $('#dadosUsuario').show();
@@ -81,6 +93,9 @@ function CarregarTipoUsuario(tipo) {
             $('#dadosTecnico').show();
             $('#button').show();
             $('#dadosFuncionario').hide();
+
+            $('#empresa').addClass('obg');
+           
             break;
         default:
             $('#dadosUsuario').hide();
@@ -126,11 +141,25 @@ function validarCpf(cpf) {
 }
 
 
-function checarEmail() {
+/*function checarEmail() {
     if (document.forms[0].email.value == "" ||
         document.forms[0].email.value.indexOf('@') == -1 ||
         document.forms[0].email.value.indexOf('.') == -1) {
         MostrarMensagem(11);
         return false;
     }
+}*/
+
+
+function validarEmail(email) {
+    let re = /\S+@\S+\.\S+/;
+
+    let retorno = true;
+
+    if(!re.test(email)) {
+        $('#email').val('');
+        MostrarMensagem(11);
+        retorno = false;
+    }
+    return retorno;
 }

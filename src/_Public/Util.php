@@ -64,6 +64,14 @@
             }
         }
 
+        public static function CriptografarSenha($senha) : string {
+            return password_hash($senha, PASSWORD_DEFAULT);
+        }
+
+        public static function VerificarSenha($senhaDigitada, $senha_hash) : bool {
+            return password_verify($senhaDigitada, $senha_hash);
+        }
+
     }
 
 ?>

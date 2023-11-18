@@ -32,7 +32,7 @@
 
             <section class="content">
                 <div class="card form-cadastro">
-                    <form role="form" method="POST">
+                    <form role="form" method="POST" id="formCad">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
@@ -41,9 +41,9 @@
                                         <select class="form-control" id="tipo" name="tipo" style="width: 100%;"
                                             onchange="CarregarTipoUsuario(this.value)">
                                             <option selected="selected" value="">Selecione</option>
-                                            <option value="1">Administrador</option>
-                                            <option value="2">Funcionário</option>
-                                            <option value="3">Técnico</option>
+                                            <option value="<?=USUARIO_ADM?>">Administrador</option>
+                                            <option value="<?=USUARIO_FUNC?>">Funcionário</option>
+                                            <option value="<?=USUARIO_TEC?>">Técnico</option>
                                         </select>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>E-mail</label>
                                         <input type="email" class="form-control obg" id="email" name="email"
-                                            placeholder="E-mail" onblur="checarEmail()">
+                                            placeholder="E-mail" onblur="VerificarEmailDuplicado(this.value)">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -79,7 +79,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Setor</label>
-                                            <select class="form-control obg" id="resultSetor" name="setor"
+                                            <select class="form-control" id="resultSetor" name="setor"
                                                 style="width: 100%;">
                                             </select>
                                         </div>
@@ -91,7 +91,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Empresa</label>
-                                            <input type="text" class="form-control obg" id="empresa" name="empresa"
+                                            <input type="text" class="form-control" id="empresa" name="empresa"
                                                 placeholder="Empresa">
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer" id="button" style="display: none;">
-                            <button type="submit" class="btn btn-sm btn-success">Cadastrar</button>
+                            <button type="button" onclick="CadastrarUsuario('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
                         </div>
                     </form>
                 </div>
@@ -158,6 +158,7 @@
     <script src="../../Resource/js/buscar_cep.js"></script>
     <script src="../../Template/mask/jquery.mask.min.js"></script>
     <script src="../../Template/mask/mask.js"></script>
+    <script src="../../Resource/ajax/usuario_ajax.js"></script>
     <script type="text/javascript">
         //mascarasInput();
         ConsultarSetor();
