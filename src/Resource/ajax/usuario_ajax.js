@@ -80,4 +80,70 @@ function CadastrarUsuario(formID){
         })
         
     }
+    
+}
+
+
+function FiltrarUsuario() {
+    
+    let nome = document.getElementById("nome_filtro").value;
+
+    if(nome.length > 2) {
+
+        $.ajax({
+            beforeSend: function(){
+                Load();
+            },
+            type: 'POST',
+            url: BaseUrlDataview('usuario_dataview'),
+            data: {
+                filtrarUsuario: 'ajx',
+                nome_filtro: nome
+            },
+            success: function(dados){
+
+                if (dados == 0) {
+                    MostrarMensagem(13);
+                }
+
+                $("#tableResult").html(dados);
+            },
+            complete: function(){
+                RemoverLoad();
+            }
+        })
+
+    }else {
+        $("#tableResult").html("");
+    }
+
+}
+
+
+
+function AlterarStatusUsuario(id, status) {
+
+    $.ajax({
+        beforeSend: function(){
+            Load();
+        },
+        type: 'POST',
+        url: BaseUrlDataview('usuario_dataview'),
+        data: {
+            AlterarStatusUsuario: 'ajx',
+            id_usuario: id,
+            status_usuario: status
+        },
+        success: function(ret){
+            MostrarMensagem(ret);
+
+            if(ret == 2){
+                FiltrarUsuario();
+            }
+        },
+        complete: function(){
+            RemoverLoad();
+        }
+    })
+
 }

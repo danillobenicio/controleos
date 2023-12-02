@@ -133,6 +133,34 @@
                 return -1;
             }
         }
+
+
+        public function FiltrarUsuarioModel($nome) {
+
+            $sql = $this->conexao->prepare(UsuarioSql::FiltrarUsuario());
+            $sql->bindValue(1, "%$nome%");
+            $sql->execute();
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+
+        }
+
+
+
+        public function AlterarStatusUsuarioModel(UsuarioVO $vo)
+        {
+            $sql = $this->conexao->prepare(UsuarioSql::AlterarStatusUsuario());
+
+            $sql->bindValue(1, $vo->getStatusUsuario());
+            $sql->bindValue(2, $vo->getIdUsuario());
+
+            try {
+                $sql->execute();
+                return 2;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+
+        }
     }
 
 ?>

@@ -28,6 +28,8 @@ function MostrarMensagem(ret) {
         toastr.warning('E-mail inválido');
     } else if (ret == 12) {
         toastr.warning('E-mail já cadastrado!');
+    } else if (ret == 13) {
+        toastr.error('Nenhum usuário encontrado!');
     }
 
 }

@@ -72,6 +72,25 @@
             return password_verify($senhaDigitada, $senha_hash);
         }
 
+
+        public static function MostrarTipoUsuario($tipo) {
+            $nome_tipo = '';
+
+            switch ($tipo) {
+                case 1:
+                    $nome_tipo = 'Administrador';
+                    break;
+                case 2:
+                    $nome_tipo = 'Funcionário';
+                    break;
+                case 3:
+                    $nome_tipo = 'Técnico';
+                    break;
+            }
+
+            return $nome_tipo;
+        }
+
     }
 
 ?>

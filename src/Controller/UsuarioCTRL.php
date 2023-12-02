@@ -54,6 +54,22 @@
             
         }
 
+
+        public function FiltrarUsuarioCtrl($nome) {
+
+            return $this->model->FiltrarUsuarioModel($nome);
+
+        }
+
+
+        public function AlterarStatusUsuarioCtrl(UsuarioVo $vo) {
+
+            $vo->setStatusUsuario($vo->getStatusUsuario() == 1 ? 0 : 1);
+
+            return $this->model->AlterarStatusUsuarioModel($vo);
+
+        }
+
     }
 
 ?>

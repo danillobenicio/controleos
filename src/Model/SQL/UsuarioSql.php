@@ -64,6 +64,17 @@
             $sql = 'SELECT id_estado FROM tb_estado WHERE sigla = ?';
             return $sql;
         }
+
+        public static function  FiltrarUsuario() {
+            $sql = "SELECT id_usuario, nome_usuario, tipo_usuario, status_usuario FROM tb_usuario WHERE nome_usuario LIKE ?";
+            return $sql;
+        }
+
+
+        public static function AlterarStatusUsuario() {
+            $sql = "UPDATE tb_usuario SET status_usuario = ? WHERE id_usuario = ?";
+            return $sql;
+        }
     }
 
 ?>

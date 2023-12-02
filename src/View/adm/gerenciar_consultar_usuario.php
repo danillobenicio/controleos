@@ -36,31 +36,15 @@
                         <div class="col-12">
                             <br>
                                 <div class="input-group mb-3 col-md-12 col-sm-12">
-                                    <input type="text" class="form-control" placeholder="Pesquisar">
+                                    <input type="text" class="form-control" placeholder="Pesquisar usuário" id="nome_filtro" onkeyup="FiltrarUsuario()">
                                     <div class="input-group-append">
                                         <button class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Setor</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td>John Doe</td>
-                                            <td>
-                                                <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#"><i class="fa-solid fa-trash" style="color: #ff0000;"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                <table class="table table-hover" id="tableResult">
+
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -78,6 +62,7 @@
     <?php  
     include_once PATH . 'Template/_includes/_scripts.php';
   ?>
+  <script src="../../Resource/ajax/usuario_ajax.js"></script>
 </body>
 
 </html>
