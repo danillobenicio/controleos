@@ -3,6 +3,7 @@
     include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
 use Src\_Public\Util;
+use Src\Controller\SetorCTRL;
 use Src\VO\UsuarioVO;
     use Src\VO\TecnicoVO;
     use Src\VO\FuncionarioVO;
@@ -85,7 +86,7 @@ use Src\VO\UsuarioVO;
                 </div>
             </td>
             <td>
-                <a href="#" class="btn btn-warning btn-sm">Alterar</a>
+                <a href="alterar_usuario.php?cod=<?=$usuarios['id_usuario']?>" class="btn btn-warning btn-sm">Alterar</a>
             </td>
         </tr>
         <?php } ?>
@@ -102,6 +103,18 @@ use Src\VO\UsuarioVO;
         $vo->setIdUsuario($_POST['id_usuario']);
         $vo->setStatusUsuario($_POST['status_usuario']);
         echo $ctrl->AlterarStatusUsuarioCtrl($vo);
+
+    } else if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
+        
+        $dados = $ctrl->DetalharUsuarioCtrl($_GET['cod']);
+
+        if (!is_array($dados) || empty($dados)) {
+            Util::ChamarPagina('gerenciar_consultar_usuario');
+        }
+
+        if ($dados['tipo_usuario'] == USUARIO_FUNC) {
+            $setores = (new SetorCTRL)->ConsultarSetorCTRL();
+        }
 
     }
 

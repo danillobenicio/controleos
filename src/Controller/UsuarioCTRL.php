@@ -70,6 +70,17 @@
 
         }
 
+
+        public function DetalharUsuarioCtrl($id) {
+
+            if ($id == '' || $id == 0) {
+                return 0;
+            }
+
+            return $this->model->DetalharUsuarioModel($id);
+
+        }
+
     }
 
 ?>
