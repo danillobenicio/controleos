@@ -6,64 +6,51 @@
     use Src\Model\SQL\TipoEquipamentoSql;
     use Exception;
 
-    class TipoEquipamentoModel extends Conexao
-    {
+    class TipoEquipamentoModel extends Conexao {
 
         private $conexao;
 
-        public function __construct()
-        {
+        public function __construct() {
           $this->conexao = parent::retornarConexao();  
         }
 
-
-        public function CadastrarTipoEquipamentoModel(TipoVo $vo)
-        {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::InserirTipoEquipamento());
+        public function cadastrarTipoEquipamentoModel(TipoVo $vo) : int {
+            $sql = $this->conexao->prepare(TipoEquipamentoSql::cadastrarTipoEquipamentoSql());
             $sql->bindValue(1, $vo->getNomeTipo());
-
             try {
                 $sql->execute();
                 return 1; 
             } catch (Exception $ex) {
                 return -1;
             }
-
         }
 
-        public function ConsultarTipoEquipamentoModel()
-        {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::SelecionarTipoEquipamento());
+        public function consultarTipoEquipamentoModel() : array {
+            $sql = $this->conexao->prepare(TipoEquipamentoSql::consultarTipoEquipamentoSql());
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
-        public function AlterarTipoEquipamentoModel(TipoVO $vo)
-        {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::AlterarTipoEquipamento());
 
+        public function alterarTipoEquipamentoModel(TipoVO $vo) : int {
+            $sql = $this->conexao->prepare(TipoEquipamentoSql::alterarTipoEquipamentoSql());
             $sql->bindValue(1, $vo->getNomeTipo());
             $sql->bindValue(2, $vo->getIdTipo());
-
             try {
                 $sql->execute();
                 return 2;
             } catch (\Exception $ex) {
                 return -1;
             }
-
         }
 
-        public function ExcluirTipoEquipamentoModel(TipoVO $vo)
-        {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::ExcluirTipoEquipamento());
+        public function excluirTipoEquipamentoModel(TipoVO $vo) : int {
+            $sql = $this->conexao->prepare(TipoEquipamentoSql::excluirTipoEquipamentoSql());
             $sql->bindValue(1, $vo->getIdTipo());
-
             try {
                 $sql->execute();
                 return 3;
             } catch (\Exception $ex) {
-                //echo $ex->getMessage();
                 return -1;
             }
         }

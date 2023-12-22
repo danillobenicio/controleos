@@ -49,7 +49,7 @@
 
         }
 
-        public static function ChamarPagina($pag){
+        public static function chamarPagina($pag){
             header("Location: $pag.php");
             exit;
         }

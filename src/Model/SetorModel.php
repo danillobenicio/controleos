@@ -8,14 +8,15 @@
     class SetorModel extends Conexao
     {
         private $conexao;
+
         public function __construct()
         {
             $this->conexao = parent::retornarConexao();
         }
 
-        public function CadastrarSetorModel(SetorVO $vo)
+        public function cadastrarSetorModel(SetorVO $vo) : int
         {
-            $sql = $this->conexao->prepare(SetorSql::InserirSetor());
+            $sql = $this->conexao->prepare(SetorSql::cadastrarSetorSql());
             $sql->bindValue(1, $vo->getNomeSetor());
 
             try
@@ -29,16 +30,16 @@
             }
         }
 
-        public function ConsultarSetorModel()
+        public function consultarSetorModel() : array
         {
-            $sql = $this->conexao->prepare(SetorSql::ConsultarSetor());
+            $sql = $this->conexao->prepare(SetorSql::consultarSetorSql());
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
-        public function AlterarSetorModel(SetorVO $vo)
+        public function alterarSetorModel(SetorVO $vo) : int
         {
-            $sql = $this->conexao->prepare(SetorSql::AlterarSetor());
+            $sql = $this->conexao->prepare(SetorSql::alterarSetorSql());
             $sql->bindValue(1, $vo->getNomeSetor());
             $sql->bindValue(2, $vo->getIdSetor());
 
@@ -53,9 +54,9 @@
             }
         }
 
-        public function ExcluirSetorModel(SetorVO $vo)
+        public function excluirSetorModel(SetorVO $vo) : int
         {
-            $sql = $this->conexao->prepare(SetorSql::ExcluirSetor());
+            $sql = $this->conexao->prepare(SetorSql::excluirSetorSql());
             $sql->bindValue(1, $vo->getIdSetor());
 
             try {

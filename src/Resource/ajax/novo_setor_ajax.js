@@ -1,23 +1,23 @@
-function CadastrarNovoSetor(formID)
+function cadastrarNovoSetor(formID)
 {
-    if (ValidarCampos(formID))
+    if (validarCampos(formID))
     {
         let nome_setor = $('#setor').val();
     
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: 'POST',
             url: BaseUrlDataview('novo_setor_dataview'),
             data: {setor: nome_setor, btnCadastrar: 'ajx'},
             success: function(ret){
-                MostrarMensagem(ret);
-                LimparNotificacoes(formID);
-                ConsultarSetor();
+                mostrarMensagem(ret);
+                limparNotificacoes(formID);
+                consultarSetor();
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
 
@@ -25,14 +25,14 @@ function CadastrarNovoSetor(formID)
     
 }
 
-function ConsultarSetor()
+function consultarSetor()
 {
 
     let tipoTela = $('#tipoTela').val();
 
     $.ajax({
         beforeSend: function(){
-            Load();
+            load();
         },
         type: 'POST',
         url: BaseUrlDataview('novo_setor_dataview'),
@@ -44,48 +44,48 @@ function ConsultarSetor()
             $('#resultSetor').html(dados);
         },
         complete: function(){
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
 
 
-function AlterarSetor(formID)
+function alterarSetor(formID)
 {
 
     let id_alterar = $('#id_alterar').val();
     let setor_alterar = $('#setor_alterar').val();
 
-    if(ValidarCampos(formID))
+    if(validarCampos(formID))
     {
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: 'POST',
             url: BaseUrlDataview('novo_setor_dataview'),
             data: {id_alterar: id_alterar, setor_alterar: setor_alterar, btnAlterar: 'ajx'},
             success: function(ret){
-                MostrarMensagem(ret);
+                mostrarMensagem(ret);
                 $('#alterar_setor').modal('hide');
-                ConsultarSetor();
+                consultarSetor();
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
     }
 }
 
 
-function Excluir(formID)
+function excluir(formID)
 {
         let id_excluir = $("#id_excluir").val();
 
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: "POST",
             url: BaseUrlDataview('novo_setor_dataview'),
@@ -94,13 +94,12 @@ function Excluir(formID)
                 btnExcluir: 'ajx'
             },
             success: function(ret){
-                MostrarMensagem(ret);
-                ConsultarSetor();
+                mostrarMensagem(ret);
+                consultarSetor();
                 $('#modal_excluir').modal('hide');
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
-
 }

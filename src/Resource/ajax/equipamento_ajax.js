@@ -1,6 +1,6 @@
-function GravarEquipamento(formID) {
+function gravarEquipamento(formID) {
 
-    if (ValidarCampos(formID)) {
+    if (validarCampos(formID)) {
 
         let tipo = $('#tipo').val();
         let modelo = $('#modelo').val();
@@ -10,7 +10,7 @@ function GravarEquipamento(formID) {
 
         $.ajax({
             beforeSend: function () {
-                Load();
+                load();
             },
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
@@ -23,12 +23,11 @@ function GravarEquipamento(formID) {
                 btnGravar: id_equipamento == '' ? 'cadastrar' : 'alterar'
             },
             success: function (ret) {
-                console.log(ret);
-                MostrarMensagem(ret);
-                LimparNotificacoes(formID);
+                mostrarMensagem(ret);
+                limparNotificacoes(formID);
             },
             complete: function () {
-                RemoverLoad();
+                removerLoad();
             }
         })
     }
@@ -36,10 +35,10 @@ function GravarEquipamento(formID) {
 }
 
 
-function CarregarTipos() {
+function carregarTipos() {
     $.ajax({
         beforeSend: function () {
-            Load();
+            load();
         },
         type: 'POST',
         url: BaseUrlDataview('equipamento_dataview'),
@@ -51,16 +50,16 @@ function CarregarTipos() {
             $('#tipo').html(dados);
         },
         complete: function () {
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
 
-function CarregarModelos() {
+function carregarModelos() {
     $.ajax({
         beforeSend: function () {
-            Load();
+            load();
         },
         type: 'POST',
         url: BaseUrlDataview('equipamento_dataview'),
@@ -72,19 +71,19 @@ function CarregarModelos() {
             $('#modelo').html(dados);
         },
         complete: function () {
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
 
-function FiltrarEquipamento() {
+function filtrarEquipamento() {
     let idTipo = $('#tipo').val();
     let idModelo = $('#modelo').val();
 
     $.ajax({
         beforeSend: function () {
-            Load();
+            load();
         },
         type: 'POST',
         url: BaseUrlDataview('equipamento_dataview'),
@@ -95,23 +94,22 @@ function FiltrarEquipamento() {
         },
         cache: false,
         success: function (dados) {
-            console.log(dados);
             $('#resultTable').html(dados);
         },
         complete: function () {
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
-function Excluir() {
+function excluir() {
 
     let id_excluir = $('#id_excluir').val();
     let valor_tela = $('#tela').val() == 'tela_remover' ? 'remover' : 'excluir';
 
     $.ajax({
         beforeSend: function () {
-            Load();
+            load();
         },
         type: 'POST',
         url: BaseUrlDataview('equipamento_dataview'),
@@ -120,30 +118,30 @@ function Excluir() {
             id_equipamento: id_excluir
         },
         success: function (ret) {
-            MostrarMensagem(ret);
+            mostrarMensagem(ret);
             if(valor_tela == 'excluir') {
-                FiltrarEquipamento();
+                filtrarEquipamento();
             }else {
-                ConsultarEquipamentosAlocados($('#resultSetor').val());
+                consultarEquipamentosAlocados($('#resultSetor').val());
             }
             $('#modal_excluir').modal('hide');          
         },
         complete: function () {
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
-function Inativar(formID) {
+function inativar(formID) {
 
     let id_inativar = $('#id_inativar').val();
     let data_descarte = $('#dt_descarte').val();
     let motivo_descarte = $('#motivo_descarte').val();
 
-    if (ValidarCampos(formID)) {
+    if (validarCampos(formID)) {
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
@@ -154,14 +152,14 @@ function Inativar(formID) {
                 motivo_descarte: motivo_descarte
             },
             success: function (ret) {
-                MostrarMensagem(ret);
-                LimparNotificacoes();
+                mostrarMensagem(ret);
+                limparNotificacoes();
                 $('#modal_inativar').modal('hide');
-                FiltrarEquipamento();
+                filtrarEquipamento();
                 
             },
             complete: function () {
-                RemoverLoad();
+                removerLoad();
             }
 
         })
@@ -170,11 +168,11 @@ function Inativar(formID) {
 }
 
 
-function CarregarEquipamentosNaoAlocados() {
+function carregarEquipamentosNaoAlocados() {
 
     $.ajax({
         beforeSend: function () {
-            Load();
+            load();
         },
         type: 'POST',
         url: BaseUrlDataview('equipamento_dataview'),
@@ -185,15 +183,15 @@ function CarregarEquipamentosNaoAlocados() {
             $('#resultEquipamentos').html(dados)
         },
         complete: function () {
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
 
-function AlocarEquipamento(formID) {
+function alocarEquipamento(formID) {
 
-    if(ValidarCampos(formID)) {
+    if(validarCampos(formID)) {
 
         
         let id_equipamento = $('#resultEquipamentos').val();
@@ -201,7 +199,7 @@ function AlocarEquipamento(formID) {
 
         $.ajax({
             beforeSend: function () {
-                Load();
+                load();
             },
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
@@ -211,11 +209,11 @@ function AlocarEquipamento(formID) {
                 id_setor: id_setor
             },
             success: function (ret) {
-                MostrarMensagem(ret);
-                CarregarEquipamentosNaoAlocados();
+                mostrarMensagem(ret);
+                carregarEquipamentosNaoAlocados();
             },
             complete: function () {
-                RemoverLoad();
+                removerLoad();
             }
         })
     }    
@@ -223,11 +221,11 @@ function AlocarEquipamento(formID) {
 }
 
 
-function ConsultarEquipamentosAlocados(idSetor) {
+function consultarEquipamentosAlocados(idSetor) {
     if(idSetor != ''){
         $.ajax({
             beforeSend: function () {
-                Load();
+                load();
             },
             type: 'POST',
             url: BaseUrlDataview('equipamento_dataview'),
@@ -240,14 +238,14 @@ function ConsultarEquipamentosAlocados(idSetor) {
                 $('#divResultado').show();
             },
             complete: function () {
-                RemoverLoad();
+                removerLoad();
             }
         })  
     }
 }   
 
 
-function RemoverEquipamentoAlocado(idAlocamento) {
+function removerEquipamentoAlocado(idAlocamento) {
 
 
         let id_excluir = $('#id_excluir').val();

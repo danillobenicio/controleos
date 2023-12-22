@@ -4,13 +4,13 @@
 
     use Src\_Public\Util;
 
-    class ModeloVO
+    class ModeloVO 
     {
 
         private $id_modelo;
         private $nome_modelo;
 
-        public function setIdModelo(int $p_id_modelo) : void 
+        public function setIdModelo(int $p_id_modelo) : void
         {
             $this->id_modelo = $p_id_modelo;
         }
@@ -21,7 +21,7 @@
         }
 
 
-        public function setNomeModelo(string $p_nome_modelo) : void
+        public function setNomeModelo(string $p_nome_modelo) : void 
         {
             $this->nome_modelo = Util::TratarCaracteresEspeciais($p_nome_modelo);
         }

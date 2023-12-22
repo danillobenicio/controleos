@@ -12,7 +12,7 @@
     {         
         $vo->setNomeModelo($_POST['modelo']);
 
-        $ret = $ctrl->CadastrarModelo($vo);
+        $ret = $ctrl->cadastrarModeloCtrl($vo);
 
         if($_POST['btnCadastrar'] == 'ajx')
             echo $ret;    
@@ -23,11 +23,10 @@
 
         $vo->setIdModelo($_POST['id_alterar']);
 
-        $ret = $ctrl->AlterarModeloEquipamentoCTRL($vo);
+        $ret = $ctrl->alterarModeloEquipamentoCtrl($vo);
 
-        if($_POST['btnAlterar'] == 'ajx'){
-            echo $ret;
-        }           
+        if($_POST['btnAlterar'] == 'ajx')
+            echo $ret;          
 
     }
     else if(isset($_POST['btnExcluir']))
@@ -43,7 +42,7 @@
     else if(isset($_POST['consultarModelo']))
     {
 
-        $modelos = $ctrl->ConsultarModeloEquipamentoCTRL();
+        $modelos = $ctrl->consultarModeloEquipamentoCtrl();
 
         ?>
 
@@ -60,11 +59,11 @@
                         <td><?=$modelos[$i]['nome_modelo']?></td>
                         <td>
                             <button
-                                onclick="CarregarModeloEquipamento('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
+                                onclick="carregarModeloEquipamento('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
                                 class="btn btn-sm btn-warning btn-xs" data-toggle="modal"
                                 data-target="#alterar_modelo">Alterar</button>
                             <button data-toggle="modal" data-target="#modal_excluir"
-                                onclick="CarregarExcluir('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
+                                onclick="carregarExcluir('<?=$modelos[$i]['id_modelo']?>', '<?=$modelos[$i]['nome_modelo']?>')"
                                 class="btn btn-sm btn-danger btn-xs" name="btnExcluir">Excluir</button>
                         </td>
                     </tr>

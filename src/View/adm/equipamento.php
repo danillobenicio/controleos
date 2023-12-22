@@ -76,7 +76,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="button" onclick="return GravarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar"><?= $label == 'Novo' ? 'Cadastrar' : 'Alterar' ?></button>
+                                <button type="button" onclick="return gravarEquipamento('formCad')" class="btn btn-sm btn-success" name="btnCadastrar"><?= $label == 'Novo' ? 'Cadastrar' : 'Alterar' ?></button>
                             </div>
                         </form>
                     </div>
@@ -94,8 +94,8 @@
      ?>
      <script src="../../Resource/ajax/equipamento_ajax.js"></script>
      <script>
-        CarregarTipos();
-        CarregarModelos();
+        carregarTipos();
+        carregarModelos();
      </script>                                               
 </body>
 

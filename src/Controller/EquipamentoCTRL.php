@@ -17,83 +17,78 @@
             $this->model = new EquipamentoModel();
         }
 
-        public function CadastrarEquipamento(EquipamentoVO $vo) : int
+        public function cadastrarEquipamentoCtrl(EquipamentoVO $vo) : int
         {
             if(empty($vo->getIdentificacao()) || empty($vo->getFkModelo()) || empty($vo->getFkTipo()))
-            {
                 return 0;              
-            }
 
-            $vo->setSituacao(situacao_ativo);
+            $vo->setSituacao(SITUACAO_ATIVO);
 
-            $ret = $this->model->CadastrarEquipamentoModel($vo);
-            
-            return $ret;
-
+            return $this->model->cadastrarEquipamentoModel($vo);
         }
 
-        public function FiltrarEquipamentoCTRL($idTipo, $idModelo) : ?array 
+        public function filtrarEquipamentoCtrl($idTipo, $idModelo) : ?array 
         {
-            return $this->model->FiltrarEquipamentoMODEL($idTipo, $idModelo, SITUACAO_EQUIPAMENTO_REMOVIDO);
+            return $this->model->filtrarEquipamentoMODEL($idTipo, $idModelo, SITUACAO_EQUIPAMENTO_REMOVIDO);
         }
 
 
-        public function DetalharEquipamentoCTRL(int $id) : array | string
+        public function detalharEquipamentoCtrl(int $id) : array | string
         {
-            return $this->model->DetalharEquipamentoMODEL($id);
+            return $this->model->detalharEquipamentoMODEL($id);
         }
 
 
-        public function ExcluirEquipamentoCTRL(EquipamentoVO $vo)
+        public function excluirEquipamentoCtrl(EquipamentoVO $vo) : int
         {
             if(empty($vo->getIdEquipamento()))
                 return 0;
-
-            return $this->model->ExcluirEquipamentoMODEL($vo);
+            return $this->model->excluirEquipamentoMODEL($vo);
         }
 
 
-        public function AlterarEquipamentoCTRL(EquipamentoVO $vo) : int
+        public function alterarEquipamentoCtrl(EquipamentoVO $vo) : int
         {
             if(empty($vo->getIdEquipamento()) || empty($vo->getFkModelo()) || empty($vo->getFkTipo()) || empty($vo->getIdentificacao()))
                 return 0;
 
-            return $this->model->AlterarEquipamentoModel($vo);
+            return $this->model->alterarEquipamentoModel($vo);
         }
 
-        public function InativarEquipamentoCTRL(EquipamentoVO $vo)
+        public function inativarEquipamentoCtrl(EquipamentoVO $vo) : int
         {
             if(empty($vo->getIdEquipamento()) || empty($vo->getDataDescarte()) || empty($vo->getMotivoDescarte()))
                 return 0;
             
-            $vo->setSituacao(situacao_inativo);
+            $vo->setSituacao(SITUACAO_INATIVO);
 
-            return $this->model->InativarEquipamentoModel($vo);
+            return $this->model->inativarEquipamentoModel($vo);
         }
 
-        public function SelecionarEquipamentoNaoAlocadoCTRL()
+        public function selecionarEquipamentoNaoAlocadoCtrl() : array | string
         {            
-            return $this->model->SelecionarEquipamentoNaoAlocadoModel(SITUACAO_EQUIPAMENTO_REMOVIDO, situacao_ativo);
+            return $this->model->selecionarEquipamentoNaoAlocadoModel(SITUACAO_EQUIPAMENTO_REMOVIDO, SITUACAO_ATIVO);
         }
 
-        public function AlocarEquipamentoCTRL(AlocarVO $vo)
+        public function alocarEquipamentoCtrl(AlocarVO $vo) : int
         {
             if(empty($vo->getIdEquipamento()) || empty($vo->getIdSetor()))
                 return 0;
                 
             $vo->setSituacao(SITUACAO_EQUIPAMENTO_ALOCADO);
 
-            return $this->model->AlocarEquipamentoModel($vo);
+            return $this->model->alocarEquipamentoModel($vo);
         }
 
-        public function ConsultarEquipamentosAlocadosSetorCTRL($id_setor) {
-            return $this->model->ConsultarEquipamentosAlocadosSetorModel($id_setor);
+        public function consultarEquipamentosAlocadosSetorCtrl($id_setor)  : array
+        {
+            return $this->model->consultarEquipamentosAlocadosSetorModel($id_setor);
         }
 
-        public function RemoverEquipamentoSetorCTRL(AlocarVo $vo) {
-            
+        public function removerEquipamentoSetorCtrl(AlocarVo $vo) : int
+        {
             $vo->setSituacao(SITUACAO_EQUIPAMENTO_REMOVIDO);
-            return $this->model->RemoverEquipamentoSetorModel($vo);
+            return $this->model->removerEquipamentoSetorModel($vo);
         }
 
     }

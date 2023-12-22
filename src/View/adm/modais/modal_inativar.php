@@ -20,7 +20,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button onclick="Inativar('formAlt')" type="button" name="btnInativar"
+                <button onclick="inativar('formAlt')" type="button" name="btnInativar"
                     class="btn btn-secondary">Inativar</button>
             </div>
         </div>

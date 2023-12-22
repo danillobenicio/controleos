@@ -4,8 +4,8 @@
 define('PATH', $_SERVER['DOCUMENT_ROOT'] . '/ControleOs/src/');
 
 //SITUACAO
-const situacao_ativo = 1;
-const situacao_inativo = 0;
+const SITUACAO_ATIVO = 1;
+const SITUACAO_INATIVO = 0;
 
 //SITUAÇÃO EQUIPAMENTO
 const SITUACAO_EQUIPAMENTO_ALOCADO = 1;

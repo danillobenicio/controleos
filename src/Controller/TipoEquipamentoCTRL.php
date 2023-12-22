@@ -5,47 +5,34 @@
     use Src\VO\TipoVO;
     use Src\Model\TipoEquipamentoModel;
 
-    class TipoEquipamentoCTRL
-    {
+    class TipoEquipamentoCTRL {
 
         private $model;
 
-        public function __construct()
-        {
+        public function __construct() {
             $this->model = new TipoEquipamentoModel;
         }
 
-        public function CadastrarTipoEquipamentoCTRL(TipoVO $vo) : int
-        {
-            if(empty($vo->getNomeTipo()))
+        public function cadastrarTipoEquipamentoCTRL(TipoVO $vo) : int {          
+            if (empty($vo->getNomeTipo()))
                 return 0;
-
-            $ret = $this->model->CadastrarTipoEquipamentoModel($vo);          
-            return $ret;
+            return $this->model->cadastrarTipoEquipamentoModel($vo);          
         }
 
-        public function ConsultarTipoEquipamentoCTRL()
-        {
-            return $this->model->ConsultarTipoEquipamentoModel();
+        public function consultarTipoEquipamentoCtrl() : array {
+            return $this->model->consultarTipoEquipamentoModel();
         }
 
-
-        public function AlterarTipoEquipamentoCTRL(TipoVO $vo)
-        {
+        public function alterarTipoEquipamentoCTRL(TipoVO $vo) : int {
             if(empty($vo->getNomeTipo()) || empty($vo->getIdTipo()))
-                return 0;
-            
-            $ret = $this->model->AlterarTipoEquipamentoModel($vo);
-            return $ret;
-
+                return 0;            
+            return $this->model->alterarTipoEquipamentoModel($vo);
         }
 
-        public function ExcluirTipoEquipamentoCTRL(TipoVO $vo)
-        {
+        public function excluirTipoEquipamentoCTRL(TipoVO $vo) : int {
             if(empty($vo->getIdTipo()))
-                return 0;
-                
-            return $this->model->ExcluirTipoEquipamentoModel($vo);
+                return 0;              
+            return $this->model->excluirTipoEquipamentoModel($vo);
         }
     }
 

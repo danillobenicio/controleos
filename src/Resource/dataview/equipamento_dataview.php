@@ -19,13 +19,13 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo->setIdentificacao($_POST['identificacao']);
     $vo->setDescricao($_POST['descricao']);
 
-    $ret = $ctrl->CadastrarEquipamento($vo);
+    $ret = $ctrl->cadastrarEquipamentoCtrl($vo);
 
-    if ($_POST['btnGravar'] == 'cadastrar') {
+    if ($_POST['btnGravar'] == 'cadastrar')
         echo $ret;
-    }
+
 } elseif (isset($_POST['carregar_tipos'])) {
-    $tipos = (new TipoEquipamentoCTRL)->ConsultarTipoEquipamentoCTRL();
+    $tipos = (new TipoEquipamentoCTRL)->consultarTipoEquipamentoCtrl();
     $id_tipo = isset($_POST['id_tipo']) ? $_POST['id_tipo'] : '';
 ?>
 <option value="" selected="selected">Selecione</option>
@@ -35,7 +35,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
 <?php } ?>
 <?php
 } elseif (isset($_POST['carregar_modelos'])) {
-    $modelos = (new ModeloEquipamentoCTRL)->ConsultarModeloEquipamentoCTRL();
+    $modelos = (new ModeloEquipamentoCTRL)->consultarModeloEquipamentoCtrl();
     $id_modelo = isset($_POST['id_modelo']) ? $_POST['id_modelo'] : '';
 ?>
 <option value="" selected="selected">Selecione</option>
@@ -49,7 +49,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $idTipo = $_POST['tipo'];
     $idModelo = $_POST['modelo'];
 
-    $equipamentos = (new EquipamentoCTRL)->FiltrarEquipamentoCTRL($idTipo, $idModelo);
+    $equipamentos = (new EquipamentoCTRL)->filtrarEquipamentoCtrl($idTipo, $idModelo);
 ?>
 <table class="table table-hover">
     <thead>
@@ -77,10 +77,10 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
 
                 <?php if($item['esta_alocado'] == 0 && $item['situacao'] <> 'Inativo') { ?>
                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_inativar"
-                    onclick="CarregarInativar('<?= $item['id_equipamento'] ?>')">Inativar</button>
+                    onclick="carregarInativar('<?= $item['id_equipamento'] ?>')">Inativar</button>
                 <?php  } else if ($item['situacao'] == 'Inativo'){ ?>
                     <button class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_inativar_info"
-                    onclick="CarregarInativarInfo('<?= $item['data_descarte']?>', '<?=$item['motivo_descarte']?>')">Ver Dados</button>
+                    onclick="carregarInativarInfo('<?= $item['data_descarte']?>', '<?=$item['motivo_descarte']?>')">Ver Dados</button>
                 <?php } ?>
             </td>
         </tr>
@@ -89,10 +89,10 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
 </table>
 <?php
 } elseif (isset($_GET['id_equipamento'])) {
-    $equipamento = (new EquipamentoCTRL)->DetalharEquipamentoCTRL($_GET['id_equipamento']);
+    $equipamento = (new EquipamentoCTRL)->detalharEquipamentoCtrl($_GET['id_equipamento']);
 
     if(empty($equipamento))
-        Util::ChamarPagina('gerenciar_consultar_equipamento');
+        Util::chamarPagina('gerenciar_consultar_equipamento');
 
 }else if(isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'alterar'){
    
@@ -105,11 +105,11 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
         $vo->setIdentificacao($_POST['identificacao']);
         $vo->setDescricao($_POST['descricao']);
 
-        $ret = $ctrl->AlterarEquipamentoCTRL($vo);
+        $ret = $ctrl->alterarEquipamentoCtrl($vo);
     
-        if ($_POST['btnGravar'] == 'alterar') {
+        if ($_POST['btnGravar'] == 'alterar')
             echo $ret;
-        }
+        
 }else if(isset($_POST['btnExcluir']) && $_POST['btnExcluir'] == 'excluir'){
 
     $vo = new EquipamentoVO();
@@ -117,7 +117,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
 
     $vo->setIdEquipamento($_POST['id_equipamento']);
 
-    $ret = $ctrl->ExcluirEquipamentoCTRL($vo);
+    $ret = $ctrl->excluirEquipamentoCtrl($vo);
     
     echo $ret;
 }else if(isset($_POST['btnInativar'])){
@@ -128,12 +128,12 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo->setDataDescarte($_POST['data_descarte']);
     $vo->setMotivoDescarte($_POST['motivo_descarte']);
     
-    $ret = $ctrl->InativarEquipamentoCTRL($vo);
+    $ret = $ctrl->inativarEquipamentoCtrl($vo);
 
     echo $ret;
 
 } else if (isset($_POST['carregar_equipamentos_nao_alocados'])) {
-    $equipamentos = (new EquipamentoCTRL)->SelecionarEquipamentoNaoAlocadoCTRL();
+    $equipamentos = (new EquipamentoCTRL)->selecionarEquipamentoNaoAlocadoCtrl();
     ?>
 <select class="form-control obg" style="width: 100%;">
     <option value="">Selecione</option>
@@ -152,7 +152,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo->setIdEquipamento($_POST['id_equipamento']);
     $vo->setIdSetor($_POST['id_setor']);
 
-    $ret = $ctrl->AlocarEquipamentoCTRL($vo);
+    $ret = $ctrl->alocarEquipamentoCtrl($vo);
 
     echo $ret;
 
@@ -160,7 +160,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
 
     $ctrl = new EquipamentoCTRL;
 
-    $equipamentos = $ctrl->ConsultarEquipamentosAlocadosSetorCTRL($_POST['idSetor']);
+    $equipamentos = $ctrl->consultarEquipamentosAlocadosSetorCtrl($_POST['idSetor']);
     ?>
         <thead>
             <tr>
@@ -175,7 +175,7 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
                 <td><?=$equipamento['identificacao'] . ' | ' .$equipamento['tipo'] . ' | ' . $equipamento['nome_modelo']?></td>
                 <td><?=$equipamento['data_alocacao']?></td>
                 <td>
-                    <a href="#" data-toggle="modal" data-target="#modal_excluir" onclick="CarregarExcluir('<?=$equipamento['id_alocar']?>')" class="btn btn-danger btn-sm">Remover</a>
+                    <a href="#" data-toggle="modal" data-target="#modal_excluir" onclick="carregarExcluir('<?=$equipamento['id_alocar']?>')" class="btn btn-danger btn-sm">Remover</a>
                 </td>
             </tr>
             <?php } ?>
@@ -187,6 +187,6 @@ if (isset($_POST['btnGravar']) && $_POST['btnGravar'] == 'cadastrar') {
     $vo = new AlocarVO();
     $ctrl = new EquipamentoCTRL();
     $vo->setIdAlocar($_POST['id_equipamento']); //id alocar
-    $ret = $ctrl->RemoverEquipamentoSetorCTRL($vo);
+    $ret = $ctrl->removerEquipamentoSetorCtrl($vo);
     echo $ret;
 }

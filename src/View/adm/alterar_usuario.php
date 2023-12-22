@@ -31,7 +31,11 @@
 
             <section class="content">
                 <div class="card form-cadastro">
-                    <form role="form" method="POST" id="formCad">
+                    <form role="form" method="POST" id="formAlt">
+
+                        <input type="hidden" id="id_usuario" value="<?=$dados['id_usuario']?>">
+                        <input type="hidden" id="id_endereco" value="<?=$dados['id_endereco']?>">
+                        <input type="hidden" id="tipo_usuario" value="<?=$dados['tipo_usuario']?>">
                         <div class="card-body">
 
                             <div id="dadosUsuario">
@@ -56,7 +60,7 @@
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>CPF</label>
                                         <input type="text" class="form-control obg cpf num" id="cpf" name="cpf"
-                                            placeholder="CPF" value="<?=$dados['cpf_usuario']?>">
+                                            placeholder="CPF" value="<?=$dados['cpf_usuario']?>" onblur="validarCpf(this.value)">
                                     </div>
                                 </div>
                             </div>
@@ -90,23 +94,23 @@
                                     <div class="form-group col-md-12 col-sm-12">
                                         <label>Cep</label>
                                         <input type="text" class="form-control obg cep num" id="cep" name="cep"
-                                            placeholder="Cep" value="<?=$dados['cep']?>">
+                                            placeholder="Cep" value="<?=$dados['cep']?>" onblur="pesquisaCep(this.value)">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Rua</label>
-                                            <input type="text" class="form-control obg" name="rua" id="rua"
-                                                placeholder="Rua" value="<?=$dados['rua']?>">
+                                            <label>Bairro</label>
+                                            <input type="text" class="form-control obg" name="bairro" id="bairro"
+                                                placeholder="Bairro" value="<?=$dados['bairro']?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Bairro</label>
-                                            <input type="text" class="form-control obg" name="bairro" id="bairro"
-                                                placeholder="Bairro" value="<?=$dados['bairro']?>">
+                                            <label>Rua</label>
+                                            <input type="text" class="form-control obg" name="rua" id="rua"
+                                                placeholder="Rua" value="<?=$dados['rua']?>">
                                         </div>
                                     </div>
                                 </div>
@@ -127,8 +131,8 @@
                             
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer" id="button" style="display: none;">
-                            <button type="button" onclick="CadastrarUsuario('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
+                        <div class="card-footer" id="button">
+                            <button type="button" onclick="alterarUsuario('formAlt')" class="btn btn-sm btn-success">Alterar</button>
                         </div>
                     </form>
                 </div>

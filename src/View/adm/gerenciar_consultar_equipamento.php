@@ -44,14 +44,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                             <label>Tipo</label>
-                                            <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo" onchange="FiltrarEquipamento()">
+                                            <select class="form-control obg" style="width: 100%;" name="tipo" id="tipo" onchange="filtrarEquipamento()">
                                             </select>                       
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                             <label>Modelo</label>
-                                            <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo" onchange="FiltrarEquipamento()">
+                                            <select class="form-control obg" style="width: 100%;" name="modelo" id="modelo" onchange="filtrarEquipamento()">
                                             </select>
                                             </div>
                                         </div>
@@ -93,9 +93,9 @@
   ?>
    <script src="../../Resource/ajax/equipamento_ajax.js"></script>
      <script>
-        CarregarTipos();
-        CarregarModelos();
-        FiltrarEquipamento();
+        carregarTipos();
+        carregarModelos();
+        filtrarEquipamento();
      </script>  
 </body>
 

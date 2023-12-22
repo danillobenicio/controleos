@@ -7,50 +7,43 @@
 
     class SetorCTRL
     {
-
         private $model;
+
         public function __construct()
         {
             $this->model = new SetorModel();
         }
 
-        public function CadastrarSetor(SetorVO $vo)
+        public function cadastrarSetorCtrl(SetorVO $vo) : int
         {
             if(empty($vo->getNomeSetor()))
-            {
                 return 0;
-            }
 
-            $ret = $this->model->CadastrarSetorModel($vo);
-            return $ret;
-            
+            return $this->model->cadastrarSetorModel($vo);
+           
         }
 
-        public function ConsultarSetorCTRL()
+        public function consultarSetorCtrl() : array
         {
-            return $this->model->ConsultarSetorModel();
+            return $this->model->consultarSetorModel();
         }
 
-        public function AlterarSetorCTRL(SetorVO $vo)
+        public function alterarSetorCtrl(SetorVO $vo) : int
         {
             if(empty($vo->getNomeSetor()) || empty($vo->getIdSetor()))
                 return 0;
 
-            $ret = $this->model->AlterarSetorModel($vo);
-            return $ret;
-            
+            return $this->model->alterarSetorModel($vo);
+           
         }
 
-        public function ExcluirSetorCTRL(SetorVO $vo)
+        public function excluirSetorCtrl(SetorVO $vo)
         {
             if(empty($vo->getIdSetor()))
                 return 0;
             
-            $ret = $this->model->ExcluirSetorModel($vo);
-            return $ret;
+            return $this->model->excluirSetorModel($vo);
         }
-
-
     }
 
 ?>

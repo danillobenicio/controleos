@@ -26,7 +26,7 @@ function meuCallback(conteudo) {
         //CEP não Encontrado.
         habilitarCampos(false);
         limpaFormularioCep();
-        MostrarMensagem(8);
+        mostrarMensagem(8);
     }
 }
 
@@ -64,7 +64,7 @@ function pesquisaCep(valor) {
             //cep é inválido.
             habilitarCampos(true);
             limpaFormularioCep();
-            MostrarMensagem(9);
+            mostrarMensagem(9);
         }
     } //end if.
     else {

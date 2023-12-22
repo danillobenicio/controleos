@@ -36,7 +36,7 @@
                         <div class="col-12">
                             <br>
                                 <div class="input-group mb-3 col-md-12 col-sm-12">
-                                    <input type="text" class="form-control" placeholder="Pesquisar usuário" id="nome_filtro" onkeyup="FiltrarUsuario()">
+                                    <input type="text" class="form-control" placeholder="Pesquisar usuário" id="nome_filtro" onkeyup="filtrarUsuario()">
                                     <div class="input-group-append">
                                         <button class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>

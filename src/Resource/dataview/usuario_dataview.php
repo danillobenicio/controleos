@@ -48,7 +48,7 @@ use Src\VO\UsuarioVO;
         $voEnd->setNomeCidade($_POST['cidadeUsuario']);
         $voEnd->setSiglaEstado($_POST['estadoUsuario']);
 
-        $ret = $ctrl->CadastrarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc);
+        $ret = $ctrl->cadastrarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc);
 
         echo $ret;
     } else if (isset($_POST['filtrarUsuario'])) {
@@ -81,7 +81,7 @@ use Src\VO\UsuarioVO;
             <td><?=Util::MostrarTipoUsuario($usuarios['tipo_usuario'])?></td>
             <td>
                 <div class="custom-control custom-switch custom-switch-<?=$situacao == 1 ? 'on' : 'off' ?>-danger custom-switch-<?=$situacao == 1 ? 'off' : 'on' ?>-success">
-                    <input onclick="AlterarStatusUsuario('<?=$usuarios['id_usuario']?>', '<?=$usuarios['status_usuario']?>')" type="checkbox" class="custom-control-input" id="customSwitch<?=$usuarios['id_usuario']?>">
+                    <input onclick="alterarStatusUsuario('<?=$usuarios['id_usuario']?>', '<?=$usuarios['status_usuario']?>')" type="checkbox" class="custom-control-input" id="customSwitch<?=$usuarios['id_usuario']?>">
                     <label class="custom-control-label" for="customSwitch<?=$usuarios['id_usuario']?>"><?=$situacao == 1 ? 'Ativo' : 'Inativo' ?></label>
                 </div>
             </td>
@@ -115,6 +115,44 @@ use Src\VO\UsuarioVO;
         if ($dados['tipo_usuario'] == USUARIO_FUNC) {
             $setores = (new SetorCTRL)->ConsultarSetorCTRL();
         }
+
+    }else if (isset($_POST['btn_alterar'])) {
+
+        $vo = new UsuarioVO();
+        $voEnd = new EnderecoVO();
+        $voTec = null;
+        $voFunc = null;
+
+        switch ($_POST['tipoUsuario']) {
+
+            case USUARIO_TEC:
+                $voTec = new TecnicoVO();
+                $voTec->setNomeEmpresa($_POST['empresaTec']);
+                break;
+            
+            case USUARIO_FUNC:
+                $voFunc = new FuncionarioVO();
+                $voFunc->setIdSetor($_POST['setorFunc']);
+                break;
+        }
+        
+        //Dados em comum
+        $vo->setIdUsuario($_POST['idUsuario']);
+        $vo->setTipoUsuario($_POST['tipoUsuario']);
+        $vo->setNomeUsuario($_POST['nomeUsuario']);
+        $vo->setEmailUsuario($_POST['emailUsuario']);
+        $vo->setCpfUsuario($_POST['cpfUsuario']);
+        $vo->setTelUsuario($_POST['telUsuario']);
+        $voEnd->setRua($_POST['ruaUsuario']);
+        $voEnd->setBairro($_POST['bairroUsuario']);
+        $voEnd->setCep($_POST['cepUsuario']);
+        $voEnd->setNomeCidade($_POST['cidadeUsuario']);
+        $voEnd->setSiglaEstado($_POST['estadoUsuario']);
+        $voEnd->setIdEndereco($_POST['idEndereco']);
+
+        $ret = $ctrl->alterarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc);
+
+        echo $ret;
 
     }
 

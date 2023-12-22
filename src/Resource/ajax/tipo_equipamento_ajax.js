@@ -1,12 +1,12 @@
-function CadastrarTipoEquipamento(formID)
-{
-    let nome_tipo = $("#tipo").val();
+function cadastrarTipoEquipamento(formID) {
 
-    if(ValidarCampos(formID))
-    {
+    if (validarCampos(formID)) {
+
+        let nome_tipo = $("#tipo").val();
+
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: "POST",
             url: BaseUrlDataview('tipo_equipamento_dataview'),
@@ -15,48 +15,48 @@ function CadastrarTipoEquipamento(formID)
                 btnCadastrar: 'ajx'
             },
             success: function(ret){
-                MostrarMensagem(ret);
-                ConsultarTipoEquipamento();
-                LimparNotificacoes(formID);
+                mostrarMensagem(ret);
+                consultarTipoEquipamento();
+                limparNotificacoes(formID);
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
     }
 }
 
 
-function ConsultarTipoEquipamento()
-{
+function consultarTipoEquipamento() {
     $.ajax({
         beforeSend: function(){
-            Load();
+            load();
         },
         type: "POST",
         url: BaseUrlDataview('tipo_equipamento_dataview'),
-        data: {consultarTipo: 'ajx'},
+        data: {
+            consultarTipo: 'ajx'
+        },
         success: function(dados){
             $("#tableResult").html(dados);
         },
         complete: function(){
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
-function AlterarTipoEquipamento(formID)
+function alterarTipoEquipamento(formID)
 {
    let id_alterar = $("#id_alterar").val();
    let tipo_alterar = $("#tipo_alterar").val();
 
-   //console.log(id_tipo_alterar + " " + nome_tipo_alterar);
-    if(ValidarCampos(formID))
+    if(validarCampos(formID))
     {
 
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: "POST",
             url: BaseUrlDataview('tipo_equipamento_dataview'),
@@ -66,25 +66,25 @@ function AlterarTipoEquipamento(formID)
                 btnAlterar: 'ajx'
             },
             success: function(ret){
-                MostrarMensagem(ret);
+                mostrarMensagem(ret);
                 $('#alterar_tipo').modal('hide');
-                ConsultarTipoEquipamento();         
+                consultarTipoEquipamento();         
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
     }
 }
 
 
-function Excluir(formID)
+function excluir(formID)
 {
         let id_excluir = $("#id_excluir").val();
 
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: "POST",
             url: BaseUrlDataview('tipo_equipamento_dataview'),
@@ -93,13 +93,13 @@ function Excluir(formID)
                 btnExcluir: 'ajx'
             },
             success: function(ret){
-                MostrarMensagem(ret);
-                ConsultarTipoEquipamento();
-                LimparNotificacoes(formID);
+                mostrarMensagem(ret);
+                consultarTipoEquipamento();
+                limparNotificacoes(formID);
                 $('#modal_excluir').modal('hide');
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
 

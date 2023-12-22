@@ -26,7 +26,7 @@
             return $sql;
         }
 
-        public static function CadastrarUsuario() : string {
+        public static function cadastrarUsuarioSql() : string {
             $sql = 'INSERT INTO tb_usuario (nome_usuario, tipo_usuario, email_usuario, cpf_usuario, status_usuario, tel_usuario, senha_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)';
             return $sql;
         }
@@ -94,7 +94,8 @@
                         tes.sigla,
                         tt.nome_empresa,
                         tf.fk_id_setor,
-                        ts.nome_setor
+                        ts.nome_setor,
+                        tu.id_usuario
                     FROM
                         tb_usuario tu
                     INNER JOIN
@@ -115,19 +116,39 @@
 
 
         public static function alterarUsuario() {
-
+            $sql = 'UPDATE 
+                        tb_usuario
+                    SET 
+                        nome_usuario = ?,
+                        email_usuario =?,
+                        cpf_usuario = ?,
+                        tel_usuario = ?
+                    WHERE
+                        id_usuario = ?';
+            return $sql;
         }
 
         public static function alterarTecnico(){
-
+            $sql = 'UPDATE tb_tecnico SET nome_empresa = ? WHERE tb_usuario_id_usuario = ?';
+            return $sql;
         }
 
         public static function alterarFuncionario(){
-
+            $sql = 'UPDATE tb_funcionario SET fk_id_setor = ? WHERE tb_usuario_id_usuario = ?';
+            return $sql;
         }
 
         public static function alterarEndereco(){
-
+            $sql = 'UPDATE 
+                        tb_endereco
+                    SET 
+                        rua = ?,
+                        bairro = ?,
+                        cep = ?,
+                        fk_id_cidade = ?
+                    WHERE
+                        id_endereco = ?';
+            return $sql;
         }
     
 

@@ -13,7 +13,7 @@
                
         $vo->setNomeSetor($_POST['setor']);
 
-        $ret = $ctrl->CadastrarSetor($vo);
+        $ret = $ctrl->cadastrarSetorCtrl($vo);
 
         if ($_POST['btnCadastrar'] == 'ajx')
             echo $ret;
@@ -23,26 +23,22 @@
         $vo->setNomeSetor($_POST['setor_alterar']);
         $vo->setIdSetor($_POST['id_alterar']);
 
-        $ret = $ctrl->AlterarSetorCTRL($vo);
+        $ret = $ctrl->alterarSetorCtrl($vo);
 
         if($_POST['btnAlterar'] == 'ajx')
-        {
             echo $ret;
-        }
     }
     else if (isset($_POST['btnExcluir']))
     {
         $vo->setIdSetor($_POST['id_excluir']);
-        $ret = $ctrl->ExcluirSetorCTRL($vo);
+        $ret = $ctrl->excluirSetorCtrl($vo);
 
-        if($_POST['btnExcluir'] == 'ajx'){
+        if($_POST['btnExcluir'] == 'ajx')
             echo $ret;
-        }
-
     }
     else if(isset($_POST['consultar_setor']))
     {
-        $setores =  $ctrl->ConsultarSetorCTRL();
+        $setores =  $ctrl->consultarSetorCtrl();
 
         if ($_POST['tipo_tela'] == 'tipoSetor') { ?>
 
@@ -58,9 +54,9 @@
                 <tr>
                     <td><?=$setores[$i]['nome_setor']?></td>
                     <td>
-                        <button onclick="CarregarSetor('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')"
+                        <button onclick="carregarSetor('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')"
                             data-toggle="modal" data-target="#alterar_setor" class="btn btn-warning btn-xs">Alterar</button>
-                        <button onclick="CarregarExcluir('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')"
+                        <button onclick="carregarExcluir('<?=$setores[$i]['id_setor']?>', '<?=$setores[$i]['nome_setor']?>')"
                             class="btn btn-danger btn-xs" data-toggle="modal" data-target="#modal_excluir">Excluir</button>
                     </td>
                 </tr>

@@ -44,7 +44,7 @@
         //GET E SET NOME
         public function setNomeUsuario(string $p_nome_usuario) : void
         {
-            $this->nome_usuario = Util::TratarDados($p_nome_usuario);
+            $this->nome_usuario = Util::TratarCaracteresEspeciais($p_nome_usuario);
         }
 
         public function getNomeUsuario() : string {

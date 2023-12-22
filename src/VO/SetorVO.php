@@ -4,7 +4,8 @@
     
     use Src\_Public\Util;
 
-    class SetorVO {
+    class SetorVO 
+    {
 
         private $id_setor;
         private $nome_setor;

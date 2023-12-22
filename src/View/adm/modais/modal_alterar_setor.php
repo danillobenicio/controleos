@@ -15,7 +15,7 @@
             </div>
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button onclick="return AlterarSetor('formAlt')" type="button" name="btnAlterar"
+                <button onclick="return alterarSetor('formAlt')" type="button" name="btnAlterar"
                     class="btn btn-secondary" id="btnAlterar">Alterar</button>
             </div>
         </div>

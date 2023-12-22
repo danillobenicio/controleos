@@ -1,10 +1,12 @@
-function CadastrarModelo(formID) {
-    if (ValidarCampos(formID)) {
+function cadastrarModelo(formID) {
+
+    if (validarCampos(formID)) {
+
         let nome_modelo = $("#modelo").val();
 
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: "POST",
             url: BaseUrlDataview('modelo_equipamento_dataview'),
@@ -13,22 +15,22 @@ function CadastrarModelo(formID) {
                 btnCadastrar: 'ajx'
             },
             success: function (ret) {
-                MostrarMensagem(ret);
-                LimparNotificacoes(formID);
-                ConsultarModeloEquipamento();
+                mostrarMensagem(ret);
+                limparNotificacoes(formID);
+                consultarModeloEquipamento();
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
     }
 }
 
 
-function ConsultarModeloEquipamento() {
+function consultarModeloEquipamento() {
     $.ajax({
         beforeSend: function(){
-            Load();
+            load();
         },
         type: "POST",
         url: BaseUrlDataview('modelo_equipamento_dataview'),
@@ -39,21 +41,21 @@ function ConsultarModeloEquipamento() {
             $("#tableResult").html(dados);
         },
         complete: function(){
-            RemoverLoad();
+            removerLoad();
         }
     })
 }
 
 
-function AlterarModeloEquipamento(formID) {
+function alterarModeloEquipamento(formID) {
 
     let id_alterar = $("#id_alterar").val();
     let modelo_alterar = $("#modelo_alterar").val();
 
-    if (ValidarCampos(formID)) {
+    if (validarCampos(formID)) {
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: "POST",
             url: BaseUrlDataview("modelo_equipamento_dataview"),
@@ -63,12 +65,12 @@ function AlterarModeloEquipamento(formID) {
                 btnAlterar: "ajx"
             },
             success: function (ret) {
-                MostrarMensagem(ret);
+                mostrarMensagem(ret);
                 $("#alterar_modelo").modal("hide");
-                ConsultarModeloEquipamento();
+                consultarModeloEquipamento();
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
 
         })
@@ -77,24 +79,24 @@ function AlterarModeloEquipamento(formID) {
 }
 
 
-function Excluir(formID){
+function excluir(formID){
 
     let id_excluir = $("#id_excluir").val();
 
     $.ajax({
         beforeSend: function(){
-            Load();
+            load();
         },
         type: "POST",
         url: BaseUrlDataview("modelo_equipamento_dataview"),
         data: {btnExcluir: "ajx", id_excluir: id_excluir},
         success: function(ret){
-            MostrarMensagem(ret);
+            mostrarMensagem(ret);
             $("#modal_excluir").modal("hide");
-            ConsultarModeloEquipamento();
+            consultarModeloEquipamento();
         },
         complete: function(){
-            RemoverLoad();
+            removerLoad();
         }
     })
 

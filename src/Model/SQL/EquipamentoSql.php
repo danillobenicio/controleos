@@ -4,13 +4,13 @@
 
     class EquipamentoSql
     {
-        public static function CadastrarEquipamento()
+        public static function cadastrarEquipamentoSql()
         {
             $sql = 'INSERT INTO tb_equipamento (fk_id_tipo, fk_id_modelo, identificacao, descricao, situacao) values (?, ?, ?, ?, ?)';
             return $sql;
         }
 
-        public static function FiltrarEquipamento($idTipo, $idModelo)
+        public static function filtrarEquipamentoSql($idTipo, $idModelo)
         {
             $sql = "SELECT 
                         te.id_equipamento, 
@@ -48,7 +48,7 @@
             return $sql;
         }
 
-        public static function DetalharEquipamento()
+        public static function detalharEquipamentoSql()
         {
             $sql = 'SELECT 
                         id_equipamento,
@@ -63,25 +63,25 @@
             return $sql;
         }
 
-        public static function DeletarEquipamento()
+        public static function deletarEquipamentoSql()
         {
             $sql = 'DELETE FROM tb_equipamento WHERE id_equipamento = ?';
             return $sql;
         }
 
-        public static function AlterarEquipamento()
+        public static function alterarEquipamentoSql()
         {
             $sql = 'UPDATE tb_equipamento SET fk_id_tipo = ?, fk_id_modelo = ?, identificacao = ?, descricao = ? WHERE id_equipamento =? ';
             return $sql;
         }
 
-        public static function InativarEquipamento()
+        public static function inativarEquipamentoSql()
         {
             $sql = 'UPDATE tb_equipamento SET data_descarte = ?, motivo_descarte = ?, situacao = ? WHERE id_equipamento = ?';
             return $sql;
         }
 
-        public static function SelecionarEquipamentoNaoAlocado()
+        public static function selecionarEquipamentoNaoAlocadoSql()
         {
             $sql = 'SELECT 
                         te.id_equipamento AS id_equipamento,
@@ -102,13 +102,13 @@
         }
 
 
-        public static function AlocarEquipamento() {
+        public static function alocarEquipamentoSql() {
             $sql = 'INSERT INTO tb_alocar (data_alocacao, situacao, fk_id_equipamento, fk_id_setor) VALUES (? ,? ,?, ?)';
             return $sql;
         }
 
 
-        public static function ConsultarEquipamentosAlocadosSetor() {
+        public static function consultarEquipamentosAlocadosSetorSql() {
             $sql = 'SELECT 
                         ta.id_alocar,
                         te.identificacao,
@@ -134,7 +134,7 @@
         }
 
 
-        public static function RemoverEquipamentoSetor(){
+        public static function removerEquipamentoSetorSql(){
             $sql = 'UPDATE tb_alocar SET data_remocao = ?, situacao = ? WHERE id_alocar = ?';
             return $sql;
         }

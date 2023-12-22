@@ -17,10 +17,10 @@
         }
 
 
-        public function CadastrarModelo(ModeloVO $vo)
+        public function cadastrarModeloModel(ModeloVO $vo) : int
         {
 
-            $sql = $this->conexao->prepare(ModeloEquipamentoSql::InserirModeloEquipamento());
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::cadastrarModeloEquipamentoSql());
             $sql->bindValue(1, $vo->getNomeModelo());
 
             try 
@@ -36,17 +36,17 @@
         }
 
 
-        public function ConsultarModeloModel()
+        public function consultarModeloModel() : array
         {
-            $sql = $this->conexao->prepare(ModeloEquipamentoSql::ConsultarModeloEquipamento());
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::consultarModeloEquipamentoSql());
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
 
-        public function AlterarModeloModel(ModeloVO $vo)
+        public function alterarModeloModel(ModeloVO $vo) : int
         {
-            $sql = $this->conexao->prepare(ModeloEquipamentoSql::AlterarModeloEquipamento());
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::alterarModeloEquipamentoSql());
             $sql->bindValue(1, $vo->getNomeModelo());
             $sql->bindValue(2, $vo->getIdModelo());
             try {
@@ -57,9 +57,9 @@
             }
         }
 
-        public function ExcluirModeloEquipamentoModel($vo)
+        public function excluirModeloEquipamentoModel($vo) : int
         {
-            $sql = $this->conexao->prepare(ModeloEquipamentoSql::ExcluirModeloEquipamento());
+            $sql = $this->conexao->prepare(ModeloEquipamentoSql::excluirModeloEquipamentoSql());
             $sql->bindValue(1, $vo->getIdModelo());
             try {
                 $sql->execute();

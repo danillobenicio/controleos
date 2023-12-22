@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" onclick="return CadastrarModelo('formCad')"
+                                <button type="button" onclick="return cadastrarModelo('formCad')"
                                     class="btn btn-sm btn-primary" id="btnCadastrar" name="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
@@ -80,9 +80,9 @@
 
 <script src="../../Resource/ajax/modelo_equipamento_ajax.js"></script>
 <script>
-    ConsultarModeloEquipamento();
-    KeyPressEnter('modelo', 'btnCadastrar');
-    KeyPressEnter('modelo_alterar', 'btnAlterar');
+    consultarModeloEquipamento();
+    keyPressEnter('modelo', 'btnCadastrar');
+    keyPressEnter('modelo_alterar', 'btnAlterar');
 </script>
 </body>
 

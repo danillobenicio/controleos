@@ -14,37 +14,33 @@
             $this->model = new ModeloEquipamentoModel();
         }
 
-        public function CadastrarModelo(ModeloVO $vo) : int
+        public function cadastrarModeloCtrl(ModeloVO $vo) : int
         {
             if(empty($vo->getNomeModelo()))
-            {
                 return 0;
-            }
-            
-            $ret = $this->model->CadastrarModelo($vo);
+          
+            return $this->model->cadastrarModeloModel($vo);
 
-            return $ret;
         }
 
-        public function ConsultarModeloEquipamentoCTRL()
+        public function consultarModeloEquipamentoCtrl() : array
         {
-            return $this->model->ConsultarModeloModel();
+            return $this->model->consultarModeloModel();
         }
 
-        public function AlterarModeloEquipamentoCTRL(ModeloVO $vo)
+        public function alterarModeloEquipamentoCtrl(ModeloVO $vo) : int
         {
             if(empty($vo->getNomeModelo()) || empty($vo->getIdModelo()))
                 return 0;
 
-            $ret = $this->model->AlterarModeloModel($vo);
-            return $ret;
+            return $this->model->AlterarModeloModel($vo);
         }
 
-        public function ExcluirModeloEquipamentoCTRL(ModeloVO $vo)
+        public function excluirModeloEquipamentoCtrl(ModeloVO $vo) : int
         {
             if(empty($vo->getIdModelo()))
                 return 0;
-            return $this->model->ExcluirModeloEquipamentoModel($vo);
+            return $this->model->excluirModeloEquipamentoModel($vo);
         }
     }
 

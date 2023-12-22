@@ -35,13 +35,13 @@
             <form id="formCad" method="POST" action="gerenciar_tipo_equipamento.php">
               <div class="card-body">
                 <div class="form-group">
-                  <label for="tipo">Cadastrar Tipo</label>
+                  <label for="tipo">Cadastrar</label>
                   <input type="text" class="form-control obg" id="tipo" name="tipo" placeholder="Tipo de Equipamento">
                 </div>
               </div>
               <div class="card-footer">
-                <button type="button" onclick="return CadastrarTipoEquipamento('formCad')"
-                  class="btn btn-sm btn-primary" id="btnCadastrar" name="btnCadastrar">Cadastrar</button>
+                <button type="button" onclick="return cadastrarTipoEquipamento('formCad')"
+                  class="btn btn-sm btn-primary" id="btnCadastrar">Cadastrar</button>
               </div>
             </form>
           </div>
@@ -64,7 +64,6 @@
                   </div>
                 </div>
                 <div class="card-body table-responsive p-0" id="tableResult">
-
                 </div>
               </div>
             </div>
@@ -87,9 +86,9 @@
 
   <script src="../../Resource/ajax/tipo_equipamento_ajax.js"></script>
   <script>
-    ConsultarTipoEquipamento();
-    KeyPressEnter('tipo', 'btnCadastrar');
-    KeyPressEnter('tipo_alterar', 'btnAlterar');
+    consultarTipoEquipamento();
+    keyPressEnter('tipo', 'btnCadastrar');
+    keyPressEnter('tipo_alterar', 'btnAlterar');
   </script>
 </body>
 

@@ -39,7 +39,7 @@
                                     <div class="form-group">
                                         <label for="inputTypeUser">Escolha o tipo de usuário</label>
                                         <select class="form-control" id="tipo" name="tipo" style="width: 100%;"
-                                            onchange="CarregarTipoUsuario(this.value)">
+                                            onchange="carregarTipoUsuario(this.value)">
                                             <option selected="selected" value="">Selecione</option>
                                             <option value="<?=USUARIO_ADM?>">Administrador</option>
                                             <option value="<?=USUARIO_FUNC?>">Funcionário</option>
@@ -140,7 +140,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer" id="button" style="display: none;">
-                            <button type="button" onclick="CadastrarUsuario('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
+                            <button type="button" onclick="cadastrarUsuario('formCad')" class="btn btn-sm btn-success">Cadastrar</button>
                         </div>
                     </form>
                 </div>
@@ -161,9 +161,8 @@
     <script src="../../Resource/ajax/usuario_ajax.js"></script>
     <script type="text/javascript">
         //mascarasInput();
-        ConsultarSetor();
+        consultarSetor();
         validarCpf();
-        checarEmail();
     </script>
 </body>
 

@@ -3,7 +3,7 @@ function BaseUrlDataview(dataview) {
 }
 
 
-function LimparNotificacoes(formID) {
+function limparNotificacoes(formID) {
     $("#" + formID + " input, #" + formID + " select, #" + formID + " textarea").each(
         function () {
             $(this).val('');
@@ -12,7 +12,7 @@ function LimparNotificacoes(formID) {
     );
 }
 
-function ValidarCampos(formID) {
+function validarCampos(formID) {
 
     let ret = true;
 
@@ -37,19 +37,19 @@ function ValidarCampos(formID) {
     );
 
     if (!ret)
-        MostrarMensagem(0);
+        mostrarMensagem(0);
     return ret;
 }
 
-function Load() {
+function load() {
     $(".loader").addClass("is-active");
 }
 
-function RemoverLoad() {
+function removerLoad() {
     $(".loader").removeClass("is-active");
 }
 
-function KeyPressEnter(inputId, buttonId) {
+function keyPressEnter(inputId, buttonId) {
     $('#' + inputId).keypress(function (e) {
         if (e.which == 13) {
             $('#' + buttonId).click();
@@ -59,13 +59,14 @@ function KeyPressEnter(inputId, buttonId) {
 }
 
 
-function CarregarTipoUsuario(tipo) {
+function carregarTipoUsuario(tipo) 
+{
 
     $('#empresa').removeClass('obg');
     $('#setor').removeClass('obg');
 
     //Limpa os campos
-    LimparNotificacoes("formCad");
+    limparNotificacoes("formCad");
 
     $('#tipo').val(tipo);
 
@@ -107,12 +108,6 @@ function CarregarTipoUsuario(tipo) {
     }
 }
 
-/*function mascarasInput() {
-    $('#telefone').mask('(00) 00000-0000');
-    $('#cpf').mask('000.000.000-00', {reverse: true});
-    $('#cep').mask('00000-000');
-}*/
-
 function validarCpf(cpf) {
     cpf = cpf.replace(/\D/g, '');
     let result = true;
@@ -134,7 +129,7 @@ function validarCpf(cpf) {
     });
 
     if (!result) {
-        MostrarMensagem(10);
+        mostrarMensagem(10);
         $('#cpf').val('');
         $('#cpf').focus();
     }
@@ -158,7 +153,7 @@ function validarEmail(email) {
 
     if(!re.test(email)) {
         $('#email').val('');
-        MostrarMensagem(11);
+        mostrarMensagem(11);
         retorno = false;
     }
     return retorno;

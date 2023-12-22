@@ -27,9 +27,9 @@
             return $ver_email[0]['contar_email'] == 0 ? false : true;
         }
 
-        public function CadastrarUsuarioModel($vo, $voEnd, $voTec, $voFunc) : int {
+        public function cadastrarUsuarioModel($vo, $voEnd, $voTec, $voFunc) : int {
    
-            $sql = $this->conexao->prepare(UsuarioSql::CadastrarUsuario());
+            $sql = $this->conexao->prepare(UsuarioSql::cadastrarUsuarioSql());
             $sql->bindValue(1, $vo->getNomeUsuario());
             $sql->bindValue(2, $vo->getTipoUsuario());
             $sql->bindValue(3, $vo->getEmailUsuario());
@@ -170,6 +170,110 @@
             $sql->execute();
             return $sql->fetch(\PDO::FETCH_ASSOC);
 
+        }
+
+
+        public function alterarUsuarioModel($vo, $voEnd, $voTec, $voFunc) : int {
+   
+            $sql = $this->conexao->prepare(UsuarioSql::alterarUsuario());
+            $sql->bindValue(1, $vo->getNomeUsuario());
+            $sql->bindValue(2, $vo->getEmailUsuario());
+            $sql->bindValue(3, $vo->getCpfUsuario());  
+            $sql->bindValue(4, $vo->getTelUsuario());
+            $sql->bindValue(5, $vo->getIdUsuario());
+       
+
+            try {
+                $this->conexao->beginTransaction();
+
+                //Alterar na tb_usuario
+                $sql->execute();
+
+                switch ($vo->getTipoUsuario()) {
+
+                    case USUARIO_FUNC:
+                        $sql = $this->conexao->prepare(UsuarioSql::alterarFuncionario());
+                        $sql->bindValue(1, $voFunc->getIdSetor());
+                        $sql->bindValue(2, $vo->getIdUsuario());
+                        $sql->execute();
+                        break;
+                    case USUARIO_TEC:
+                        $sql = $this->conexao->prepare(UsuarioSql::alterarTecnico());
+                        $sql->bindValue(1, $voTec->getNomeEmpresa());
+                        $sql->bindValue(2, $vo->getIdUsuario());
+                        $sql->execute();
+                        break;
+
+                }
+
+                //Processo que grava o endereco
+
+                //passo 1, verificar se a cidade existe.
+
+                $sql = $this->conexao->prepare(UsuarioSql::VerificarCidadeCadastrada());
+                $sql->bindValue(1, $voEnd->getNomeCidade());
+                $sql->bindValue(2, $voEnd->getSiglaEstado());
+
+                $sql->execute();
+
+                $id_cidade = 0;
+
+                $tem_cidade = $sql->fetchAll(\PDO::FETCH_ASSOC);
+
+                if(count($tem_cidade) > 0) {
+                    $id_cidade = $tem_cidade[0]['id_cidade'];
+                } else {
+                    
+                    //Verifica se o estado existe
+                    $sql = $this->conexao->prepare(UsuarioSql::VerificarEstadoCadastrado());
+                    $sql->bindValue(1, $voEnd->getSiglaEstado());
+
+                    $sql->execute();
+
+                    $id_estado = 0;
+
+                    $tem_estado = $sql->fetchAll(\PDO::FETCH_ASSOC);
+
+                    //Verifica se encontrou o estado
+                    if (count($tem_estado) > 0) {
+                        $id_estado = $tem_estado[0]['id_estado'];
+                    } else {
+                        
+                        //Cadastra o estado
+                        $sql = $this->conexao->prepare(UsuarioSql::CadastrarEstado());
+                        $sql->bindvalue(1, $voEnd->getSiglaEstado());
+                        $sql->execute();
+                        $id_estado = $this->conexao->lastInsertId();
+                    }
+
+                    $sql = $this->conexao->prepare(UsuarioSql::CadastrarCidade());
+                    $sql->bindValue(1, $voEnd->getNomeCidade());
+                    $sql->bindValue(2, $id_estado);
+
+                    $sql->execute();
+                    
+                    $id_cidade = $this->conexao->lastInsertId();
+                
+                }
+
+                $sql = $this->conexao->prepare(UsuarioSql::alterarEndereco());
+                $sql->bindValue(1, $voEnd->getRua());
+                $sql->bindValue(2, $voEnd->getBairro());
+                $sql->bindValue(3, $voEnd->getCep());
+                $sql->bindValue(4, $id_cidade);
+                $sql->bindValue(5, $voEnd->getIdEndereco());
+                             
+                $sql->execute();
+
+                $this->conexao->commit();
+
+                return 2;
+
+            } catch (Exception $ex) {
+                $this->conexao->rollback();
+                echo $ex->getMessage();
+                return -1;
+            }
         }
 
     }
