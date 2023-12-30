@@ -1,3 +1,17 @@
+<?php
+
+  include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+
+  use Src\_Public\Util;
+
+
+  if (isset($_GET['close']) && $_GET['close'] == 1) {
+    Util::deslogar();
+  }
+
+?>
+
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
@@ -180,6 +194,12 @@
               </a>
             </li>
           </ul>
+          <li class="nav-item">
+              <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
+                <i class="fa-regular fa-exit"></i>
+                <p>Sair</p>
+              </a>
+            </li>
         </li>
       </ul>
     </nav>

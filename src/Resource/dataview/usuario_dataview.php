@@ -154,6 +154,13 @@ use Src\VO\UsuarioVO;
 
         echo $ret;
 
+    } else if (isset($_POST['btn_logar'])) {
+
+        $login = $_POST['login'];
+        $senha = $_POST['senha'];
+
+        $ret = $ctrl->validarLoginCtrl($login, $senha);
+
     }
 
     ?>

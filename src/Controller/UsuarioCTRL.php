@@ -2,7 +2,8 @@
 
     namespace Src\Controller;
 
-    use Src\_Public\Util;
+use Dompdf\Positioner\NullPositioner;
+use Src\_Public\Util;
     use Src\VO\UsuarioVO;
     use Src\Model\UsuarioModel;
     use Src\VO\EnderecoVO;
@@ -105,6 +106,27 @@
 
             return $this->model->alterarUsuarioModel($vo, $voEnd, $voTec, $voFunc);
             
+        }
+
+        public function validarLoginCtrl(string $login, string $senha) : int
+        {
+            if (empty($login) || empty($senha))
+                return 0;
+
+            $usuario = $this->model->validarLoginModel($login, SITUACAO_ATIVO);
+
+            if (empty($usuario))
+                return 13;
+
+            if (!Util::VerificarSenha($senha, $usuario['senha_usuario']))
+                return 13;
+
+            $this->model->gravarLogAcessoModel($usuario['id_usuario']);
+
+            Util::criarSessao($usuario['id_usuario'], $usuario['nome_usuario']);
+
+            Util::chamarPagina('../adm/gerenciar_novo_usuario');
+
         }
 
     }

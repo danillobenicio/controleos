@@ -2,8 +2,49 @@
 
     namespace Src\_Public;
 
-    class Util{
+    class Util
+    {
        
+        public static function iniciarSessao() : void
+        {
+            if (!isset($_SESSION))
+                session_start();
+        }
+
+        public static function criarSessao(int $id, string $nome) : void
+        {
+            self::iniciarSessao();
+            $_SESSION['id_usuario'] = $id;
+            $_SESSION['nome_usuario'] = $nome;
+        }
+
+        public static function idLogado() 
+        {
+            self::iniciarSessao();
+            return $_SESSION['id_usuario'];
+        }
+
+        public static function nomeLogado() 
+        {
+            self::iniciarSessao();
+            return $_SESSION['nome_usuario'];
+        }
+
+        public static function deslogar()
+        {
+            self::iniciarSessao();
+            unset($_SESSION['id_usuario']);
+            unset($_SESSION['nome_usuario']);
+            self::chamarPagina('https://localhost/controleos/src/View/acesso/login');
+        }
+
+        public static function verificarLogado()
+        {
+            self::iniciarSessao();
+            if (!isset($_SESSION['id_usuario']) || empty($_SESSION['id_usuario']))
+                self::chamarPagina('https://localhost/controleos/src/View/acesso/login');
+        }
+
         private static function SetarFusoHorario(){
             date_default_timezone_set('America/Sao_Paulo');
         }
@@ -50,7 +91,7 @@
         }
 
         public static function chamarPagina($pag){
-            header("Location: $pag.php");
+            header("location: $pag.php");
             exit;
         }
 

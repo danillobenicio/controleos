@@ -276,6 +276,25 @@
             }
         }
 
+
+        public function validarLoginModel(string $login, int $status) : array | null | bool
+        {
+            $sql = $this->conexao->prepare(UsuarioSql::validarLoginSql());
+            $sql->bindValue(1, $login);
+            $sql->bindValue(2, $status);
+            $sql->execute();            
+            return $sql->fetch(\PDO::FETCH_ASSOC);
+            //$this->gravarLogAcesso($ret['id_usuario']);
+            //return $ret;
+        }
+
+        public function gravarLogAcessoModel($id) {
+            $sql = $this->conexao->prepare('call proc_registrar_acesso(?, ?)');
+            $sql->bindValue(1, date('Y-m-d'));
+            $sql->bindValue(2, $id);
+            $sql->execute();
+        }
+
     }
 
 ?>

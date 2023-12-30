@@ -15,7 +15,8 @@
         }
 
         public function cadastrarTipoEquipamentoModel(TipoVo $vo) : int {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::cadastrarTipoEquipamentoSql());
+           // $sql = $this->conexao->prepare(TipoEquipamentoSql::cadastrarTipoEquipamentoSql());
+            $sql = $this->conexao->prepare('call proc_cadastrar_tipo_equipamento (?)');
             $sql->bindValue(1, $vo->getNomeTipo());
             try {
                 $sql->execute();
@@ -26,14 +27,16 @@
         }
 
         public function consultarTipoEquipamentoModel() : array {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::consultarTipoEquipamentoSql());
+            $sql = $this->conexao->prepare('call proc_consultar_tipo_equipamento');
+            //$sql = $this->conexao->prepare(TipoEquipamentoSql::consultarTipoEquipamentoSql());
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
 
 
         public function alterarTipoEquipamentoModel(TipoVO $vo) : int {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::alterarTipoEquipamentoSql());
+            $sql = $this->conexao->prepare('call proc_alterar_tipo_equipamento(?, ?)');
+            //$sql = $this->conexao->prepare(TipoEquipamentoSql::alterarTipoEquipamentoSql());
             $sql->bindValue(1, $vo->getNomeTipo());
             $sql->bindValue(2, $vo->getIdTipo());
             try {
@@ -45,7 +48,8 @@
         }
 
         public function excluirTipoEquipamentoModel(TipoVO $vo) : int {
-            $sql = $this->conexao->prepare(TipoEquipamentoSql::excluirTipoEquipamentoSql());
+            $sql = $this->conexao->prepare('call proc_exccluir_tipo_equipamento (?)');
+            //$sql = $this->conexao->prepare(TipoEquipamentoSql::excluirTipoEquipamentoSql());
             $sql->bindValue(1, $vo->getIdTipo());
             try {
                 $sql->execute();

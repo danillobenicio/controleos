@@ -2,7 +2,7 @@
 
     if(isset($ret))
     {
-        echo "<script>MostrarMensagem($ret)</script>";
+        echo "<script>mostrarMensagem($ret)</script>";
     }
 
 ?>

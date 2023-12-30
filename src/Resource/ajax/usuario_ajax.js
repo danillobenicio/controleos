@@ -208,3 +208,31 @@ function alterarUsuario(formID){
     }
     
 }
+
+function logar(formID)
+{
+    if (validarCampos(formID))
+    {
+        let login = $('#login').val();
+        let senha = $('#senha').val();
+
+        $.ajax({
+            beforeSend: function(){
+                load();
+            },
+            type: 'POST',
+            url: BaseUrlDataview('usuario_dataview'),
+            data: {                   
+                btnValidarLogin: 'ajax',
+                login: login,
+                senha: senha
+            },
+            success: function(ret){
+                mostrarMensagem(ret);
+            },
+            complete: function(){
+                removerLoad();
+            }
+        })
+    }
+}

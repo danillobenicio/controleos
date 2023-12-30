@@ -138,7 +138,8 @@
             return $sql;
         }
 
-        public static function alterarEndereco(){
+        public static function alterarEndereco()
+        {
             $sql = 'UPDATE 
                         tb_endereco
                     SET 
@@ -148,6 +149,12 @@
                         fk_id_cidade = ?
                     WHERE
                         id_endereco = ?';
+            return $sql;
+        }
+
+        public static function validarLoginSql()
+        {
+            $sql = 'SELECT id_usuario, nome_usuario, senha_usuario FROM tb_usuario WHERE cpf_usuario = ? AND status_usuario = ?';
             return $sql;
         }
     
