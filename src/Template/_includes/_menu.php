@@ -28,7 +28,7 @@
         <img src="../../Template/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Usuário Logado</a>
+        <a href="#" class="d-block"> <?php echo  Util::nomeLogado(); ?> </a>
       </div>
     </div>
 
@@ -118,9 +118,7 @@
           </ul>
         </li>
       </ul>
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+      <!--<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="fa-solid fa-user-gear"></i>
@@ -156,7 +154,7 @@
             </li>
           </ul>
         </li>
-      </ul>
+      </ul>-->
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
@@ -196,7 +194,7 @@
           </ul>
           <li class="nav-item">
               <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
-                <i class="fa-regular fa-exit"></i>
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <p>Sair</p>
               </a>
             </li>
