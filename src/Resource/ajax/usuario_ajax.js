@@ -1,29 +1,28 @@
-function VerificarEmailDuplicado(email)
+function verificarEmailDuplicado(email)
 {
-
-    if(validarEmail(email)){
-
+    if(validarEmail(email))
+    {
         $.ajax({
             beforeSend: function(){
-                Load();
+                load();
             },
             type: 'POST',
-            url: BaseUrlDataview('usuario_dataview'),
+            url: baseUrlDataview('usuario_dataview'),
             data: {
-                VerificarEmailDuplicado: 'ajx',
+                verificarEmailDuplicado: 'ajx',
                 email: email
             },
             success: function(ret){
                 if(ret){
-                    MostrarMensagem(12);
+                    mostrarMensagem(12);
                     $('#email').val('');
+                    $('#email').focus();
                 }
             },
             complete: function(){
-                RemoverLoad();
+                removerLoad();
             }
         })
-
     }
 }
 
@@ -50,7 +49,7 @@ function cadastrarUsuario(formID){
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('usuario_dataview'),
+            url: baseUrlDataview('usuario_dataview'),
             data: {
                 tipoUsuario: tipoUsuario,
                 nomeUsuario: nomeUsuario,
@@ -96,7 +95,7 @@ function filtrarUsuario()
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('usuario_dataview'),
+            url: baseUrlDataview('usuario_dataview'),
             data: {
                 filtrarUsuario: 'ajx',
                 nome_filtro: nome
@@ -117,7 +116,6 @@ function filtrarUsuario()
     }else {
         $("#tableResult").html("");
     }
-
 }
 
 
@@ -129,7 +127,7 @@ function alterarStatusUsuario(id, status) {
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('usuario_dataview'),
+        url: baseUrlDataview('usuario_dataview'),
         data: {
             AlterarStatusUsuario: 'ajx',
             id_usuario: id,
@@ -167,13 +165,13 @@ function alterarUsuario(formID){
         let idUsuario     = $('#id_usuario').val();
         let idEndereco    = $('#id_endereco').val();
         let tipoUsuario   = $('#tipo_usuario').val();
-        console.log(setorFunc);
+
         $.ajax({
             beforeSend: function(){
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('usuario_dataview'),
+            url: baseUrlDataview('usuario_dataview'),
             data: {
                 tipoUsuario: tipoUsuario,
                 nomeUsuario: nomeUsuario,
@@ -194,7 +192,6 @@ function alterarUsuario(formID){
             },
             success: function(ret){
                 mostrarMensagem(ret);
-                
                 if(ret == 1){                  
                     carregarTipoUsuario(0);
                 }

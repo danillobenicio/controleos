@@ -58,7 +58,7 @@
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>E-mail</label>
                                         <input type="email" class="form-control obg" id="email" name="email"
-                                            placeholder="E-mail" onblur="VerificarEmailDuplicado(this.value)">
+                                            placeholder="E-mail" onblur="verificarEmailDuplicado(this.value)">
                                     </div>
                                 </div>
                                 <div class="row">

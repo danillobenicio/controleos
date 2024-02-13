@@ -3,8 +3,9 @@
     namespace Src\VO;
 
     use Src\_Public\Util;
+    use Src\VO\EnderecoVO;
 
-    class UsuarioVO 
+    class UsuarioVO extends EnderecoVO
     {
 
         private $id_usuario;

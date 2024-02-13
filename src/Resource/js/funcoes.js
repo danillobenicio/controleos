@@ -1,4 +1,5 @@
-function BaseUrlDataview(dataview) {
+function baseUrlDataview(dataview)
+{
     return '../../Resource/dataview/' + dataview + '.php';
 }
 
@@ -77,6 +78,8 @@ function carregarTipoUsuario(tipo)
             $('#button').show();
             $('#dadosFuncionario').hide();
             $('#dadosTecnico').hide();
+            $('#empresa').removeClass('obg');
+            $('#resultSetor').removeClass('obg');
             break;
         case '2':
             $('#dadosUsuario').show();
@@ -85,7 +88,8 @@ function carregarTipoUsuario(tipo)
             $('#button').show();
             $('#dadosTecnico').hide();
 
-            $('#setor').addClass('obg');
+            $('#resultSetor').addClass('obg');
+            $('#empresa').removeClass('obg');
             
             break;
         case '3':
@@ -96,7 +100,7 @@ function carregarTipoUsuario(tipo)
             $('#dadosFuncionario').hide();
 
             $('#empresa').addClass('obg');
-           
+            $('#resultSetor').removeClass('obg');
             break;
         default:
             $('#dadosUsuario').hide();
@@ -135,26 +139,18 @@ function validarCpf(cpf) {
     }
 }
 
-
-/*function checarEmail() {
-    if (document.forms[0].email.value == "" ||
-        document.forms[0].email.value.indexOf('@') == -1 ||
-        document.forms[0].email.value.indexOf('.') == -1) {
-        MostrarMensagem(11);
-        return false;
-    }
-}*/
-
-
-function validarEmail(email) {
+function validarEmail(email)
+{
     let re = /\S+@\S+\.\S+/;
-
     let retorno = true;
 
-    if(!re.test(email)) {
+    if(!re.test(email))
+    {
         $('#email').val('');
+        $('#email').focus();
         mostrarMensagem(11);
         retorno = false;
     }
+
     return retorno;
 }

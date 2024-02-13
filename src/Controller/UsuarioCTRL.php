@@ -1,47 +1,49 @@
 <?php
 
     namespace Src\Controller;
-
-use Dompdf\Positioner\NullPositioner;
-use Src\_Public\Util;
+    
+    use Src\_Public\Util;
     use Src\VO\UsuarioVO;
     use Src\Model\UsuarioModel;
-    use Src\VO\EnderecoVO;
 
-    class UsuarioCTRL {
+    class UsuarioCTRL 
+    {
         private $model;
-
-        public function __construct() {
+        public function __construct() 
+        {
             $this->model = new UsuarioModel();
         }
 
-        public function VerificarEmailDuplicadoCTRL(string $email) : bool {
-            return $this->model->VerificarEmailDuplicadoModel($email);
+        public function verificarEmailDuplicadoCTRL(string $email) : bool 
+        {
+            return $this->model->verificarEmailDuplicadoModel($email);
         }
 
-        public function cadastrarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc) {
-
+        public function cadastrarUsuarioCTRL($vo)
+        {
             //Valida as propriedades comuns entre todos os tipos de usuário.
-            if( 
+            if
+            ( 
                 empty($vo->getNomeUsuario()) || 
                 empty($vo->getEmailUsuario()) || 
                 empty($vo->getTipoUsuario()) || 
                 empty($vo->getCpfUsuario()) || 
                 empty($vo->getTelUsuario()) ||
-                empty($voEnd->getNomeCidade()) ||
-                empty($voEnd->getSiglaEstado()) ||
-                empty($voEnd->getBairro()) ||
-                empty($voEnd->getRua()) ||
-                empty($voEnd->getCep())
-              ) {               
+                empty($vo->getNomeCidade()) ||
+                empty($vo->getSiglaEstado()) ||
+                empty($vo->getBairro()) ||
+                empty($vo->getRua()) ||
+                empty($vo->getCep())
+              ) 
+              {               
                 return 0;
               }
 
-            if($vo->getTipoUsuario() == USUARIO_TEC && empty($voTec->getNomeEmpresa())){
+            if($vo->getTipoUsuario() == USUARIO_TEC && empty($vo->getNomeEmpresa())){
                 return 0;
             }
 
-            if($vo->getTipoUsuario() == USUARIO_FUNC && empty($voFunc->getIdSetor())){
+            if($vo->getTipoUsuario() == USUARIO_FUNC && empty($vo->getIdSetor())){
                 return 0;
             }
 
@@ -49,9 +51,9 @@ use Src\_Public\Util;
             $vo->setStatusUsuario(SITUACAO_ATIVO);
 
             //Set Senha
-            $vo->setSenhaUsuario(Util::CriptografarSenha($vo->getCpfUsuario()));
+            $vo->setSenhaUsuario(Util::criptografarSenha($vo->getCpfUsuario()));
 
-            return $this->model->cadastrarUsuarioModel($vo, $voEnd, $voTec, $voFunc);
+            return $this->model->cadastrarUsuarioModel($vo);
             
         }
 
@@ -83,29 +85,28 @@ use Src\_Public\Util;
         }
 
 
-        public function alterarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc) {
-
+        public function alterarUsuarioCTRL($vo) {
+            
             //Valida as propriedades comuns entre todos os tipos de usuário.
             if( 
                 empty($vo->getNomeUsuario()) || 
                 empty($vo->getEmailUsuario()) ||  
                 empty($vo->getCpfUsuario()) || 
                 empty($vo->getTelUsuario()) ||
-                empty($voEnd->getNomeCidade()) ||
-                empty($voEnd->getSiglaEstado()) ||
-                empty($voEnd->getBairro()) ||
-                empty($voEnd->getRua()) ||
-                empty($voEnd->getCep())
+                empty($vo->getNomeCidade()) ||
+                empty($vo->getSiglaEstado()) ||
+                empty($vo->getBairro()) ||
+                empty($vo->getRua()) ||
+                empty($vo->getCep())
               ) {               
                 return 0;
               }
 
-            if($vo->getTipoUsuario() == USUARIO_TEC && empty($voTec->getNomeEmpresa())){
+            if($vo->getTipoUsuario() == USUARIO_TEC && empty($vo->getNomeEmpresa())){
                 return 0;
             }
 
-            return $this->model->alterarUsuarioModel($vo, $voEnd, $voTec, $voFunc);
-            
+            return $this->model->alterarUsuarioModel($vo);           
         }
 
         public function validarLoginCtrl(string $login, string $senha) : int
@@ -127,6 +128,16 @@ use Src\_Public\Util;
 
             Util::chamarPagina('../adm/gerenciar_novo_usuario');
 
+        }
+
+
+        public function alterarSenhaCtrl(UsuarioVO $vo, bool $tem_sessao = true) : int
+        {
+            if ($vo->getIdUsuario() or $vo->getSenhaUsuario())
+                return 0;
+
+            $vo->setSenhaUsuario(Util::CriptografarSenha($vo->getSenhaUsuario()));
+            return $this->model->alterarSenhaMOdel($vo);
         }
 
     }

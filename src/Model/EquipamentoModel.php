@@ -151,6 +151,7 @@
 
         }
 
+        
         public function consultarEquipamentosAlocadosSetorModel($id_setor) : array
         {
             $sql = $this->conexao->prepare(EquipamentoSql::consultarEquipamentosAlocadosSetorSql());

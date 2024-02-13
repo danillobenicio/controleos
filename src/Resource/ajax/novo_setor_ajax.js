@@ -35,7 +35,7 @@ function consultarSetor()
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('novo_setor_dataview'),
+        url: baseUrlDataview('novo_setor_dataview'),
         data: {
             consultar_setor: 'ajx',
             tipo_tela: tipoTela

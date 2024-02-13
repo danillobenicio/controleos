@@ -105,14 +105,15 @@
             }
         }
 
-        public static function CriptografarSenha($senha) : string {
+        public static function criptografarSenha($senha) : string 
+        {
             return password_hash($senha, PASSWORD_DEFAULT);
         }
 
-        public static function VerificarSenha($senhaDigitada, $senha_hash) : bool {
-            return password_verify($senhaDigitada, $senha_hash);
+        public static function verificarSenha($senha_digitada, $senha_hash) : bool 
+        {
+            return password_verify($senha_digitada, $senha_hash);
         }
-
 
         public static function MostrarTipoUsuario($tipo) {
             $nome_tipo = '';

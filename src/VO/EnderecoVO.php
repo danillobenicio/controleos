@@ -2,7 +2,7 @@
 
 namespace Src\VO;
 
-class EnderecoVO 
+class EnderecoVO
 {
 
     private $id_endereco;
@@ -131,7 +131,5 @@ class EnderecoVO
     public function getSiglaEstado() : string {
         return $this->sigla;
     }
-
 }
-
 ?>

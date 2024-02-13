@@ -6,29 +6,33 @@
     use Src\Model\Conexao;
     use Src\VO\UsuarioVO;
     use Src\Model\SQL\UsuarioSql;
-    use Src\VO\EnderecoVO;
+use Src\VO\EnderecoVO;
+use Src\VO\EstadoVO;
+use Src\VO\TecnicoVO;
+
+    /*use Src\VO\EnderecoVO;
     use Src\VO\SetorVO;
-    use Src\VO\TecnicoVO;
+    use Src\VO\TecnicoVO;*/
 
     class UsuarioModel extends Conexao 
     {
         private $conexao;
-
-        public function __construct() {
+        public function __construct() 
+        {
             $this->conexao = parent::retornarConexao();
         }
-
-        public function VerificarEmailDuplicadoModel(string $email) : bool {
-
-            $sql = $this->conexao->prepare(UsuarioSql::VerificarEmail());
+ 
+        public function verificarEmailDuplicadoModel(string $email) : bool
+        {
+            $sql = $this->conexao->prepare(UsuarioSql::verificarEmail());
             $sql->bindValue(1, $email);
             $sql->execute();
             $ver_email = $sql->fetchAll(\PDO::FETCH_ASSOC);
             return $ver_email[0]['contar_email'] == 0 ? false : true;
         }
 
-        public function cadastrarUsuarioModel($vo, $voEnd, $voTec, $voFunc) : int {
-   
+        public function cadastrarUsuarioModel($vo) : int
+        {  
             $sql = $this->conexao->prepare(UsuarioSql::cadastrarUsuarioSql());
             $sql->bindValue(1, $vo->getNomeUsuario());
             $sql->bindValue(2, $vo->getTipoUsuario());
@@ -38,39 +42,35 @@
             $sql->bindValue(6, $vo->getTelUsuario());
             $sql->bindValue(7, $vo->getSenhaUsuario());
 
-            try {
+            try
+            {
                 $this->conexao->beginTransaction();
 
-                //Cadastra na tb_usuario
+                //Cadastra o usuário
                 $sql->execute();
 
                 //Recupera o id do usuário cadastrado
                 $id_user = $this->conexao->lastInsertId();
 
-                switch ($vo->getTipoUsuario()) {
-
+                switch ($vo->getTipoUsuario())
+                {
                     case USUARIO_FUNC:
-                        $sql = $this->conexao->prepare(UsuarioSql::CadastrarUsuarioFuncionario());
+                        $sql = $this->conexao->prepare(UsuarioSql::cadastrarUsuarioFuncionario());
                         $sql->bindValue(1, $id_user);
-                        $sql->bindValue(2, $voFunc->getIdSetor());
+                        $sql->bindValue(2, $vo->getIdSetor());
                         $sql->execute();
                         break;
                     case USUARIO_TEC:
                         $sql = $this->conexao->prepare(UsuarioSql::CadastrarUsuarioTecnico());
                         $sql->bindValue(1, $id_user);
-                        $sql->bindValue(2, $voTec->getNomeEmpresa());
+                        $sql->bindValue(2, $vo->getNomeEmpresa());
                         $sql->execute();
                         break;
-
                 }
-
-                //Processo que grava o endereco
-
                 //passo 1, verificar se a cidade existe.
-
-                $sql = $this->conexao->prepare(UsuarioSql::VerificarCidadeCadastrada());
-                $sql->bindValue(1, $voEnd->getNomeCidade());
-                $sql->bindValue(2, $voEnd->getSiglaEstado());
+                $sql = $this->conexao->prepare(UsuarioSql::verificarCidadeCadastrada());
+                $sql->bindValue(1, $vo->getNomeCidade());
+                $sql->bindValue(2, $vo->getSiglaEstado());
 
                 $sql->execute();
 
@@ -83,8 +83,8 @@
                 } else {
                     
                     //Verifica se o estado existe
-                    $sql = $this->conexao->prepare(UsuarioSql::VerificarEstadoCadastrado());
-                    $sql->bindValue(1, $voEnd->getSiglaEstado());
+                    $sql = $this->conexao->prepare(UsuarioSql::verificarEstadoCadastrado());
+                    $sql->bindValue(1, $vo->getSiglaEstado());
 
                     $sql->execute();
 
@@ -95,17 +95,16 @@
                     //Verifica se encontrou o estado
                     if (count($tem_estado) > 0) {
                         $id_estado = $tem_estado[0]['id_estado'];
-                    } else {
-                        
+                    } else {                        
                         //Cadastra o estado
-                        $sql = $this->conexao->prepare(UsuarioSql::CadastrarEstado());
-                        $sql->bindvalue(1, $voEnd->getSiglaEstado());
+                        $sql = $this->conexao->prepare(UsuarioSql::cadastrarEstado());
+                        $sql->bindvalue(1, $vo->getSiglaEstado());
                         $sql->execute();
                         $id_estado = $this->conexao->lastInsertId();
                     }
 
                     $sql = $this->conexao->prepare(UsuarioSql::CadastrarCidade());
-                    $sql->bindValue(1, $voEnd->getNomeCidade());
+                    $sql->bindValue(1, $vo->getNomeCidade());
                     $sql->bindValue(2, $id_estado);
 
                     $sql->execute();
@@ -114,10 +113,11 @@
                 
                 }
 
+                //Cadastrar endereço
                 $sql = $this->conexao->prepare(UsuarioSql::CadastrarEndereco());
-                $sql->bindValue(1, $voEnd->getBairro());
-                $sql->bindValue(2, $voEnd->getRua());
-                $sql->bindValue(3, $voEnd->getCep());
+                $sql->bindValue(1, $vo->getBairro());
+                $sql->bindValue(2, $vo->getRua());
+                $sql->bindValue(3, $vo->getCep());
                 $sql->bindValue(4, $id_user);
                 $sql->bindValue(5, $id_cidade);
                 
@@ -173,7 +173,7 @@
         }
 
 
-        public function alterarUsuarioModel($vo, $voEnd, $voTec, $voFunc) : int {
+        public function alterarUsuarioModel($vo) {
    
             $sql = $this->conexao->prepare(UsuarioSql::alterarUsuario());
             $sql->bindValue(1, $vo->getNomeUsuario());
@@ -189,21 +189,20 @@
                 //Alterar na tb_usuario
                 $sql->execute();
 
-                switch ($vo->getTipoUsuario()) {
-
+                switch ($vo->getTipoUsuario())
+                {
                     case USUARIO_FUNC:
                         $sql = $this->conexao->prepare(UsuarioSql::alterarFuncionario());
-                        $sql->bindValue(1, $voFunc->getIdSetor());
+                        $sql->bindValue(1, $vo->getIdSetor());
                         $sql->bindValue(2, $vo->getIdUsuario());
                         $sql->execute();
                         break;
                     case USUARIO_TEC:
                         $sql = $this->conexao->prepare(UsuarioSql::alterarTecnico());
-                        $sql->bindValue(1, $voTec->getNomeEmpresa());
+                        $sql->bindValue(1, $vo->getNomeEmpresa());
                         $sql->bindValue(2, $vo->getIdUsuario());
                         $sql->execute();
                         break;
-
                 }
 
                 //Processo que grava o endereco
@@ -211,8 +210,8 @@
                 //passo 1, verificar se a cidade existe.
 
                 $sql = $this->conexao->prepare(UsuarioSql::VerificarCidadeCadastrada());
-                $sql->bindValue(1, $voEnd->getNomeCidade());
-                $sql->bindValue(2, $voEnd->getSiglaEstado());
+                $sql->bindValue(1, $vo->getNomeCidade());
+                $sql->bindValue(2, $vo->getSiglaEstado());
 
                 $sql->execute();
 
@@ -226,7 +225,7 @@
                     
                     //Verifica se o estado existe
                     $sql = $this->conexao->prepare(UsuarioSql::VerificarEstadoCadastrado());
-                    $sql->bindValue(1, $voEnd->getSiglaEstado());
+                    $sql->bindValue(1, $vo->getSiglaEstado());
 
                     $sql->execute();
 
@@ -241,13 +240,13 @@
                         
                         //Cadastra o estado
                         $sql = $this->conexao->prepare(UsuarioSql::CadastrarEstado());
-                        $sql->bindvalue(1, $voEnd->getSiglaEstado());
+                        $sql->bindvalue(1, $vo->getSiglaEstado());
                         $sql->execute();
                         $id_estado = $this->conexao->lastInsertId();
                     }
 
                     $sql = $this->conexao->prepare(UsuarioSql::CadastrarCidade());
-                    $sql->bindValue(1, $voEnd->getNomeCidade());
+                    $sql->bindValue(1, $vo->getNomeCidade());
                     $sql->bindValue(2, $id_estado);
 
                     $sql->execute();
@@ -257,11 +256,11 @@
                 }
 
                 $sql = $this->conexao->prepare(UsuarioSql::alterarEndereco());
-                $sql->bindValue(1, $voEnd->getRua());
-                $sql->bindValue(2, $voEnd->getBairro());
-                $sql->bindValue(3, $voEnd->getCep());
+                $sql->bindValue(1, $vo->getRua());
+                $sql->bindValue(2, $vo->getBairro());
+                $sql->bindValue(3, $vo->getCep());
                 $sql->bindValue(4, $id_cidade);
-                $sql->bindValue(5, $voEnd->getIdEndereco());
+                $sql->bindValue(5, $vo->getIdEndereco());
                              
                 $sql->execute();
 
@@ -293,6 +292,21 @@
             $sql->bindValue(1, date('Y-m-d'));
             $sql->bindValue(2, $id);
             $sql->execute();
+        }
+
+
+        public function alterarSenhaModel(UsuarioVO $vo, bool $tem_sessao = true) : int
+        {
+            $sql = $this->conexao->prepare(UsuarioSql::alterarSenha());
+            $sql->bindValue(1, $vo->getSenhaUsuario());
+            $sql->bindValue(2, $vo->getIdUsuario());
+            try {
+                $sql->execute();
+                return 1;
+            } catch (\Exception $ex) {
+                return -1;
+            }
+
         }
 
     }

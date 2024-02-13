@@ -2,56 +2,60 @@
 
     include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
-use Src\_Public\Util;
-use Src\Controller\SetorCTRL;
-use Src\VO\UsuarioVO;
-    use Src\VO\TecnicoVO;
-    use Src\VO\FuncionarioVO;
-    use Src\VO\EnderecoVO;
+    use Src\_Public\Util;
+    use Src\Controller\SetorCTRL;
     use Src\Controller\UsuarioCTRL;
+    use Src\VO\FuncionarioVO;
+    use Src\VO\TecnicoVO;
+    use Src\VO\UsuarioVO;
 
     $ctrl = new UsuarioCTRL();
 
-    if (isset($_POST['VerificarEmailDuplicado'])) {
-
-        echo $ctrl->VerificarEmailDuplicadoCTRL($_POST['email']);
-
-    } else if (isset($_POST['btnCadastrarUsuario'])) {
-
-        $vo = new UsuarioVO();
-        $voEnd = new EnderecoVO();
-        $voTec = null;
-        $voFunc = null;
-
-        switch ($_POST['tipoUsuario']) {
+    if (isset($_POST['verificarEmailDuplicado'])) 
+    {
+        echo $ctrl->verificarEmailDuplicadoCTRL($_POST['email']);
+    } 
+    else if (isset($_POST['btnCadastrarUsuario'])) 
+    {
+        switch ($_POST['tipoUsuario']) 
+        {
+            case USUARIO_ADM:
+                $vo = new UsuarioVO();
+                break;
 
             case USUARIO_TEC:
-                $voTec = new TecnicoVO();
-                $voTec->setNomeEmpresa($_POST['empresaTec']);
+                $vo = new TecnicoVO();
+                $vo->setNomeEmpresa($_POST['empresaTec']);
                 break;
             
             case USUARIO_FUNC:
-                $voFunc = new FuncionarioVO();
-                $voFunc->setIdSetor($_POST['setorFunc']);
+                $vo = new FuncionarioVO();
+                $vo->setIdSetor($_POST['setorFunc']);
                 break;
         }
         
-        //Dados em comum
+
+        //Dados Usuário
         $vo->setTipoUsuario($_POST['tipoUsuario']);
         $vo->setNomeUsuario($_POST['nomeUsuario']);
         $vo->setEmailUsuario($_POST['emailUsuario']);
         $vo->setCpfUsuario($_POST['cpfUsuario']);
         $vo->setTelUsuario($_POST['telUsuario']);
-        $voEnd->setRua($_POST['ruaUsuario']);
-        $voEnd->setBairro($_POST['bairroUsuario']);
-        $voEnd->setCep($_POST['cepUsuario']);
-        $voEnd->setNomeCidade($_POST['cidadeUsuario']);
-        $voEnd->setSiglaEstado($_POST['estadoUsuario']);
 
-        $ret = $ctrl->cadastrarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc);
+        //Dados endereço
+        $vo->setRua($_POST['ruaUsuario']);
+        $vo->setBairro($_POST['bairroUsuario']);
+        $vo->setCep($_POST['cepUsuario']);
+        $vo->setNomeCidade($_POST['cidadeUsuario']);
+        $vo->setSiglaEstado($_POST['estadoUsuario']);
+
+        $ret = $ctrl->cadastrarUsuarioCTRL($vo);
 
         echo $ret;
-    } else if (isset($_POST['filtrarUsuario'])) {
+
+    } 
+    else if (isset($_POST['filtrarUsuario'])) 
+    {
 
         $usuarios_encontrados = $ctrl->FiltrarUsuarioCtrl($_POST['nome_filtro']); 
         
@@ -60,43 +64,44 @@ use Src\VO\UsuarioVO;
         } else {
         ?>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Tipo</th>
-            <th>Status</th>
-            <th>Ação</th>            
-        </tr>
-    </thead>
-    <tbody>
-        
-        <?php $situacao = ''; foreach ($usuarios_encontrados as $usuarios) { 
-        
-            $situacao = $usuarios['status_usuario'];
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                        <th>Ação</th>            
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <?php $situacao = ''; foreach ($usuarios_encontrados as $usuarios) { 
+                    
+                        $situacao = $usuarios['status_usuario'];
 
-        ?>
-        <tr>
-            <td><?=$usuarios['nome_usuario']?></td>
-            <td><?=Util::MostrarTipoUsuario($usuarios['tipo_usuario'])?></td>
-            <td>
-                <div class="custom-control custom-switch custom-switch-<?=$situacao == 1 ? 'on' : 'off' ?>-danger custom-switch-<?=$situacao == 1 ? 'off' : 'on' ?>-success">
-                    <input onclick="alterarStatusUsuario('<?=$usuarios['id_usuario']?>', '<?=$usuarios['status_usuario']?>')" type="checkbox" class="custom-control-input" id="customSwitch<?=$usuarios['id_usuario']?>">
-                    <label class="custom-control-label" for="customSwitch<?=$usuarios['id_usuario']?>"><?=$situacao == 1 ? 'Ativo' : 'Inativo' ?></label>
-                </div>
-            </td>
-            <td>
-                <a href="alterar_usuario.php?cod=<?=$usuarios['id_usuario']?>" class="btn btn-warning btn-sm">Alterar</a>
-            </td>
-        </tr>
-        <?php } ?>
-    </tbody>
-</table>
+                    ?>
+                    <tr>
+                        <td><?=$usuarios['nome_usuario']?></td>
+                        <td><?=Util::MostrarTipoUsuario($usuarios['tipo_usuario'])?></td>
+                        <td>
+                            <div class="custom-control custom-switch custom-switch-<?=$situacao == 1 ? 'on' : 'off' ?>-danger custom-switch-<?=$situacao == 1 ? 'off' : 'on' ?>-success">
+                                <input onclick="alterarStatusUsuario('<?=$usuarios['id_usuario']?>', '<?=$usuarios['status_usuario']?>')" type="checkbox" class="custom-control-input" id="customSwitch<?=$usuarios['id_usuario']?>">
+                                <label class="custom-control-label" for="customSwitch<?=$usuarios['id_usuario']?>"><?=$situacao == 1 ? 'Ativo' : 'Inativo' ?></label>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="alterar_usuario.php?cod=<?=$usuarios['id_usuario']?>" class="btn btn-warning btn-sm">Alterar</a>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
 
 <?php
 
         }
-    } else if (isset($_POST['AlterarStatusUsuario'])) {
+    } 
+    else if (isset($_POST['alterarStatusUsuario'])) {
 
         $vo = new UsuarioVO();
 
@@ -104,7 +109,8 @@ use Src\VO\UsuarioVO;
         $vo->setStatusUsuario($_POST['status_usuario']);
         echo $ctrl->AlterarStatusUsuarioCtrl($vo);
 
-    } else if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
+    } 
+    else if (isset($_GET['cod']) && is_numeric($_GET['cod'])) {
         
         $dados = $ctrl->DetalharUsuarioCtrl($_GET['cod']);
 
@@ -117,23 +123,23 @@ use Src\VO\UsuarioVO;
         }
 
     }else if (isset($_POST['btn_alterar'])) {
+        
+        switch ($_POST['tipoUsuario'])
+        {
 
-        $vo = new UsuarioVO();
-        $voEnd = new EnderecoVO();
-        $voTec = null;
-        $voFunc = null;
-
-        switch ($_POST['tipoUsuario']) {
+            case USUARIO_ADM:
+                $vo = new UsuarioVO();
+                break;
 
             case USUARIO_TEC:
-                $voTec = new TecnicoVO();
-                $voTec->setNomeEmpresa($_POST['empresaTec']);
-                break;
+               $vo = new TecnicoVO();
+               $vo->setNomeEmpresa($_POST['empresaTec']);
+               break;
             
             case USUARIO_FUNC:
-                $voFunc = new FuncionarioVO();
-                $voFunc->setIdSetor($_POST['setorFunc']);
-                break;
+               $vo = new FuncionarioVO();
+               $vo->setIdSetor($_POST['setorFunc']);
+               break;
         }
         
         //Dados em comum
@@ -143,14 +149,14 @@ use Src\VO\UsuarioVO;
         $vo->setEmailUsuario($_POST['emailUsuario']);
         $vo->setCpfUsuario($_POST['cpfUsuario']);
         $vo->setTelUsuario($_POST['telUsuario']);
-        $voEnd->setRua($_POST['ruaUsuario']);
-        $voEnd->setBairro($_POST['bairroUsuario']);
-        $voEnd->setCep($_POST['cepUsuario']);
-        $voEnd->setNomeCidade($_POST['cidadeUsuario']);
-        $voEnd->setSiglaEstado($_POST['estadoUsuario']);
-        $voEnd->setIdEndereco($_POST['idEndereco']);
+        $vo->setRua($_POST['ruaUsuario']);
+        $vo->setBairro($_POST['bairroUsuario']);
+        $vo->setCep($_POST['cepUsuario']);
+        $vo->setNomeCidade($_POST['cidadeUsuario']);
+        $vo->setSiglaEstado($_POST['estadoUsuario']);
+        $vo->setIdEndereco($_POST['idEndereco']);
 
-        $ret = $ctrl->alterarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc);
+        $ret = $ctrl->alterarUsuarioCTRL($vo);
 
         echo $ret;
 
