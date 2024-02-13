@@ -9,7 +9,7 @@ function cadastrarTipoEquipamento(formID) {
                 load();
             },
             type: "POST",
-            url: BaseUrlDataview('tipo_equipamento_dataview'),
+            url: baseUrlDataview('tipo_equipamento_dataview'),
             data: {
                 tipo: nome_tipo,
                 btnCadastrar: 'ajx'
@@ -33,7 +33,7 @@ function consultarTipoEquipamento() {
             load();
         },
         type: "POST",
-        url: BaseUrlDataview('tipo_equipamento_dataview'),
+        url: baseUrlDataview('tipo_equipamento_dataview'),
         data: {
             consultarTipo: 'ajx'
         },
@@ -59,7 +59,7 @@ function alterarTipoEquipamento(formID)
                 load();
             },
             type: "POST",
-            url: BaseUrlDataview('tipo_equipamento_dataview'),
+            url: baseUrlDataview('tipo_equipamento_dataview'),
             data: {
                 id_alterar: id_alterar,
                 tipo_alterar: tipo_alterar,
@@ -87,7 +87,7 @@ function excluir(formID)
                 load();
             },
             type: "POST",
-            url: BaseUrlDataview('tipo_equipamento_dataview'),
+            url: baseUrlDataview('tipo_equipamento_dataview'),
             data: {
                 id_excluir: id_excluir,
                 btnExcluir: 'ajx'

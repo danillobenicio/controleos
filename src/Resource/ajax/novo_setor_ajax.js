@@ -9,7 +9,7 @@ function cadastrarNovoSetor(formID)
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('novo_setor_dataview'),
+            url: baseUrlDataview('novo_setor_dataview'),
             data: {setor: nome_setor, btnCadastrar: 'ajx'},
             success: function(ret){
                 mostrarMensagem(ret);
@@ -64,7 +64,7 @@ function alterarSetor(formID)
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('novo_setor_dataview'),
+            url: baseUrlDataview('novo_setor_dataview'),
             data: {id_alterar: id_alterar, setor_alterar: setor_alterar, btnAlterar: 'ajx'},
             success: function(ret){
                 mostrarMensagem(ret);
@@ -88,7 +88,7 @@ function excluir(formID)
                 load();
             },
             type: "POST",
-            url: BaseUrlDataview('novo_setor_dataview'),
+            url: baseUrlDataview('novo_setor_dataview'),
             data: {
                 id_excluir: id_excluir,
                 btnExcluir: 'ajx'

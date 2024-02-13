@@ -13,7 +13,7 @@ function gravarEquipamento(formID) {
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('equipamento_dataview'),
+            url: baseUrlDataview('equipamento_dataview'),
             data: {
                 tipo: tipo,
                 modelo: modelo,
@@ -41,7 +41,7 @@ function carregarTipos() {
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('equipamento_dataview'),
+        url: baseUrlDataview('equipamento_dataview'),
         data: {
             carregar_tipos: 'ajx',
             id_tipo: $("#id_tipo").val()
@@ -62,7 +62,7 @@ function carregarModelos() {
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('equipamento_dataview'),
+        url: baseUrlDataview('equipamento_dataview'),
         data: {
             carregar_modelos: 'ajx',
             id_modelo: $("#id_modelo").val()
@@ -86,7 +86,7 @@ function filtrarEquipamento() {
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('equipamento_dataview'),
+        url: baseUrlDataview('equipamento_dataview'),
         data: {
             filtrarEquipamento: 'ajx',
             tipo: idTipo,
@@ -112,7 +112,7 @@ function excluir() {
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('equipamento_dataview'),
+        url: baseUrlDataview('equipamento_dataview'),
         data: {
             btnExcluir: valor_tela,
             id_equipamento: id_excluir
@@ -144,7 +144,7 @@ function inativar(formID) {
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('equipamento_dataview'),
+            url: baseUrlDataview('equipamento_dataview'),
             data: {
                 btnInativar: 'ajx',
                 id_inativar: id_inativar,
@@ -175,7 +175,7 @@ function carregarEquipamentosNaoAlocados() {
             load();
         },
         type: 'POST',
-        url: BaseUrlDataview('equipamento_dataview'),
+        url: baseUrlDataview('equipamento_dataview'),
         data: {
             carregar_equipamentos_nao_alocados: 'ajx'
         },
@@ -202,7 +202,7 @@ function alocarEquipamento(formID) {
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('equipamento_dataview'),
+            url: baseUrlDataview('equipamento_dataview'),
             data: {
                 alocar_equipamento: 'ajx',
                 id_equipamento: id_equipamento,
@@ -228,7 +228,7 @@ function consultarEquipamentosAlocados(idSetor) {
                 load();
             },
             type: 'POST',
-            url: BaseUrlDataview('equipamento_dataview'),
+            url: baseUrlDataview('equipamento_dataview'),
             data: {
                 filtrar_equipamentos_alocados_setor: 'ajx',
                 idSetor: idSetor

@@ -194,8 +194,7 @@ function alterarUsuario(formID){
                 mostrarMensagem(ret);
                 if(ret == 1){                  
                     carregarTipoUsuario(0);
-                }
-                
+                }              
             },
             complete: function(){
                 removerLoad();
