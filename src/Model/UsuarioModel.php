@@ -2,7 +2,8 @@
 
     namespace Src\Model;
 
-    use Exception;
+use Dompdf\Positioner\NullPositioner;
+use Exception;
     use Src\Model\Conexao;
     use Src\VO\UsuarioVO;
     use Src\Model\SQL\UsuarioSql;
@@ -295,7 +296,7 @@ use Src\VO\TecnicoVO;
         }
 
 
-        public function alterarSenhaModel(UsuarioVO $vo, bool $tem_sessao = true) : int
+        public function alterarSenhaModel(UsuarioVO $vo) : int
         {
             $sql = $this->conexao->prepare(UsuarioSql::alterarSenha());
             $sql->bindValue(1, $vo->getSenhaUsuario());
@@ -307,6 +308,14 @@ use Src\VO\TecnicoVO;
                 return -1;
             }
 
+        }
+
+        public function verificarSenhaModel(int $id) : array | null 
+        {
+            $sql = $this->conexao->prepare(UsuarioSql::buscarSenha());
+            $sql->bindValue(1, $id);
+            $sql->execute();
+            return $sql->fetch(\PDO::FETCH_ASSOC);
         }
 
     }

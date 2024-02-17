@@ -1,8 +1,9 @@
 <?php
 
     namespace Src\Controller;
-    
-    use Src\_Public\Util;
+
+use Dompdf\Positioner\NullPositioner;
+use Src\_Public\Util;
     use Src\VO\UsuarioVO;
     use Src\Model\UsuarioModel;
 
@@ -74,18 +75,17 @@
         }
 
 
-        public function DetalharUsuarioCtrl($id) {
-
+        public function DetalharUsuarioCtrl($id) : array | int | bool
+        {
             if ($id == '' || $id == 0) {
                 return 0;
             }
 
             return $this->model->DetalharUsuarioModel($id);
-
         }
 
 
-        public function alterarUsuarioCTRL($vo) {
+        public function alterarUsuarioCTRL($vo, bool $tem_sessao = true) {
             
             //Valida as propriedades comuns entre todos os tipos de usuário.
             if( 
@@ -130,16 +130,28 @@
 
         }
 
-
         public function alterarSenhaCtrl(UsuarioVO $vo, bool $tem_sessao = true) : int
         {
             if ($vo->getIdUsuario() or $vo->getSenhaUsuario())
                 return 0;
 
             $vo->setSenhaUsuario(Util::CriptografarSenha($vo->getSenhaUsuario()));
-            return $this->model->alterarSenhaMOdel($vo);
+            
+            return $this->model->alterarSenhaModel($vo);
         }
 
+        public function verificarSenhaCtrl(int $id, string $senha_digitada)
+        {
+            $dados = $this->model->verificarSenhaModel($id);
+
+            if (empty($dados)) {
+                return 13;
+            } else {
+                $senha_hash = $dados['senha_usuario'];
+                $ret = Util::verificarSenha($senha_digitada, $senha_hash);
+                return $ret ? 1 : 13;
+            }
+        }
     }
 
 ?>

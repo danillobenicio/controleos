@@ -45,12 +45,24 @@
             exit;
         }
 
-        public function sendData($msg = '', $result, $status)
+       /* public function sendData($msg = '', $result, $status)
         {   
             $this->data = [
                 'status' => $status,
                 'message' => $msg,
                 'result' => $result
+            ];
+
+            $this->sendResponse();
+        }*/
+
+        public function sendData($msg= '', $result, $status, $send = "")
+        {
+            $this->data = [
+            'STATUS' => $status,
+            'MESSAGE' => $msg,
+            'RESULT' => $result,
+            'SEND' => $send
             ];
 
             $this->sendResponse();

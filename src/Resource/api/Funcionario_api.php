@@ -1,8 +1,13 @@
 <?php
 
     include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-
     use Src\Resource\api\Classes\FuncionarioEndPoints;
+    use Src\VO\TipoVO;
+    use Src\VO\TecnicoVO;
+    use Src\VO\UsuarioVO;
+    use Src\VO\FuncionarioVO;
+    use Src\VO\EnderecoVO;
+
 
     $obj = new FuncionarioEndPoints();
 
@@ -12,7 +17,7 @@
         $obj->sendData('METHOD INVÁLIDO', '-1', 'ERRO');
 
     $recebido = getallheaders();
-
+   
     $json = $recebido['Content-Type'] == 'application/json' ? true : false;
 
     //Verifica se o pacote de dados do cliente é no formato json
@@ -23,7 +28,7 @@
     } else {
         $dados = $_POST;
     }
-
+  
     $obj->setEndPoint($dados['endpoint']);
 
     if (!$obj->checkEndPoint($obj->getEndPoint()))
@@ -33,6 +38,8 @@
 
     $result = $obj->{$obj->getEndPoint()}();
 
-    $obj->sendData("Resultado", $result, "Sucesso");
+    //$obj->sendData("Resultado", $result, "Sucesso", $dados);
+
+    $obj->sendData("Resultado", $result, "Sucesso", $dados);
 
 ?>

@@ -30,6 +30,8 @@ function mostrarMensagem(ret) {
         toastr.warning('E-mail já cadastrado!');
     } else if (ret == 13) {
         toastr.error('Nenhum usuário encontrado !');
+    } else if (ret == 13) {
+        toastr.error('Senha não encontrada !');
     }
 
 }

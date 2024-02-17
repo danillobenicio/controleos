@@ -109,7 +109,7 @@
                         tb_usuario
                     SET 
                         nome_usuario = ?,
-                        email_usuario =?,
+                        email_usuario = ?,
                         cpf_usuario = ?,
                         tel_usuario = ?
                     WHERE
@@ -150,6 +150,10 @@
             return "UPDATE tb_usuario SET senha_usuario = ? WHERE id_usuario = ?";
         }
 
+        public static function buscarSenha()
+        {
+            return "SELECT senha_usuario FROM tb_usuario WHERE id_usuario = ?";
+        } 
     }
 
 ?>

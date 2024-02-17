@@ -2,11 +2,9 @@
 
     namespace Src\Resource\api\Classes;
 
-use Src\Controller\EquipamentoCTRL;
-use Src\Controller\UsuarioCTRL;
     use Src\Resource\api\Classes\ApiRequest;
+    use Src\Controller\UsuarioCTRL;
     use Src\VO\FuncionarioVO;
-    use Src\VO\EnderecoVO;
     use Src\VO\UsuarioVO;
 
     class FuncionarioEndPoints extends ApiRequest
@@ -36,26 +34,23 @@ use Src\Controller\UsuarioCTRL;
 
         public function alterarMeusDadosApi()
         {
-            $vo = new FuncionarioVO();
-            $voEnd = new EnderecoVO();
-            $voTec = null;
-            $voFunc = null;
-        
-            //Dados em comum
-            $vo->setIdUsuario($this->params['idUsuario']);
-            $vo->setTipoUsuario($this->params['tipoUsuario']);
-            $vo->setNomeUsuario($this->params['nomeUsuario']);
-            $vo->setEmailUsuario($this->params['emailUsuario']);
-            $vo->setCpfUsuario($this->params['cpfUsuario']);
-            $vo->setTelUsuario($this->params['telUsuario']);
-            $voEnd->setRua($this->params['ruaUsuario']);
-            $voEnd->setBairro($this->params['bairroUsuario']);
-            $voEnd->setCep($this->params['cepUsuario']);
-            $voEnd->setNomeCidade($this->params['cidadeUsuario']);
-            $voEnd->setSiglaEstado($this->params['estadoUsuario']);
-            $voEnd->setIdEndereco($this->params['idEndereco']);
+            $vo = new FuncionarioVO(); 
 
-            return $this->ctrl_user->alterarUsuarioCTRL($vo, $voEnd, $voTec, $voFunc, false);
+            $vo->setIdSetor($this->params['setor']);
+            $vo->setIdUsuario($this->params['id_user']);        
+            $vo->setTipoUsuario($this->params['tipo_usuario']);
+            $vo->setNomeUsuario($this->params['nome']);
+            $vo->setEmailUsuario($this->params['email']);
+            $vo->setCpfUsuario($this->params['cpf']);
+            $vo->setTelUsuario($this->params['telefone']);       
+            $vo->setRua($this->params['rua']);
+            $vo->setBairro($this->params['bairro']);
+            $vo->setCep($this->params['cep']);
+            $vo->setNomeCidade($this->params['cidade']);
+            $vo->setSiglaEstado($this->params['estado']);
+            $vo->setIdEndereco($this->params['id_endereco']);
+
+            return $this->ctrl_user->alterarUsuarioCTRL($vo, false);
         }
 
         public function alterarSenhaApi() 
@@ -69,8 +64,14 @@ use Src\Controller\UsuarioCTRL;
         }
 
 
+        public function verificarSenhaApi()
+        {
+            return $this->ctrl_user->verificarSenhaCtrl($this->params['id_usuario'], $this->params['senha_digitada']);
+        }
+
+/*
         public function consultarEquipamentosAlocadosSetorApi($id_setor) {
             return (new EquipamentoCTRL)->consultarEquipamentosAlocadosSetorCtrl($id_setor);
-        }
+        }*/
     }
 ?>
