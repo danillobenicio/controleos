@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button onclick="return AlocarEquipamento('formCad')" type="button" class="btn btn-sm btn-success" name="btnCadastrar">Alocar</button>
+                                <button onclick="return alocarEquipamento('formCad')" type="button" class="btn btn-sm btn-success" name="btnCadastrar">Alocar</button>
                             </div>
                         </form>
                     </div>
@@ -68,7 +68,7 @@
 
         <?php
         include_once PATH . 'Template/_includes/_footer.php'
-    ?>
+        ?>
     </div>
     <?php 
         include_once PATH . 'Template/_includes/_scripts.php';
@@ -77,8 +77,8 @@
      <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
      <script src="../../Resource/ajax/equipamento_ajax.js"></script>
      <script type="text/javascript">
-        CarregarEquipamentosNaoAlocados();
-        ConsultarSetor();
+        carregarEquipamentosNaoAlocados();
+        consultarSetor();
     </script>
 </body>
 
