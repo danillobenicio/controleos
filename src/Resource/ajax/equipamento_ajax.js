@@ -247,7 +247,6 @@ function consultarEquipamentosAlocados(idSetor) {
 
 function removerEquipamentoAlocado(idAlocamento) {
 
-
         let id_excluir = $('#id_excluir').val();
     
         alert(id_excluir);

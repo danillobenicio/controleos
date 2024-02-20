@@ -84,7 +84,6 @@
                 echo $ex->getMessage();
                 return -1;
             }
-
         }
 
         public function alterarEquipamentoModel(EquipamentoVO $vo) : int
@@ -105,7 +104,6 @@
                 echo $ex->getMessage();
                 return -1;
             }
-
         }
 
         public function inativarEquipamentoModel(EquipamentoVO $vo) : int
