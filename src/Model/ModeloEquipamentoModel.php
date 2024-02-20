@@ -8,7 +8,6 @@
 
     class ModeloEquipamentoModel extends Conexao
     {
-
         private $conexao;
 
         public function __construct()
@@ -16,25 +15,18 @@
             $this->conexao = parent::retornarConexao();
         }
 
-
         public function cadastrarModeloModel(ModeloVO $vo) : int
         {
-
             $sql = $this->conexao->prepare(ModeloEquipamentoSql::cadastrarModeloEquipamentoSql());
             $sql->bindValue(1, $vo->getNomeModelo());
 
-            try 
-            {
+            try {
                 $sql->execute();
                 return 1;
-            } 
-            catch (Exception $ex) 
-            {
+            } catch (Exception $ex) {
                 return -1;
             }
-
         }
-
 
         public function consultarModeloModel() : array
         {
@@ -42,7 +34,6 @@
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }
-
 
         public function alterarModeloModel(ModeloVO $vo) : int
         {
@@ -53,7 +44,7 @@
                 $sql->execute();
                 return 2;
             } catch (\Exception $ex) {
-                return 0;
+                return -1;
             }
         }
 
@@ -65,10 +56,8 @@
                 $sql->execute();
                 return 3;
             } catch (\Exception $ex) {
-                return 0;
+                return -1;
             }
         }        
-
     }
-
 ?>
