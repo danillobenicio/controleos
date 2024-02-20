@@ -37,12 +37,14 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="tipo">Cadastrar Setor</label>
-                                    <input type="text" class="form-control obg" id="setor" name="setor" placeholder="Setor">
+                                    <input type="text" class="form-control obg" id="setor" name="setor"
+                                        placeholder="Setor">
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" onclick="return cadastrarNovoSetor('formCad')" class="btn btn-sm btn-primary"
-                                    name="btnCadastrar" id="btnCadastrar">Cadastrar</button>
+                                <button type="button" onclick="return cadastrarNovoSetor('formCad')"
+                                    class="btn btn-sm btn-primary" name="btnCadastrar"
+                                    id="btnCadastrar">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -57,17 +59,11 @@
                                     <div class="card-tools">
                                         <div class="input-group input-group-sm" style="width: 150px;">
                                             <input type="hidden" id="tipoTela" name="tipoTela" value="tipoSetor">
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Pesquisar por">
-                                            <div class="input-group-append">
-                                                <button type="submit" class="btn btn-default"><i
-                                                        class="fas fa-search"></i></button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body table-responsive p-0" id="resultSetor">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -86,9 +82,9 @@
     </div>
 
     <?php  
-    include_once PATH . 'Template/_includes/_scripts.php';
-    include_once PATH . 'Template/_includes/_msg.php';
-  ?>
+        include_once PATH . 'Template/_includes/_scripts.php';
+        include_once PATH . 'Template/_includes/_msg.php';
+    ?>
     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
     <script type="text/javascript">
         consultarSetor();
@@ -96,5 +92,4 @@
         keyPressEnter('setor_alterar', 'btnAlterar')
     </script>
 </body>
-
 </html>

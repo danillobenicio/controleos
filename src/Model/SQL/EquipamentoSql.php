@@ -116,7 +116,8 @@
                         tm.nome_modelo,
                         ts.nome_setor,
                         ta.data_alocacao,
-                        ta.situacao
+                        ta.situacao,
+                        td.id_setor
                     FROM
                         tb_alocar ta
                             INNER JOIN

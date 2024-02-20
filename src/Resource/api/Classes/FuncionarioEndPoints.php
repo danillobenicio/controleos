@@ -2,10 +2,13 @@
 
     namespace Src\Resource\api\Classes;
 
-    use Src\Resource\api\Classes\ApiRequest;
+use Src\Controller\ChamadoCTRL;
+use Src\Resource\api\Classes\ApiRequest;
     use Src\Controller\UsuarioCTRL;
     use Src\VO\FuncionarioVO;
     use Src\VO\UsuarioVO;
+    use Src\Controller\EquipamentoCTRL;
+    use Src\VO\ChamadoVO;
 
     class FuncionarioEndPoints extends ApiRequest
     {
@@ -69,9 +72,23 @@
             return $this->ctrl_user->verificarSenhaCtrl($this->params['id_usuario'], $this->params['senha_digitada']);
         }
 
-/*
-        public function consultarEquipamentosAlocadosSetorApi($id_setor) {
-            return (new EquipamentoCTRL)->consultarEquipamentosAlocadosSetorCtrl($id_setor);
-        }*/
+        public function consultarEquipamentosAlocadosSetorApi() {
+            return (new EquipamentoCTRL)->consultarEquipamentosAlocadosSetorCtrl($this->params['id_setor']);
+        }
+
+        public function abrirChamadoApi()
+        {
+            $vo = new ChamadoVO();
+            $vo->setFkIdAlocar($this->params['id_alocar']);
+            $vo->setFkUsuario($this->params['id_usuario']);
+            $vo->setProblema($this->params['problema']);
+            
+            return (new ChamadoCTRL)->abrirChamadoCtrl($vo);
+        }
+
+        public function filtrarChamadosApi()
+        {
+            return (new ChamadoCTRL)->filtrarChamadoCtrl($this->params['situacao'], $this->params['id_setor']);
+        }
     }
 ?>

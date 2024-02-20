@@ -14,6 +14,7 @@ class ChamadoVO
     private $fk_id_equipamento;
     private $fk_id_tecnico_encerramento;
     private $fk_id_tecnico_atendimento;
+    private $fk_id_alocar;
 
     public function setIdChamado(int $p_id_chamado) : void
     {
@@ -25,20 +26,30 @@ class ChamadoVO
         return $this->id_chamado;
     }
 
+    public function setFkIdAlocar(int $fk_id_alocar) : void
+    {
+        $this->$fk_id_alocar = $fk_id_alocar;
+    }
 
-    public function getDataAbertura() : datetime
+    public function getFkIdAlocar() : int
+    {
+        return $this->fk_id_alocar;
+    }
+
+
+    public function getDataAbertura()
     {
         return Util::DataAtual();
     }
 
 
-    public function getHoraAbertura() : datetime
+    public function getHoraAbertura()
     {
         return Util::HoraAtual();
     }
 
 
-    public function getDataEncerramento() : datetime
+    public function getDataEncerramento()
     {
         return Util::DataAtual();
     }
@@ -55,20 +66,20 @@ class ChamadoVO
     }
 
 
-    public function getDataAtendimento() : datetime
+    public function getDataAtendimento()
     {
         return Util::DataAtual();
     }
 
 
-    public function getHoraAtendimento() : datetime
+    public function getHoraAtendimento()
     {
         return Util::HoraAtual();
     }
 
 
 
-    public function getHoraEncerramento() : datetime
+    public function getHoraEncerramento()
     {
         return Util::HoraAtual();
     }
@@ -127,8 +138,6 @@ class ChamadoVO
     {
         return $this->fk_id_tecnico_atendimento;
     }
-
-
 
 }
 
