@@ -153,7 +153,7 @@
         public function consultarEquipamentosAlocadosSetorModel($id_setor) : array
         {
             $sql = $this->conexao->prepare(EquipamentoSql::consultarEquipamentosAlocadosSetorSql());
-            $sql->bindvalue(1, $id_setor);
+            $sql->bindValue(1, $id_setor);
             $sql->execute();
             return $sql->fetchAll(\PDO::FETCH_ASSOC);
         }

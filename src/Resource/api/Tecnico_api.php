@@ -1,15 +1,9 @@
 <?php
 
     include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-    use Src\Resource\api\Classes\FuncionarioEndPoints;
-    /*use Src\VO\TipoVO;
-    use Src\VO\TecnicoVO;
-    use Src\VO\UsuarioVO;
-    use Src\VO\FuncionarioVO;
-    use Src\VO\EnderecoVO;*/
+    use Src\Resource\api\Classes\TecnicoEndPoints;
 
-
-    $obj = new FuncionarioEndPoints();
+    $obj = new TecnicoEndPoints();
 
     $obj->setMethod($_SERVER['REQUEST_METHOD']);
 
@@ -18,15 +12,16 @@
 
     $recebido = getallheaders();
    
+
     $json = $recebido['Content-Type'] == 'application/json' ? true : false;
 
     if ($json) {
-        $dados = file_get_contents('php://input');
+        $dados = file_get_contents('php://input'); // pega tudo que que mandei no body
         $dados = json_decode($dados, true);
     } else {
         $dados = $_POST;
     }
-  
+
     $obj->setEndPoint($dados['endpoint']);
 
     if (!$obj->checkEndPoint($obj->getEndPoint()))
@@ -36,6 +31,6 @@
 
     $result = $obj->{$obj->getEndPoint()}();
 
-    $obj->sendData("Resultado", $result, "Sucesso", $dados);
+    $obj->sendData("Resultado", $result, "Sucesso");
 
 ?>

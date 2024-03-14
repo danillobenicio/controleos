@@ -133,6 +133,53 @@
             return $nome_tipo;
         }
 
+        public static function CreateTokenAuthentication(array $dados_user) 
+        {
+            $header = [
+            'typ' => 'JWT',
+            'alg' => 'HS256'
+            ];
+            
+            $payload = $dados_user;
+            $header = json_encode($header);
+            $payload = json_encode($payload);
+            $header = base64_encode($header);
+            $payload = base64_encode($payload);
+            $sign = hash_hmac("sha256", $header . '.' . $payload, SECRET,
+            true);
+            $sign = base64_encode($sign);
+            $token = $header . '.' . $payload . '.' . $sign;
+            return $token;
+        }
+
+        public static function AuthenticationTokenAccess()
+        {
+            //Recupera todo o cabeçalho da requisição
+            $http_header = apache_request_headers();
+            //Se n for nulo
+            if ($http_header['Authorization'] != null &&
+            str_contains($http_header['Authorization'], '.')
+            ) :
+            //quebra o bearer(autenticação de token)
+            $bearer = explode(' ', $http_header['Authorization']);
+            $token = explode('.', $bearer[1]);
+            //quebrando os valores e jogango em seus significados
+            $header = $token[0];
+            $payload = $token[1];
+            $sign = $token[2];
+            //Faz a criptografia novamente para ver se bate com a chave
+            $valid = hash_hmac('sha256', $header . '.' . $payload,
+            SECRET, true);
+            $valid = base64_encode($valid);
+            if ($valid === $sign)
+            return true;
+            else
+            return false;
+
+            endif;
+            return false;
+        }
+
     }
 
 ?>

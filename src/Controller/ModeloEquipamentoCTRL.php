@@ -6,7 +6,6 @@
 
     class ModeloEquipamentoCTRL
     {
-
         private $model;
 
         public function __construct()
@@ -20,7 +19,6 @@
                 return 0;
           
             return $this->model->cadastrarModeloModel($vo);
-
         }
 
         public function consultarModeloEquipamentoCtrl() : array
@@ -43,5 +41,4 @@
             return $this->model->excluirModeloEquipamentoModel($vo);
         }
     }
-
 ?>

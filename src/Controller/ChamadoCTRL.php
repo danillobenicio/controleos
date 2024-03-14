@@ -10,25 +10,27 @@ use Src\VO\ChamadoVO;
 
     class ChamadoCTRL
     {
-
         private $model;
         public function __construct()
         {
             $this->model = new ChamadosModel();
         }
 
-
-        public function filtrarChamadoCtrl(int $situacao, int $id_setor) : array | null
+        public function filtrarChamadoCtrl($situacao, $id_setor = -1)
         {
             return $this->model->filtrarChamadoModel($situacao, $id_setor);
         }
 
-        public function abrirChamadoCtrl(ChamadoVO $vo, $tem_sessao = true) : int
+        public function detalharChamadoCtrl($id)
         {
-            if(empty($vo->getDataAbertura()) || empty($vo->getHoraAbertura()) || empty($vo->getFkUsuario()) || empty($vo->getProblema()) || empty($vo->getFkIdAlocar()))
-                return 0;              
+            return $this->model->detalharChamadoModel($id);
+        }
 
-            $vo->setFkUsuario(9);
+        public function abrirChamadoCtrl(ChamadoVO $vo)
+        {
+
+            if(empty($vo->getProblema()) || empty($vo->getFkIdAlocar()))
+                return 0;
 
             return $this->model->abrirChamadoModel($vo);
         }

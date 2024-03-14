@@ -164,13 +164,12 @@ use Src\VO\TecnicoVO;
         }
 
 
-        public function DetalharUsuarioModel($id) {
-
+        public function DetalharUsuarioModel($id) 
+        {
             $sql = $this->conexao->prepare(UsuarioSql::DetalharUsuario());
             $sql->bindValue(1, $id);
             $sql->execute();
             return $sql->fetch(\PDO::FETCH_ASSOC);
-
         }
 
 

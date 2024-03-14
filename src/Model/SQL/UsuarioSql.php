@@ -34,38 +34,31 @@
             return 'INSERT INTO tb_tecnico (tb_usuario_id_usuario, nome_empresa) VALUES (?, ?)';
         }
 
-
         public static function cadastrarUsuarioFuncionario()
         {
             return 'INSERT INTO tb_funcionario (tb_usuario_id_usuario, fk_id_setor) VALUES (?, ?)';
         }
-
 
         public static function verificarCidadeCadastrada() 
         {
             return 'SELECT tc.id_cidade FROM tb_cidade tc INNER JOIN tb_estado te ON  tc.fk_id_estado = te.id_estado WHERE tc.nome_cidade = ? AND te.sigla = ?';
         }
 
-
         public static function verificarEstadoCadastrado()
         {
             return 'SELECT id_estado FROM tb_estado WHERE sigla = ?';
         }
 
-
-        public static function  FiltrarUsuario() {
-            $sql = "SELECT id_usuario, nome_usuario, tipo_usuario, status_usuario FROM tb_usuario WHERE nome_usuario LIKE ?";
-            return $sql;
+        public static function  FiltrarUsuario() 
+        {
+            return "SELECT id_usuario, nome_usuario, tipo_usuario, status_usuario FROM tb_usuario WHERE nome_usuario LIKE ?";
         }
 
-
-        public static function AlterarStatusUsuario() {
-            $sql = "UPDATE tb_usuario SET status_usuario = ? WHERE id_usuario = ?";
-            return $sql;
+        public static function AlterarStatusUsuario() 
+        {
+            return "UPDATE tb_usuario SET status_usuario = ? WHERE id_usuario = ?";
         }
 
-
-        
         public static function DetalharUsuario() 
         {
             return "SELECT
@@ -101,7 +94,6 @@
                         tb_setor ts ON ts.id_setor = tf.fk_id_setor
                     WHERE tu.id_usuario = ?";
         }
-
 
         public static function alterarUsuario()
         {
@@ -141,8 +133,20 @@
 
         public static function validarLoginSql()
         {
-            $sql = 'SELECT id_usuario, nome_usuario, senha_usuario FROM tb_usuario WHERE cpf_usuario = ? AND status_usuario = ?';
-            return $sql;
+            return 'SELECT 
+                        tu.id_usuario, 
+                        tu.nome_usuario, 
+                        tu.senha_usuario,
+                        tf.fk_id_setor,
+                        tc.nome_empresa
+                    FROM 
+                        tb_usuario tu
+                    LEFT JOIN
+                        tb_funcionario tf ON tf.tb_usuario_id_usuario = tu.id_usuario
+                    LEFT JOIN
+                        tb_tecnico tc ON tc.tb_usuario_id_usuario = tu.id_usuario
+                    WHERE 
+                        cpf_usuario = ? AND status_usuario = ?';
         }
 
         public static function alterarSenha() 
@@ -155,5 +159,4 @@
             return "SELECT senha_usuario FROM tb_usuario WHERE id_usuario = ?";
         } 
     }
-
 ?>

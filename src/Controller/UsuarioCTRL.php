@@ -130,9 +130,36 @@ use Src\_Public\Util;
 
         }
 
+        public function validarLoginApiCtrl($login, $senha) : string | int 
+        {
+            if (empty($login) || empty($senha)) {
+                return 0;
+            }
+
+            $usuario = $this->model->validarLoginModel($login, SITUACAO_ATIVO);
+
+            if (empty($usuario))
+                return -7;
+
+            if (!Util::verificarSenha($senha, $usuario['senha_usuario']))
+                return -7;
+
+            $this->model->gravarLogAcessoModel($usuario['id_usuario']);
+
+            $dados_usuario = [
+                'cod_user' => $usuario['id_usuario'],
+                'nome_user' => $usuario['nome_usuario'],
+                'cod_setor' => $usuario['fk_id_setor']
+            ];
+
+            $token = Util::CreateTokenAuthentication($dados_usuario);
+
+            return $token;
+        }
+
         public function alterarSenhaCtrl(UsuarioVO $vo, bool $tem_sessao = true) : int
         {
-            if ($vo->getIdUsuario() or $vo->getSenhaUsuario())
+            if (empty($vo->getIdUsuario()) || empty($vo->getSenhaUsuario()))
                 return 0;
 
             $vo->setSenhaUsuario(Util::CriptografarSenha($vo->getSenhaUsuario()));

@@ -1,5 +1,4 @@
 <?php
-
     namespace Src\Resource\api\Classes;
 
     class ApiRequest
@@ -21,7 +20,6 @@
         {
             return $this->data['method'];
         }
-
 
         public function setEndPoint($p)
         {
@@ -45,28 +43,15 @@
             exit;
         }
 
-       /* public function sendData($msg = '', $result, $status)
-        {   
-            $this->data = [
-                'status' => $status,
-                'message' => $msg,
-                'result' => $result
-            ];
-
-            $this->sendResponse();
-        }*/
-
-        public function sendData($msg= '', $result, $status, $send = "")
+        public function sendData($msg= '', $result, $status)
         {
             $this->data = [
-            'STATUS' => $status,
-            'MESSAGE' => $msg,
-            'RESULT' => $result,
-            'SEND' => $send
+                'STATUS' => $status,
+                'MESSAGE' => $msg,
+                'RESULT' => $result,            
             ];
 
             $this->sendResponse();
         }
     }
-
 ?>

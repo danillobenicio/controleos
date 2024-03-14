@@ -26,12 +26,12 @@ class ChamadoVO
         return $this->id_chamado;
     }
 
-    public function setFkIdAlocar(int $fk_id_alocar) : void
+    public function setFkIdAlocar($fk_id_alocar) : void
     {
-        $this->$fk_id_alocar = $fk_id_alocar;
+        $this->fk_id_alocar = $fk_id_alocar;
     }
 
-    public function getFkIdAlocar() : int
+    public function getFkIdAlocar()
     {
         return $this->fk_id_alocar;
     }

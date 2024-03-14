@@ -16,20 +16,29 @@
             $this->conexao = parent::retornarConexao();
         }
 
-        public function filtrarChamadoModel(int $situacao, int $id_setor) : array | null
+        public function filtrarChamadoModel($situacao, $id_setor)
         {
             $tem_setor = $id_setor == -1 ? false : true;
 
             $sql = $this->conexao->prepare(ChamadoSql::filtrarChamado($situacao, $tem_setor));
-            if ($tem_setor)
-                $sql->bindValue(1, $tem_setor);
+            if ($tem_setor) {
+                $sql->bindValue(1, $id_setor);
+            }
+            $sql->execute();
+            return $sql->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        public function detalharChamadoModel($id)
+        {
+            $sql = $this->conexao->prepare(ChamadoSql::detalharChamado());
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $sql->fetch(\PDO::FETCH_ASSOC);
         }
 
         public function abrirChamadoModel(ChamadoVO $vo)
         {
-            $sql = new $this->conexao->prepare(ChamadoSql::abrirChamado());
+            $sql = $this->conexao->prepare(ChamadoSql::abrirChamado());
             $sql->bindValue(1, $vo->getDataAbertura());
             $sql->bindValue(2, $vo->getHoraAbertura());
             $sql->bindValue(3, $vo->getProblema());
@@ -40,7 +49,7 @@
                 $sql->execute();
                 return 1;
             } catch (\Exception $ex) {
-                return -1;
+                return $ex->getMessage();
             }
         }
     }

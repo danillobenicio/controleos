@@ -158,7 +158,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
+        <!--<li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="fa-solid fa-user-tag"></i>
             <p>
@@ -191,7 +191,7 @@
                 <p>Atender Chamado</p>
               </a>
             </li>
-          </ul>
+          </ul>-->
           <li class="nav-item">
               <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
