@@ -15,9 +15,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="#" class="brand-link">
-    <img src="../../Template/dist/img/logoc.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
       style="opacity: .8">
-    <span class="brand-text font-weight-light">ontrol OS</span>
+    <span class="brand-text font-weight-light">Control OS</span>
   </a>
 
   <!-- Sidebar -->
@@ -37,7 +37,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview menu-open">
           <a href="#" class="nav-link">
             <i class="fa-solid fa-toolbox"></i>
             <p>
@@ -46,56 +46,48 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../../View/adm/gerenciar_tipo_equipamento.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Tipo Equipamento</p>
-              </a>
-            </li>
-            <li class="nav-item">
+          <li class="nav-item">
               <a href="../../View/adm/equipamento.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
                 <p>Equipamento</p>
               </a>
             </li>
             <li class="nav-item">
+              <a href="../../View/adm/gerenciar_tipo_equipamento.php" class="nav-link">
+                <p>Tipo Equipamento</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../../View/adm/gerenciar_modelo_equipamento.php" class="nav-link">
+                <p>Modelo Equipamento</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="../../View/adm/gerenciar_novo_setor.php" class="nav-link">
+                <p>Setor</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="../../View/adm/gerenciar_alocar_equipamento.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
                 <p>Alocar Equipamento</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="../../View/adm/gerenciar_consultar_equipamento.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
                 <p>Consultar Equipamento</p>
               </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/adm/gerenciar_modelo_equipamento.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Modelo Equipamento</p>
-              </a>
-            </li>
+            </li>   
             <li class="nav-item">
               <a href="../../View/adm/gerenciar_remover_equipamento.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
                 <p>Remover Equipamento</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="../../View/adm/gerenciar_novo_setor.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Setor</p>
-              </a>
-            </li>
+            
           </ul>
         </li>
       </ul>
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
+        <li class="nav-item has-treeview menu-open">
+          <a href="#" class="nav-link nav-link-principal">
             <i class="fa-solid fa-user"></i>
             <p>
               Usuário
@@ -105,93 +97,18 @@
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="../../View/adm/gerenciar_novo_usuario.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
                 <p>Cadastrar</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="../../View/adm/gerenciar_consultar_usuario.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
                 <p>Consultar</p>
               </a>
             </li>
           </ul>
         </li>
       </ul>
-      <!--<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-user-gear"></i>
-            <p>
-              Funcionário
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../../View/funcionario/meus_dados.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Meus Dados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/funcionario/mudar_senha.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Mudar Senha</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/funcionario/novo_chamado.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Novo Chamado</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/funcionario/meus_chamados.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Consultar Chamados</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>-->
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-        <!--<li class="nav-item has-treeview">
-          <a href="#" class="nav-link">
-            <i class="fa-solid fa-user-tag"></i>
-            <p>
-              Técnico
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="../../View/tecnico/tec_meus_dados.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Meus Dados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/tecnico/tec_mudar_senha.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Alterar Senha</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/tecnico/tec_consultar_chamado.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Meus Chamados</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../../View/tecnico/tec_atender_chamados.php" class="nav-link">
-                <i class="fa-regular fa-circle"></i>
-                <p>Atender Chamado</p>
-              </a>
-            </li>
-          </ul>-->
           <li class="nav-item">
               <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
