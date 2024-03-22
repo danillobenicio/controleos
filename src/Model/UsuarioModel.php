@@ -237,7 +237,6 @@ use Src\VO\TecnicoVO;
                     if (count($tem_estado) > 0) {
                         $id_estado = $tem_estado[0]['id_estado'];
                     } else {
-                        
                         //Cadastra o estado
                         $sql = $this->conexao->prepare(UsuarioSql::CadastrarEstado());
                         $sql->bindvalue(1, $vo->getSiglaEstado());
@@ -275,7 +274,6 @@ use Src\VO\TecnicoVO;
             }
         }
 
-
         public function validarLoginModel(string $login, int $status) : array | null | bool
         {
             $sql = $this->conexao->prepare(UsuarioSql::validarLoginSql());
@@ -294,7 +292,6 @@ use Src\VO\TecnicoVO;
             $sql->execute();
         }
 
-
         public function alterarSenhaModel(UsuarioVO $vo) : int
         {
             $sql = $this->conexao->prepare(UsuarioSql::alterarSenha());
@@ -306,7 +303,6 @@ use Src\VO\TecnicoVO;
             } catch (\Exception $ex) {
                 return -1;
             }
-
         }
 
         public function verificarSenhaModel(int $id) : array | null 
@@ -316,7 +312,5 @@ use Src\VO\TecnicoVO;
             $sql->execute();
             return $sql->fetch(\PDO::FETCH_ASSOC);
         }
-
     }
-
 ?>

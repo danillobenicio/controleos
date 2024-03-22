@@ -9,6 +9,7 @@
     use Src\VO\UsuarioVO;
     use Src\Controller\EquipamentoCTRL;
     use Src\VO\ChamadoVO;
+    use Src\_Public\Util;
 
     class TecnicoEndPoints extends ApiRequest
     {
@@ -32,11 +33,16 @@
 
         public function detalharUsuarioApi()
         {
-            return $this->ctrl_user->DetalharUsuarioCtrl($this->params['id_user']);
+            if (Util::AuthenticationTokenAccess()) {
+                return $this->ctrl_user->DetalharUsuarioCtrl($this->params['id_user']);
+            } else {
+                return NAO_AUTORIZADO;
+            }
         }
 
         public function alterarDadosApi()
         {
+            
             $vo = new TecnicoVO(); 
 
             $vo->setNomeEmpresa($this->params['empresa']);
@@ -53,36 +59,66 @@
             $vo->setSiglaEstado($this->params['estado']);
             $vo->setIdEndereco($this->params['id_endereco']);
 
-            return $this->ctrl_user->alterarUsuarioCTRL($vo, false);
+            if (Util::AuthenticationTokenAccess()) {
+                return $this->ctrl_user->alterarUsuarioCTRL($vo, false);
+            }else {
+                return NAO_AUTORIZADO;
+            }
         }
 
         public function alterarSenhaApi() 
         {
-            $vo = new UsuarioVO();
+            if (Util::AuthenticationTokenAccess()) {
+                $vo = new UsuarioVO();
 
-            $vo->setIdUsuario($this->params['id_usuario']);
-            $vo->setSenhaUsuario($this->params['nova_senha']);
+                $vo->setIdUsuario($this->params['id_usuario']);
+                $vo->setSenhaUsuario($this->params['nova_senha']);
 
-            return $this->ctrl_user->alterarSenhaCtrl($vo, false);
+                return $this->ctrl_user->alterarSenhaCtrl($vo, false);
+            } else {
+                return NAO_AUTORIZADO;
+            }
         }
 
 
         public function verificarSenhaApi()
         {
-            return $this->ctrl_user->verificarSenhaCtrl($this->params['id_usuario'], $this->params['senha_digitada']);
+            if (Util::AuthenticationTokenAccess()) {
+                return $this->ctrl_user->verificarSenhaCtrl($this->params['id_usuario'], $this->params['senha_digitada']);
+            } else {
+                return NAO_AUTORIZADO;
+            }
+            
         }
 
         public function filtrarChamadosApi()
         {
-            return (new ChamadoCTRL)->filtrarChamadoCtrl(
-                $this->params['situacao']
-            );
+            if (Util::AuthenticationTokenAccess()) {
+                return (new ChamadoCTRL)->filtrarChamadoCtrl(
+                    $this->params['situacao']
+                );
+            }else {
+                return NAO_AUTORIZADO;
+            }
         }
 
         public function detalharChamadoApi()
         {
-            return (new ChamadoCTRL)->detalharChamadoCtrl(
-                $this->params['id']
+            if (Util::AuthenticationTokenAccess()) {
+                return (new ChamadoCTRL)->detalharChamadoCtrl(
+                    $this->params['id']
+                );
+            } else {
+                return NAO_AUTORIZADO;
+            }
+            
+        }
+
+        public function validarLoginApi() : int | string
+        {
+            return $this->ctrl_user->validarLoginApiCtrl(
+                $this->params['login_usuario'],
+                $this->params['senha_usuario']
             );
         }
     }
