@@ -121,5 +121,32 @@
                 $this->params['senha_usuario']
             );
         }
+
+        public function atenderChamadoApi() 
+        {
+            if (Util::AuthenticationTokenAccess()) {
+                $vo = new ChamadoVO();
+                $vo->setFkTecAtendimento($this->params['fkTecAtendimento']);
+                $vo->setIdChamado($this->params['idChamado']);
+
+                return (new ChamadoCTRL)->atenderChamadoCtrl($vo);
+            } else {
+                return NAO_AUTORIZADO;
+            }
+        }
+
+        public function finalizarChamadoApi() 
+        {
+            if (Util::AuthenticationTokenAccess()) {
+                $vo = new ChamadoVO();
+                $vo->setFkTecEncerramento($this->params['fkTecEncerramento']);
+                $vo->setIdChamado($this->params['idChamado']);
+                $vo->setLaudo($this->params['laudo']);
+                $vo->setFkIdAlocar($this->params['idAlocar']);
+                return (new ChamadoCTRL)->finalizarChamadoCtrl($vo);
+            } else {
+                return NAO_AUTORIZADO;
+            }
+        }
     }
 ?>

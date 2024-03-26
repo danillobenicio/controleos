@@ -52,4 +52,11 @@
                 return $ex->getMessage();
             }
         }
+
+        public function numerosChamadoAtualModel()
+        {
+            $sql = $this->conexao->prepare(ChamadoSql::numerosChamadoAtual());
+            $sql->execute();
+            return $sql->fetch(\PDO::FETCH_ASSOC);
+        }
     }

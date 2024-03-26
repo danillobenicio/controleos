@@ -28,12 +28,17 @@ use Src\VO\ChamadoVO;
 
         public function abrirChamadoCtrl(ChamadoVO $vo)
         {
-
             if(empty($vo->getProblema()) || empty($vo->getFkIdAlocar()))
                 return 0;
 
             return $this->model->abrirChamadoModel($vo);
         }
+
+        public function numerosChamadoAtualCtrl() {
+            return $this->model->numerosChamadoAtualModel();
+        }
+
+        
 
     }
 
