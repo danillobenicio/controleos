@@ -36,7 +36,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Pesquisar</h3>
                         </div>
-                        <form role="form" method="POST">
+                        <form role="form" method="POST" action="pdf_equipamento.php">
                             <input type="hidden" value="tela_excluir" id="tela">
                             <div class="card-body">
                                 <div class="form-group">
@@ -57,7 +57,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button name="btn_pdf" class="btn btn-info">Gerar PDF</button>
                             </div>
+                            
                         </form>
                     </div>
                 </div>

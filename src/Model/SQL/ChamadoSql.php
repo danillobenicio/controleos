@@ -131,7 +131,7 @@
 
         public static function numerosChamadoAtual() {
             return "SELECT
-                        (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_atendimento IS NULL) AS qauntidade_aguardando,
+                        (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_atendimento IS NULL) AS quantidade_aguardando,
                         (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_atendimento IS NOT NULL AND fk_id_tecnico_encerramento IS NULL) AS quantidade_em_atendimento,
                         (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_encerramento IS NOT NULL) AS quantidade_encerrado";
         }
