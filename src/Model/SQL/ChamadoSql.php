@@ -92,10 +92,10 @@
                         tm.nome_modelo,
                         tt.nome_tipo,
                         te.identificacao,
-                        tc.data_abertura,
+                        date_format(tc.data_abertura, "%d/%m/%Y") as data_abertura,
                         tc.hora_abertura,
                         tc.problema,
-                        tc.data_atendimento,
+                        date_format(tc.data_atendimento, "%d/%m/%Y") as data_atendimento,
                         tc.hora_atendimento,
                         tc.data_encerramento,
                         tc.hora_encerramento,
@@ -134,5 +134,40 @@
                         (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_atendimento IS NULL) AS quantidade_aguardando,
                         (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_atendimento IS NOT NULL AND fk_id_tecnico_encerramento IS NULL) AS quantidade_em_atendimento,
                         (SELECT count(id_chamado) FROM tb_chamado WHERE fk_id_tecnico_encerramento IS NOT NULL) AS quantidade_encerrado";
+        }
+
+        public static function atenderChamadoSql()
+        {
+            $sql = "UPDATE 
+                        tb_chamado 
+                    SET 
+                        fk_id_tecnico_atendimento = ?,
+                        data_atendimento = ?,
+                        hora_atendimento = ?
+                    WHERE id_chamado = ?";
+            return $sql;
+        }
+
+        public static function finalizarChamadoSql()
+        {
+            $sql = "UPDATE 
+                        tb_chamado 
+                    SET 
+                        data_encerramento = ?
+                        hora_encerramento = ?,
+                        laudo = ?,
+                        fk_id_tecnico_encerramento = ?
+                    WHERE id_chamado = ?";
+            return $sql;
+        }
+
+        public static function atualizarAlocarSql()
+        {
+            $sql = "UPDATE 
+                        tb_alocar 
+                    SET 
+                        situacao = ?
+                    WHERE id_alocar = ?";
+            return $sql;
         }
     }

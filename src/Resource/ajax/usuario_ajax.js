@@ -26,6 +26,33 @@ function verificarEmailDuplicado(email)
     }
 }
 
+function verificarCpfDuplicado(cpf)
+{
+    if(validarCpf(cpf))
+    {
+        $.ajax({
+            beforeSend: function(){
+                load();
+            },
+            type: 'POST',
+            url: baseUrlDataview('usuario_dataview'),
+            data: {
+                verificarCpdfDuplicado: 'ajx',
+                cpf: cpf
+            },
+            success: function(ret){
+                if(ret){
+                    mostrarMensagem(14);
+                    $('#cpf').val('');
+                    $('#cpf').focus();
+                }
+            },
+            complete: function(){
+                removerLoad();
+            }
+        })
+    }
+}
 
 function cadastrarUsuario(formID){
     

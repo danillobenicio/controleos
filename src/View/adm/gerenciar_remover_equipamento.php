@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                 <label>Setores</label>
                                         
-                                    <select class="form-control obg" style="width: 100%;" name="setor" id="resultSetor" onchange="ConsultarEquipamentosAlocados(this.value)">
+                                    <select class="form-control obg" style="width: 100%;" name="setor" id="resultSetor" onchange="consultarEquipamentosAlocados(this.value)">
                                         
                                     </select>
                                 </div>
@@ -82,7 +82,7 @@
     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
     <script src="../../Resource/ajax/equipamento_ajax.js"></script>
     <script>
-        ConsultarSetor(); 
+        consultarSetor(); 
     </script>
 </body>
 

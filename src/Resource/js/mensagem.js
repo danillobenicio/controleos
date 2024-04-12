@@ -32,6 +32,8 @@ function mostrarMensagem(ret) {
         toastr.error('Nenhum usuário encontrado !');
     } else if (ret == 13) {
         toastr.error('Senha não encontrada !');
+    } else if (ret == 14) {
+        toastr.error('CPF já cadastrado !');
     }
 
 }

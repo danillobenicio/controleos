@@ -1,12 +1,12 @@
 <?php
-    include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <?php
-        include_once PATH . 'Template/_includes/_head.php';
+    include_once PATH . 'Template/_includes/_head.php';
     ?>
 </head>
 
@@ -17,7 +17,7 @@
         <?php
         include_once PATH . 'Template/_includes/_topo.php';
         include_once PATH . 'Template/_includes/_menu.php';
-    ?>
+        ?>
 
         <div class="content-wrapper">
             <section class="content-header">
@@ -38,12 +38,11 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="inputTypeUser">Escolha o tipo de usuário</label>
-                                        <select class="form-control" id="tipo" name="tipo" style="width: 100%;"
-                                            onchange="carregarTipoUsuario(this.value)">
+                                        <select class="form-control" id="tipo" name="tipo" style="width: 100%;" onchange="carregarTipoUsuario(this.value)">
                                             <option selected="selected" value="">Selecione</option>
-                                            <option value="<?=USUARIO_ADM?>">Administrador</option>
-                                            <option value="<?=USUARIO_FUNC?>">Funcionário</option>
-                                            <option value="<?=USUARIO_TEC?>">Técnico</option>
+                                            <option value="<?= USUARIO_ADM ?>">Administrador</option>
+                                            <option value="<?= USUARIO_FUNC ?>">Funcionário</option>
+                                            <option value="<?= USUARIO_TEC ?>">Técnico</option>
                                         </select>
                                     </div>
                                 </div>
@@ -52,25 +51,21 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>Nome</label>
-                                        <input type="text" class="form-control obg" id="nome" name="nome"
-                                            placeholder="Nome completo">
+                                        <input type="text" class="form-control obg" id="nome" name="nome" placeholder="Nome completo">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>E-mail</label>
-                                        <input type="email" class="form-control obg" id="email" name="email"
-                                            placeholder="E-mail" onblur="verificarEmailDuplicado(this.value)">
+                                        <input type="email" class="form-control obg" id="email" name="email" placeholder="E-mail" onblur="verificarEmailDuplicado(this.value)">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>Telefone</label>
-                                        <input type="text" class="form-control obg cel num" id="telefone" name="telefone"
-                                            placeholder="Telefone">
+                                        <input type="text" class="form-control obg cel num" id="telefone" name="telefone" placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>CPF</label>
-                                        <input type="text" class="form-control obg cpf num" id="cpf" name="cpf"
-                                            placeholder="CPF" onblur="validarCpf(this.value)">
+                                        <input type="text" class="form-control obg cpf num" id="cpf" name="cpf" placeholder="CPF" onchange="verificarCpfDuplicado(this.value)">
                                     </div>
                                 </div>
                             </div>
@@ -79,8 +74,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Setor</label>
-                                            <select class="form-control" id="resultSetor" name="setor"
-                                                style="width: 100%;">
+                                            <select class="form-control" id="resultSetor" name="setor" style="width: 100%;">
                                             </select>
                                         </div>
                                     </div>
@@ -91,8 +85,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Empresa</label>
-                                            <input type="text" class="form-control" id="empresa" name="empresa"
-                                                placeholder="Empresa">
+                                            <input type="text" class="form-control" id="empresa" name="empresa" placeholder="Empresa">
                                         </div>
                                     </div>
                                 </div>
@@ -101,8 +94,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-12 col-sm-12">
                                         <label>Cep</label>
-                                        <input type="text" class="form-control obg cep num" id="cep" name="cep"
-                                            placeholder="Cep" onblur="pesquisaCep(this.value)">
+                                        <input type="text" class="form-control obg cep num" id="cep" name="cep" placeholder="Cep" onblur="pesquisaCep(this.value)">
                                     </div>
                                 </div>
 
@@ -110,29 +102,25 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Rua</label>
-                                            <input type="text" class="form-control obg" name="rua" id="rua"
-                                                placeholder="Rua">
+                                            <input type="text" class="form-control obg" name="rua" id="rua" placeholder="Rua">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Bairro</label>
-                                            <input type="text" class="form-control obg" name="bairro" id="bairro"
-                                                placeholder="Bairro">
+                                            <input type="text" class="form-control obg" name="bairro" id="bairro" placeholder="Bairro">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6 col-sm-12">
                                         <label>Cidade</label>
-                                        <input type="text" disabled class="form-control obg" id="cidade" name="cidade"
-                                            placeholder="Campo Automático">
+                                        <input type="text" disabled class="form-control obg" id="cidade" name="cidade" placeholder="Campo Automático">
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label>Estado</label>
-                                            <input type="text" disabled class="form-control obg" name="estado"
-                                                id="estado" placeholder="Campo Automático">
+                                            <input type="text" disabled class="form-control obg" name="estado" id="estado" placeholder="Campo Automático">
                                         </div>
                                     </div>
                                 </div>
@@ -149,11 +137,11 @@
 
         <?php
         include_once PATH . 'Template/_includes/_footer.php'
-    ?>
+        ?>
     </div>
-    <?php  
-        include_once PATH . 'Template/_includes/_scripts.php';  
-     ?>
+    <?php
+    include_once PATH . 'Template/_includes/_scripts.php';
+    ?>
     <script src="../../Resource/ajax/novo_setor_ajax.js"></script>
     <script src="../../Resource/js/buscar_cep.js"></script>
     <script src="../../Template/mask/jquery.mask.min.js"></script>
@@ -162,7 +150,7 @@
     <script type="text/javascript">
         //mascarasInput();
         consultarSetor();
-        validarCpf();
+        //validarCpf();
     </script>
 </body>
 

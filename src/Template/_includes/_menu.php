@@ -1,24 +1,23 @@
 <?php
 
-  include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+include_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 
-  use Src\_Public\Util;
+use Src\_Public\Util;
 
 
-  if (isset($_GET['close']) && $_GET['close'] == 1) {
-    Util::deslogar();
-  }
+if (isset($_GET['close']) && $_GET['close'] == 1) {
+  Util::deslogar();
+}
 
 ?>
 
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="#" class="brand-link">
-    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-      style="opacity: .8">
+  <!--<a href="#" class="brand-link">
+    <img src="../../Template/dist/img/service-desk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">Control OS</span>
-  </a>
+  </a>-->
 
   <!-- Sidebar -->
   <div class="sidebar">
@@ -37,7 +36,7 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-item has-treeview menu-open">
+        <li class="nav-item has-treeview">
           <a href="#" class="nav-link">
             <i class="fa-solid fa-toolbox"></i>
             <p>
@@ -46,7 +45,7 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-          <li class="nav-item">
+            <li class="nav-item">
               <a href="../../View/adm/equipamento.php" class="nav-link">
                 <p>Equipamento</p>
               </a>
@@ -75,18 +74,18 @@
               <a href="../../View/adm/gerenciar_consultar_equipamento.php" class="nav-link">
                 <p>Consultar Equipamento</p>
               </a>
-            </li>   
+            </li>
             <li class="nav-item">
               <a href="../../View/adm/gerenciar_remover_equipamento.php" class="nav-link">
                 <p>Remover Equipamento</p>
               </a>
             </li>
-            
+
           </ul>
         </li>
       </ul>
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item has-treeview menu-open">
+        <li class="nav-item has-treeview">
           <a href="#" class="nav-link nav-link-principal">
             <i class="fa-solid fa-user"></i>
             <p>
@@ -109,12 +108,12 @@
         </li>
       </ul>
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-              <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <p>Sair</p>
-              </a>
-            </li>
+        <li class="nav-item">
+          <a href="../../Template/_includes/_menu.php?close=1" class="nav-link">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <p>Sair</p>
+          </a>
+        </li>
         </li>
       </ul>
     </nav>
