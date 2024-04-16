@@ -97,7 +97,7 @@
                         tc.problema,
                         date_format(tc.data_atendimento, "%d/%m/%Y") as data_atendimento,
                         tc.hora_atendimento,
-                        tc.data_encerramento,
+                        date_format(tc.data_encerramento, "%d/%m/%Y") as data_encerramento,
                         tc.hora_encerramento,
                         tc.laudo,
                         usuario_tec_atend.nome_usuario AS tecnico_atendimento,
@@ -153,10 +153,10 @@
             $sql = "UPDATE 
                         tb_chamado 
                     SET 
-                        data_encerramento = ?
-                        hora_encerramento = ?,
+                        fk_id_tecnico_encerramento = ?,
                         laudo = ?,
-                        fk_id_tecnico_encerramento = ?
+                        data_encerramento = ?,
+                        hora_encerramento = ?
                     WHERE id_chamado = ?";
             return $sql;
         }

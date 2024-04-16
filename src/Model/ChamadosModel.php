@@ -60,14 +60,21 @@
             return $sql->fetch(\PDO::FETCH_ASSOC);
         }
 
-        public function atenderChamadoModel(ChamadoVO $vo) {
+        public function atenderChamadoModel(ChamadoVO $vo, $situacao) {
             $sql = $this->conexao->prepare(ChamadoSql::atenderChamadoSql());
             $sql->bindValue(1, $vo->getFkTecAtendimento());
             $sql->bindValue(2, $vo->getDataAtendimento());
             $sql->bindValue(3, $vo->getHoraAtendimento());
             $sql->bindValue(4, $vo->getIdChamado());
+
+            $this->conexao->beginTransaction();
             try {
                 $sql->execute();
+                $sql = $this->conexao->prepare(ChamadoSql::atualizarAlocarSql());
+                $sql->bindValue(1, $situacao);
+                $sql->bindValue(2, $vo->getFkIdAlocar());
+                $sql->execute();
+                $this->conexao->commit();
                 return 1;
             } catch (\Exception $ex) {
                 return $ex->getMessage();
@@ -76,16 +83,17 @@
 
         public function finalizarChamadoModel(ChamadoVO $vo, $situacao) {
             $sql = $this->conexao->prepare(ChamadoSql::finalizarChamadoSql());
-            $sql->bindValue(1, $vo->getDataEncerramento());
-            $sql->bindValue(2, $vo->getHoraEncerramento());
-            $sql->bindValue(3, $vo->getLaudo());
-            $sql->bindValue(4, $vo->getFkTecEncerramento());
+            $sql->bindValue(1, $vo->getFkTecEncerramento());
+            $sql->bindValue(2, $vo->getLaudo());
+            $sql->bindValue(3, $vo->getDataEncerramento());
+            $sql->bindValue(4, $vo->getHoraEncerramento());
             $sql->bindValue(5, $vo->getIdChamado());
 
             $this->conexao->beginTransaction();
+
             try {
                 $sql->execute();
-                $sql = $this->conexao->prepare(ChamadoSql::finalizarChamadoSql());
+                $sql = $this->conexao->prepare(ChamadoSql::atualizarAlocarSql());
                 $sql->bindValue(1, $situacao);
                 $sql->bindValue(2, $vo->getFkIdAlocar());
                 $sql->execute();

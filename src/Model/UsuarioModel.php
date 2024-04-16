@@ -54,7 +54,7 @@ class UsuarioModel extends Conexao
 
         $verificaCpf = $this->verificarCpfDuplicadoModel($vo->getCpfUsuario());
 
-        if (!$verificaCpf) {
+        if ($verificaCpf) {
             return 14;
             die;
         }

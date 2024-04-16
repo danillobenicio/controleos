@@ -44,14 +44,18 @@ class ChamadoCTRL
         if (empty($vo->getFkTecAtendimento()) || empty($vo->getIdChamado()))
             return 0;
         
-        return $this->model->atenderChamadoModel($vo);
+        $situacao = SITUACAO_EQUIPAMENTO_MANUTENÇÃO;
+
+        return $this->model->atenderChamadoModel($vo, $situacao);
     }
 
     public function finalizarChamadoCtrl(ChamadoVO $vo)
     {
-        if (empty($vo->getFkTecEncerramento()) || empty($vo->getIdChamado()) || empty($vo->getLaudo()))
+        if (empty($vo->getFkTecEncerramento()) || empty($vo->getIdChamado()) || empty($vo->getLaudo()) || empty($vo->getFkIdAlocar()))
             return 0;
-        $situacao = SITUACAO_CHAMADO_ENCERRADO;
+        
+        $situacao = SITUACAO_EQUIPAMENTO_ALOCADO;
+
         return $this->model->finalizarChamadoModel($vo, $situacao);
     }
 }

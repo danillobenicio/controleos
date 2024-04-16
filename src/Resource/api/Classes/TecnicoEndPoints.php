@@ -135,13 +135,15 @@ class TecnicoEndPoints extends ApiRequest
 
     public function finalizarChamadoApi()
     {
-        if (Util::AuthenticationTokenAccess()) {
+       
+       if (Util::AuthenticationTokenAccess()) {
             $vo = new ChamadoVO();
             $vo->setFkTecEncerramento($this->params['fkTecEncerramento']);
             $vo->setIdChamado($this->params['idChamado']);
             $vo->setLaudo($this->params['laudo']);
             $vo->setFkIdAlocar($this->params['idAlocar']);
             return (new ChamadoCTRL)->finalizarChamadoCtrl($vo);
+
         } else {
             return NAO_AUTORIZADO;
         }
